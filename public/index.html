@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Primary Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Professional IT services including web development, cloud solutions, and tech consulting.">
+    
+    <!-- Preload Critical Fonts -->
+    <link rel="preload" href="/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
+    
+    <!-- Font Loading Strategy -->
+    <link rel="stylesheet" href="/fonts/font-fallback.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="/fonts/font-display.css" media="print" onload="this.media='all'">
+    
+    <!-- Preconnect to Origins -->
+    <link rel="preconnect" href="https://cdn.yourdomain.com" crossorigin>
+    <link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
+    
+    <!-- DNS Prefetch for Third-party Domains -->
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://cdn.yourdomain.com">
+    
+    <!-- Critical CSS Inline -->
+    <style>
+        /* Font Face Declarations */
+        @font-face {
+            font-family: 'Inter var';
+            font-weight: 100 900;
+            font-display: swap;
+            src: url('/fonts/inter-var.woff2') format('woff2');
+        }
+        
+        /* System Font Fallback */
+        @font-face {
+            font-family: 'Inter Fallback';
+            src: local('Arial');
+            ascent-override: 90%;
+            descent-override: 22%;
+            line-gap-override: 0%;
+        }
+        
+        /* Critical CSS */
+        :root {
+            --font-primary: 'Inter var', 'Inter Fallback', system-ui, -apple-system, sans-serif;
+        }
+        
+        body {
+            font-family: var(--font-primary);
+        }
+    </style>
+    
+    <!-- Deferred CSS Loading -->
+    <link rel="stylesheet" href="/css/main.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="/css/main.min.css"></noscript>
+    
+    <!-- Non-critical CSS -->
+    <link rel="stylesheet" href="/css/main.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="/css/main.min.css"></noscript>
+    
+    <!-- PWA Support -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#2563eb">
+    <link rel="apple-touch-icon" href="/images/icon-192.png">
+    <title>Leading IT Services | App & Cloud Solutions | TechPro Solutions</title>
+    <meta name="description" content="Expert IT services in app development, cloud computing, backend solutions & UI/UX design. Transform your business with our innovative tech solutions.">
+    <meta name="keywords" content="IT services, app development, cloud computing, backend development, UI/UX design, staffing solutions, software development, tech consulting">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://your-domain.com/">
+    <meta property="og:title" content="Leading IT Services | App & Cloud Solutions | TechPro Solutions">
+    <meta property="og:description" content="Expert IT services in app development, cloud computing, backend solutions & UI/UX design. Transform your business with our innovative tech solutions.">
+    <meta property="og:image" content="https://your-domain.com/og-image.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://your-domain.com/">
+    <meta property="twitter:title" content="Leading IT Services | App & Cloud Solutions | TechPro Solutions">
+    <meta property="twitter:description" content="Expert IT services in app development, cloud computing, backend solutions & UI/UX design. Transform your business with our innovative tech solutions.">
+    <meta property="twitter:image" content="https://your-domain.com/twitter-image.jpg">
+
+    <!-- Additional Meta Tags -->
+    <meta name="author" content="Your Company Name">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#ffffff">
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "TechPro Solutions",
+        "url": "https://your-domain.com",
+        "logo": "https://your-domain.com/images/logo.png",
+        "description": "Leading IT services company specializing in app development, cloud solutions, and IT staffing",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "123 Tech Street",
+            "addressLocality": "San Francisco",
+            "addressRegion": "CA",
+            "postalCode": "94105",
+            "addressCountry": "US"
+        },
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+1-555-123-4567",
+            "contactType": "sales",
+            "email": "contact@your-domain.com",
+            "availableLanguage": ["English"]
+        },
+        "sameAs": [
+            "https://www.linkedin.com/company/your-company",
+            "https://twitter.com/your-company",
+            "https://github.com/your-company"
+        ],
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "IT Services",
+            "itemListElement": [
+                {
+                    "@type": "Service",
+                    "name": "Mobile App Development",
+                    "description": "Native and cross-platform mobile applications built for performance and user engagement",
+                    "serviceType": "App Development"
+                },
+                {
+                    "@type": "Service",
+                    "name": "Web Application Development",
+                    "description": "Scalable and responsive web applications designed for modern businesses",
+                    "serviceType": "Web Development"
+                },
+                {
+                    "@type": "Service",
+                    "name": "Cloud Infrastructure",
+                    "description": "Secure and scalable cloud solutions for modern enterprises",
+                    "serviceType": "Cloud Computing"
+                },
+                {
+                    "@type": "Service",
+                    "name": "Backend Development",
+                    "description": "Robust backend systems that power your digital infrastructure",
+                    "serviceType": "Software Development"
+                },
+                {
+                    "@type": "Service",
+                    "name": "IT Staffing Solutions",
+                    "description": "Expert IT talent recruitment and placement services",
+                    "serviceType": "Professional Services"
+                }
+            ]
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "reviewCount": "127"
+        },
+        "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday"
+            ],
+            "opens": "09:00",
+            "closes": "18:00"
+        }
+    }
+    </script>
+</head>
+<body>
+    <!-- Header Section -->
+    <header role="banner">
+        <div class="header-content">
+            <a href="/" class="logo" aria-label="TechPro Solutions - Home">
+                <img src="/images/logo.png" alt="TechPro Solutions Logo" width="180" height="60">
+            </a>
+            
+            <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span></span>
+            </button>
+            
+            <nav role="navigation" aria-label="Main navigation">
+                <ul class="main-nav">
+                    <li><a href="/" aria-current="page">Home</a></li>
+                    <li class="has-submenu">
+                        <a href="/services/" class="nav-services">Services</a>
+                        <button class="submenu-toggle" aria-label="Toggle services menu">
+                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6 9L1 4h10l-5 5z" fill="currentColor"/>
+                            </svg>
+                        </button>
+                        <ul class="services-dropdown" aria-label="Services submenu">
+                            <li><a href="/services/mobile-app-development/">Mobile App Development</a></li>
+                            <li><a href="/services/web-development/">Web Development</a></li>
+                            <li><a href="/services/backend-development/">Backend Development</a></li>
+                            <li><a href="/services/cloud-solutions/">Cloud Solutions</a></li>
+                            <li><a href="/services/tech-consulting/">Tech Consulting</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/case-studies/">Case Studies</a></li>
+                    <li><a href="/about/">About Us</a></li>
+                    <li><a href="/careers/">Careers</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/contact/" class="cta-button">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <main role="main">
+        <section class="hero" aria-labelledby="hero-heading">
+            <div class="hero-content">
+                <h1 id="hero-heading">Innovative IT Solutions for Digital Transformation</h1>
+                <p>Empowering businesses with cutting-edge technology solutions and expert consulting services</p>
+            </div>
+            <picture class="hero-image">
+                <source srcset="/images/hero-image.webp" type="image/webp">
+                <source srcset="/images/hero-image.jpg" type="image/jpeg">
+                <img src="/images/hero-image.jpg" 
+                     alt="Team of IT professionals collaborating on digital transformation projects" 
+                     loading="eager" 
+                     width="1200" 
+                     height="600" 
+                     fetchpriority="high">
+            </picture>
+        </section>
+
+        <!-- Services Section -->
+        <section class="services" aria-labelledby="services-heading">
+            <h2 id="services-heading">Our Core Services</h2>
+            
+            <article class="service-card">
+                <a href="/services/mobile-app-development/" class="service-link">
+                    <picture class="service-icon">
+                        <source srcset="/images/mobile-dev.webp" type="image/webp">
+                        <source srcset="/images/mobile-dev.png" type="image/png">
+                        <img src="/images/mobile-dev.png" 
+                             alt="Mobile app development icon showing smartphone with code elements" 
+                             loading="lazy" 
+                             width="64" 
+                             height="64">
+                    </picture>
+                    <h3>Mobile App Development</h3>
+                <p>Native and cross-platform mobile applications built for performance and user engagement</p>
+                <ul>
+                    <li>iOS Development</li>
+                    <li>Android Development</li>
+                    <li>Cross-Platform Solutions</li>
+                </ul>
+            </article>
+
+            <article class="service-card">
+                <a href="/services/web-development/" class="service-link">
+                    <picture class="service-icon">
+                        <source srcset="/images/web-dev.webp" type="image/webp">
+                        <source srcset="/images/web-dev.png" type="image/png">
+                        <img src="/images/web-dev.png" 
+                             alt="Web development icon showing browser window with responsive design elements" 
+                             loading="lazy" 
+                             width="64" 
+                             height="64">
+                    </picture>
+                    <h3>Web Application Development</h3>
+                <p>Scalable and responsive web applications designed for modern businesses</p>
+                <ul>
+                    <li>Progressive Web Apps</li>
+                    <li>Custom Web Solutions</li>
+                    <li>E-commerce Platforms</li>
+                </ul>
+            </article>
+
+            <article class="service-card">
+                <a href="/services/backend-development/" class="service-link">
+                    <picture class="service-icon">
+                        <source srcset="/images/backend-dev.webp" type="image/webp">
+                        <source srcset="/images/backend-dev.png" type="image/png">
+                        <img src="/images/backend-dev.png" 
+                             alt="Backend development icon showing server and database architecture" 
+                             loading="lazy" 
+                             width="64" 
+                             height="64">
+                    </picture>
+                    <h3>Backend Development</h3>
+                <p>Robust backend systems that power your digital infrastructure</p>
+                <ul>
+                    <li>API Development</li>
+                    <li>Database Design</li>
+                    <li>System Architecture</li>
+                </ul>
+            </article>
+
+            <article class="service-card">
+                <a href="/services/cloud-solutions/" class="service-link">
+                    <picture class="service-icon">
+                        <source srcset="/images/cloud-infra.webp" type="image/webp">
+                        <source srcset="/images/cloud-infra.png" type="image/png">
+                        <img src="/images/cloud-infra.png" 
+                             alt="Cloud infrastructure icon showing connected cloud services and data centers" 
+                             loading="lazy" 
+                             width="64" 
+                             height="64">
+                    </picture>
+                    <h3>Cloud Infrastructure</h3>
+                <p>Secure and scalable cloud solutions for modern enterprises</p>
+                <ul>
+                    <li>Cloud Migration</li>
+                    <li>DevOps Services</li>
+                    <li>Infrastructure Management</li>
+                </ul>
+            </article>
+
+            <article class="service-card">
+                <a href="/services/tech-consulting/" class="service-link">
+                    <picture class="service-icon">
+                        <source srcset="/images/tech-consulting.webp" type="image/webp">
+                        <source srcset="/images/tech-consulting.png" type="image/png">
+                        <img src="/images/tech-consulting.png" 
+                             alt="Technology consulting icon showing strategic planning and business growth charts" 
+                             loading="lazy" 
+                             width="64" 
+                             height="64">
+                    </picture>
+                    <h3>Tech Consulting</h3>
+                <p>Strategic technology consulting to drive business growth</p>
+                <ul>
+                    <li>Digital Strategy</li>
+                    <li>Technology Assessment</li>
+                    <li>Process Optimization</li>
+                </ul>
+            </article>
+        </section>
+
+        <!-- Why Choose Us Section -->
+        <section class="why-us" aria-labelledby="why-us-heading">
+            <h2 id="why-us-heading">Why Choose Us</h2>
+            <div class="benefits-grid">
+                <article>
+                    <h3>Expert Team</h3>
+                    <p>Skilled professionals with deep industry expertise</p>
+                </article>
+                <article>
+                    <h3>Proven Track Record</h3>
+                    <p>Successfully delivered projects across various industries</p>
+                </article>
+                <article>
+                    <h3>Innovation Focus</h3>
+                    <p>Cutting-edge solutions using latest technologies</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- Case Studies Section -->
+        <section class="case-studies" aria-labelledby="case-studies-heading">
+            <h2 id="case-studies-heading">Success Stories</h2>
+            <div class="case-study-grid">
+                <!-- Case Study 1 -->
+                <article class="case-study-card">
+                    <div class="case-study-image blur-load" style="background-image: url('/images/case-study-1-tiny.jpg');">
+                        <picture>
+                            <source
+                                srcset="/images/case-study-1.webp 1x, /images/case-study-1@2x.webp 2x"
+                                type="image/webp"
+                            >
+                            <source
+                                srcset="/images/case-study-1.jpg 1x, /images/case-study-1@2x.jpg 2x"
+                                type="image/jpeg"
+                            >
+                            <img
+                                data-src="/images/case-study-1.jpg"
+                                alt="E-commerce platform transformation case study"
+                                width="600"
+                                height="400"
+                                loading="lazy"
+                            >
+                        </picture>
+                    </div>
+                    <div class="case-study-content">
+                        <h3>E-commerce Platform Transformation</h3>
+                        <p>Modernizing legacy systems for a seamless shopping experience</p>
+                    </div>
+                </article>
+
+                <!-- Case Study 2 -->
+                <article class="case-study-card">
+                    <div class="case-study-image blur-load" style="background-image: url('/images/case-study-2-tiny.jpg');">
+                        <picture>
+                            <source
+                                srcset="/images/case-study-2.webp 1x, /images/case-study-2@2x.webp 2x"
+                                type="image/webp"
+                            >
+                            <source
+                                srcset="/images/case-study-2.jpg 1x, /images/case-study-2@2x.jpg 2x"
+                                type="image/jpeg"
+                            >
+                            <img
+                                data-src="/images/case-study-2.jpg"
+                                alt="Cloud migration success story"
+                                width="600"
+                                height="400"
+                                loading="lazy"
+                            >
+                        </picture>
+                    </div>
+                    <div class="case-study-content">
+                        <h3>Cloud Migration Success</h3>
+                        <p>Scalable infrastructure enabling 10x growth</p>
+                    </div>
+                </article>
+
+                <!-- Case Study 3 -->
+                <article class="case-study-card">
+                    <div class="case-study-image blur-load" style="background-image: url('/images/case-study-3-tiny.jpg');">
+                        <picture>
+                            <source
+                                srcset="/images/case-study-3.webp 1x, /images/case-study-3@2x.webp 2x"
+                                type="image/webp"
+                            >
+                            <source
+                                srcset="/images/case-study-3.jpg 1x, /images/case-study-3@2x.jpg 2x"
+                                type="image/jpeg"
+                            >
+                            <img
+                                data-src="/images/case-study-3.jpg"
+                                alt="Mobile app development case study"
+                                width="600"
+                                height="400"
+                                loading="lazy"
+                            >
+                        </picture>
+                    </div>
+                    <div class="case-study-content">
+                        <h3>Revolutionary Mobile App</h3>
+                        <p>Connecting millions through innovative technology</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Video Showcase Section -->
+        <section class="video-showcase" aria-labelledby="video-showcase-heading">
+            <div class="video-container">
+                <h2 id="video-showcase-heading">See Our Solutions in Action</h2>
+                <div class="video-grid">
+                    <!-- Feature Video -->
+                    <div class="responsive-video" 
+                         data-src="https://www.youtube-nocookie.com/embed/VIDEO_ID_1"
+                         data-title="Company Overview">
+                        <!-- Video thumbnail as placeholder -->
+                        <div class="blur-load" style="background-image: url('/images/video-thumb-1-tiny.jpg');">
+                            <picture>
+                                <source
+                                    srcset="/images/video-thumb-1.webp"
+                                    type="image/webp"
+                                >
+                                <img
+                                    data-src="/images/video-thumb-1.jpg"
+                                    alt="Watch our company overview"
+                                    width="1280"
+                                    height="720"
+                                    loading="lazy"
+                                >
+                            </picture>
+                        </div>
+                    </div>
+
+                    <!-- Product Demo Video -->
+                    <div class="responsive-video"
+                         data-src="https://www.youtube-nocookie.com/embed/VIDEO_ID_2"
+                         data-title="Product Demo">
+                        <!-- Video thumbnail as placeholder -->
+                        <div class="blur-load" style="background-image: url('/images/video-thumb-2-tiny.jpg');">
+                            <picture>
+                                <source
+                                    srcset="/images/video-thumb-2.webp"
+                                    type="image/webp"
+                                >
+                                <img
+                                    data-src="/images/video-thumb-2.jpg"
+                                    alt="Watch our product demo"
+                                    width="1280"
+                                    height="720"
+                                    loading="lazy"
+                                >
+                            </picture>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact" aria-labelledby="contact-heading">
+            <h2 id="contact-heading">Get In Touch</h2>
+            <p>Ready to transform your business with innovative IT solutions?</p>
+            <div class="contact-actions">
+                <a href="/contact/" class="primary-button">Contact Us</a>
+                <a href="/case-studies/" class="secondary-button">View Our Work</a>
+            </div>
+            <div class="quick-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="/services/">Our Services</a></li>
+                    <li><a href="/case-studies/">Success Stories</a></li>
+                    <li><a href="/about/team/">Meet Our Team</a></li>
+                    <li><a href="/careers/">Join Our Team</a></li>
+                    <li><a href="/blog/">Latest Insights</a></li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer role="contentinfo">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="/services/mobile-app-development/">Mobile App Development</a></li>
+                    <li><a href="/services/web-development/">Web Development</a></li>
+                    <li><a href="/services/backend-development/">Backend Development</a></li>
+                    <li><a href="/services/cloud-solutions/">Cloud Solutions</a></li>
+                    <li><a href="/services/tech-consulting/">Tech Consulting</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="/about/">About Us</a></li>
+                    <li><a href="/case-studies/">Case Studies</a></li>
+                    <li><a href="/careers/">Careers</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/contact/">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="/resources/documentation/">Documentation</a></li>
+                    <li><a href="/resources/api/">API Reference</a></li>
+                    <li><a href="/resources/tutorials/">Tutorials</a></li>
+                    <li><a href="/blog/tech-insights/">Tech Insights</a></li>
+                    <li><a href="/resources/faq/">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="/privacy-policy/">Privacy Policy</a></li>
+                    <li><a href="/terms-of-service/">Terms of Service</a></li>
+                    <li><a href="/cookie-policy/">Cookie Policy</a></li>
+                    <li><a href="/sitemap/">Sitemap</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <!-- Deferred JavaScript -->
+    <script src="/js/main.min.js" defer></script>
+    
+    <!-- Performance Monitoring -->
+    <script>
+        // Performance metrics tracking
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const timing = window.performance.timing;
+                const interactive = timing.domInteractive - timing.navigationStart;
+                const dcl = timing.domContentLoadedEventEnd - timing.navigationStart;
+                const complete = timing.loadEventEnd - timing.navigationStart;
+                console.log(`Interactive: ${interactive}ms, DCL: ${dcl}ms, Complete: ${complete}ms`);
+            }, 0);
+        });
+    </script>
+    <!-- Optimized Script Loading -->
+    <script>
+        // Font loading optimization
+        if ('fonts' in document) {
+            Promise.all([
+                document.fonts.load('1em Inter var'),
+                document.fonts.load('700 1em Inter Display')
+            ]).then(() => {
+                document.documentElement.classList.add('fonts-loaded');
+            }).catch(() => {
+                document.documentElement.classList.add('fonts-failed');
+            });
+        }
+
+        // Defer non-critical scripts
+        function loadScript(src, async = true, defer = true) {
+            const script = document.createElement('script');
+            script.src = src;
+            script.async = async;
+            script.defer = defer;
+            document.body.appendChild(script);
+            return script;
+        }
+
+        // Load scripts based on viewport
+        function loadScriptsInViewport() {
+            const scripts = [
+                { src: '/js/main.min.js', async: true, defer: true },
+                { src: 'https://www.google-analytics.com/analytics.js', async: true, defer: true }
+            ];
+
+            if ('IntersectionObserver' in window) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const scriptData = scripts.shift();
+                            if (scriptData) {
+                                loadScript(scriptData.src, scriptData.async, scriptData.defer);
+                            }
+                            if (scripts.length === 0) {
+                                observer.disconnect();
+                            }
+                        }
+                    });
+                });
+
+                // Observe a dummy element at the bottom of the viewport
+                const sentinel = document.createElement('div');
+                sentinel.style.height = '1px';
+                document.body.appendChild(sentinel);
+                observer.observe(sentinel);
+            } else {
+                // Fallback for browsers without IntersectionObserver
+                scripts.forEach(scriptData => {
+                    loadScript(scriptData.src, scriptData.async, scriptData.defer);
+                });
+            }
+        }
+
+        // Initialize script loading
+        if (document.readyState === 'complete') {
+            loadScriptsInViewport();
+        } else {
+            window.addEventListener('load', loadScriptsInViewport);
+        }
+    </script>
+</body>
+</html>
