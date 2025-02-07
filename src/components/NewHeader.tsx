@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback, useRef } from 'react';
 import { Menu, X, Code2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
@@ -21,35 +21,60 @@ const Header = () => {
       'Home': '/',
       'About Us': '/about'
     },
-    sections: ['Services', 'Staffing Solutions', 'Our Process', 'Contact Us']
+    sections: ['Services', 'Staffing Solutions', 'Our Team', 'Our Values']
   };
 
   const navItems = isHomePage
     ? ['Home', 'About Us', ...navigationConfig.sections]
-    : ['Home', 'About Us', 'Services', 'Contact Us'];
+    : ['Home', 'About Us', 'Services'];
 
-  useEffect(() => {
-    const handleScroll = () => {
+  // Debounce function
+  const debounce = <T extends (...args: any[]) => any>(func: T, wait: number) => {
+    let timeout: ReturnType<typeof setTimeout>;
+    return (...args: Parameters<T>) => {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => func(...args), wait);
+    };
+  };
+
+  // Scroll handler for navbar background
+  const handleScroll = useCallback(
+    debounce(() => {
       setScrolled(window.scrollY > 50);
+    }, 10),
+    []
+  );
 
-      if (isHomePage) {
-        const sections = document.querySelectorAll('section[id]');
-        const scrollPosition = window.scrollY + window.innerHeight / 3;
+  // Setup scroll event listener with passive option for better performance
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [handleScroll]);
 
-        sections.forEach(section => {
-          const rect = section.getBoundingClientRect();
-          const sectionTop = rect.top + window.scrollY - 100;
-          const sectionBottom = rect.bottom + window.scrollY;
+  // Setup intersection observers for each section
+  useEffect(() => {
+    if (!isHomePage) return;
 
-          if (scrollPosition >= sectionTop && scrollPosition <= sectionBottom) {
-            setActiveSection(section.id);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
           }
         });
+      },
+      {
+        rootMargin: '-20% 0px -30% 0px',
+        threshold: 0.3,
       }
-    };
+    );
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const sections = document.querySelectorAll('section[id]');
+    sections.forEach((section) => observer.observe(section));
+
+    return () => {
+      sections.forEach((section) => observer.unobserve(section));
+    };
   }, [isHomePage]);
 
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
@@ -163,13 +188,14 @@ const Header = () => {
             className="md:hidden relative z-50"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
-            <AnimatePresence mode="wait">
+            <AnimatePresence mode="wait" initial={false}>
               {isMenuOpen ? (
                 <motion.div
                   key="close"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
+                  initial={{ rotate: -90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: 90, opacity: 0 }}
+                  transition={{ duration: 0.2, ease: 'easeOut' }}
                 >
                   <X className="h-6 w-6" />
                 </motion.div>
@@ -186,19 +212,32 @@ const Header = () => {
             </AnimatePresence>
           </button>
 
-          {/* Mobile Navigation */}
+          {/* Mobile Menu */}
           <AnimatePresence>
             {isMenuOpen && (
               <motion.div
-                initial={{ opacity: 0, x: '100%' }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: '100%' }}
-                transition={{ type: 'tween' }}
-                className="fixed inset-0 bg-white z-40 md:hidden"
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.2 }}
+                className="fixed inset-0 z-40 md:hidden"
               >
-                <nav className="flex flex-col items-center justify-center h-full space-y-8">
-                  {navItems.map((item, index) => renderNavItem(item, index))}
-                </nav>
+                <div className="fixed inset-0 bg-black/20 backdrop-blur-sm" onClick={() => setIsMenuOpen(false)} />
+                <motion.nav
+                  initial={{ x: '100%' }}
+                  animate={{ x: 0 }}
+                  exit={{ x: '100%' }}
+                  transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+                  className="fixed right-0 top-0 bottom-0 w-64 bg-white shadow-xl p-6 overflow-y-auto"
+                >
+                  <div className="flex flex-col space-y-4 mt-16">
+                    {navItems.map((item, index) => (
+                      <div key={item} className="border-b border-gray-100 last:border-0">
+                        {renderNavItem(item, index)}
+                      </div>
+                    ))}
+                  </div>
+                </motion.nav>
               </motion.div>
             )}
           </AnimatePresence>

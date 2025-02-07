@@ -15,112 +15,91 @@ const Header = () => {
 
   // Navigation items configuration
   const navigationConfig = {
-    sections: ['Home', 'Services', 'Process', 'Our Team', 'Our Values', 'Testimonials', 'Contact Us']
+    sections: [
+      { id: 'home', label: 'Home', sectionId: 'hero' },
+      { id: 'about', label: 'About Sayge', sectionId: 'about' },
+      { id: 'expertise', label: 'Our Expertise', sectionId: 'services' }
+    ]
   };
 
   const navItems = navigationConfig.sections;
 
-  // Update active section when navigating to team section
-  useEffect(() => {
-    if (location.hash === '#team') {
-      setActiveSection('team');
-    }
-  }, [location.hash]);
-
+  // Update scroll position and active section
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
       
-      if (isHomePage) {
-        const sections = document.querySelectorAll('section[id]');
-        const scrollPosition = window.scrollY + window.innerHeight / 3;
+      if (!isHomePage) return;
 
-        sections.forEach(section => {
-          const rect = section.getBoundingClientRect();
-          const sectionTop = rect.top + window.scrollY - 100;
-          const sectionBottom = rect.bottom + window.scrollY;
+      const sections = document.querySelectorAll('section[id]');
+      let currentSection = '';
 
-          if (scrollPosition >= sectionTop && scrollPosition <= sectionBottom) {
-            setActiveSection(section.id);
-          }
-        });
+      sections.forEach((section) => {
+        const rect = section.getBoundingClientRect();
+        const offset = window.innerHeight * 0.3; // 30% of viewport height
+
+        if (rect.top <= offset && rect.bottom >= offset) {
+          currentSection = section.id;
+        }
+      });
+
+      if (currentSection) {
+        const activeNavItem = navItems.find(item => item.sectionId === currentSection);
+        if (activeNavItem) {
+          setActiveSection(activeNavItem.id);
+        }
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // Initial check
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [isHomePage]);
+  }, [isHomePage, navItems]);
 
-  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, item: typeof navItems[0]) => {
     e.preventDefault();
-    if (location.pathname === '/about' && sectionId === 'team') {
-      const element = document.getElementById(sectionId);
+    if (isHomePage) {
+      const element = document.getElementById(item.sectionId);
       if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
-    } else if (isHomePage) {
-      const element = document.getElementById(sectionId);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
+        const headerOffset = 80; // Height of fixed header
+        const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+        window.scrollTo({
+          top: elementPosition - headerOffset,
+          behavior: 'smooth'
+        });
         setIsMenuOpen(false);
       }
     }
   };
 
-  const renderNavItem = (item: string, index: number) => {
-    const itemId = item.toLowerCase().replace(/\s+/g, '-');
-    const isActive = activeSection === itemId;
+  const renderNavItem = (item: typeof navItems[0], index: number) => {
+    const isActive = activeSection === item.id;
     const baseClassName = "relative text-gray-700 hover:text-blue-600 transition-all duration-300 py-2 group";
 
-    if (item === 'Home') {
-      const isAtTop = window.scrollY < 100;
-      return (
-        <motion.a
-          key={item}
-          onClick={(e) => {
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          }}
-          className={`${baseClassName} ${isAtTop ? 'text-blue-600' : ''}`}
-        >
-          {item}
-          {isAtTop && (
-            <motion.div
-              layoutId="activeSection"
-              className="absolute -bottom-0.5 left-0 right-0 h-0.5 bg-blue-600"
-            />
-          )}
-        </motion.a>
-      );
-    }
-
-    // Section navigation
     return (
       <motion.a
-        key={item}
+        key={item.id}
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3, delay: index * 0.1 }}
-        href={`#${itemId}`}
-        onClick={(e) => {
-          e.preventDefault();
-          const section = document.getElementById(itemId);
-          if (section) {
-            section.scrollIntoView({ behavior: 'smooth' });
-          }
-        }}
+        href={`#${item.sectionId}`}
+        onClick={(e) => scrollToSection(e, item)}
         className={`${baseClassName} ${isActive ? 'text-blue-600' : ''}`}
       >
-        {item}
-        {isActive && (
-          <motion.div
-            layoutId="activeSection"
-            className="absolute -bottom-0.5 left-0 right-0 h-0.5 bg-blue-600"
-          />
-        )}
+        {item.label}
+        <motion.span
+          initial={false}
+          animate={{
+            width: isActive ? '100%' : '0%',
+            opacity: isActive ? 1 : 0,
+          }}
+          className="absolute bottom-0 left-0 h-0.5 bg-blue-600 group-hover:w-full group-hover:opacity-100 transition-all duration-300"
+        />
       </motion.a>
     );
   };
+
+
 
   return (
     <motion.header
@@ -190,23 +169,27 @@ const Header = () => {
                 initial={{ opacity: 0, x: '100%' }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: '100%' }}
-                transition={{ type: 'tween' }}
-                className="fixed inset-0 bg-white z-40 md:hidden"
+                transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+                className="fixed inset-0 bg-white/95 backdrop-blur-md z-40 md:hidden"
               >
-                <nav className="flex flex-col items-center justify-center h-full space-y-8">
-                  {navItems.map((item, index) => {
-                    const itemId = item.toLowerCase().replace(/\s+/g, '-');
-                    return (
+                <div className="absolute inset-0 bg-black/5" onClick={() => setIsMenuOpen(false)} />
+                <nav className="relative h-full flex flex-col items-center justify-center space-y-6 p-8">
+                  {navItems.map((item, index) => (
+                    <motion.div
+                      key={item.id}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.1 }}
+                    >
                       <a
-                        key={item}
-                        href={`#${itemId}`}
-                        onClick={(e) => scrollToSection(e, itemId)}
-                        className="text-xl font-medium text-gray-900 hover:text-blue-600"
+                        href={`#${item.sectionId}`}
+                        onClick={(e) => scrollToSection(e, item)}
+                        className={`text-xl font-medium ${activeSection === item.id ? 'text-blue-600' : 'text-gray-900'} hover:text-blue-600 transition-colors duration-200`}
                       >
-                        {item}
+                        {item.label}
                       </a>
-                    );
-                  })}
+                    </motion.div>
+                  ))}
                 </nav>
               </motion.div>
             )}
