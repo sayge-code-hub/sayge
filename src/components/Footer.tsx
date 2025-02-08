@@ -1,4 +1,4 @@
-import logo from '../assets/logo/logo.png';
+import whiteLogo from '../assets/logo/white logo.svg';
 
 const Footer = () => {
   return (
@@ -8,9 +8,9 @@ const Footer = () => {
           <div>
             <div className="flex items-center">
             <img 
-                src={logo} 
+                src={whiteLogo} 
                 alt="Sayge Logo" 
-                className="h-10 w-auto"
+                className="h-10 w-auto filter brightness-100"
               />
             </div>
             <p className="mt-4 text-gray-400">
