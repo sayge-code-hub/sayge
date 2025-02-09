@@ -119,7 +119,7 @@ const Hero = () => {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                onClick={() => navigate('/sayge/our-work')}
+                onClick={() => navigate('/our-work')}
                 className="group relative px-8 py-4 bg-white text-blue-600 border-2 border-blue-600 rounded-full overflow-hidden shadow-lg hover:shadow-blue-500/25 transition-all duration-300"
               >
                 <motion.div
