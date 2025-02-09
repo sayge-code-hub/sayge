@@ -1,6 +1,5 @@
-import React from 'react';
 import { motion } from 'framer-motion';
-import { Users, Target, Rocket, Award } from 'lucide-react';
+import { Target, Rocket, Award } from 'lucide-react';
 import Layout from '../components/Layout';
 
 // Import team member images

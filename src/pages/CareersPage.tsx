@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
