@@ -14,9 +14,9 @@ const Header = () => {
   // Navigation items configuration
   const navigationConfig = {
     items: [
-      { id: 'home', label: 'Home', path: '/' },
-      { id: 'about', label: 'About', path: '/#about' },
-      { id: 'expertise', label: 'Expertise', path: '/#services' }
+      { id: 'home', label: 'Home', path: '/sayge' },
+      { id: 'about', label: 'About', path: '/sayge#about' },
+      { id: 'expertise', label: 'Expertise', path: '/sayge#services' }
     ]
   };
 

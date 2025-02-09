@@ -4,10 +4,10 @@ import CareersPage from './pages/CareersPage';
 
 function App() {
   return (
-    <Router basename="/sayge">
+    <Router>
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/careers" element={<CareersPage />} />
+        <Route path="/sayge" element={<HomePage />} />
+        <Route path="/sayge/careers" element={<CareersPage />} />
         <Route path="*" element={<HomePage />} />
       </Routes>
     </Router>
