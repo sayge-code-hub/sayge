@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 
 // Import team member images
@@ -51,7 +50,7 @@ const Team = () => {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Team</h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Leadership</h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto mb-12">
             Meet the experts behind Sayge's success. Our diverse team brings together decades of experience in AI, software development, and business transformation.
           </p>

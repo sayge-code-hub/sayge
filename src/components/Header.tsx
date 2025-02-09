@@ -11,49 +11,42 @@ const Header = () => {
   const isHomePage = location.pathname === '/';
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState('home');
-
   // Navigation items configuration
   const navigationConfig = {
-    sections: [
-      { id: 'home', label: 'Home', sectionId: 'hero' },
-      { id: 'about', label: 'About Sayge', sectionId: 'about' },
-      { id: 'expertise', label: 'Our Expertise', sectionId: 'services' }
+    items: [
+      { id: 'home', label: 'Home', path: '/sayge/' },
+      { id: 'about', label: 'About Sayge', path: '/sayge/about' },
+      { id: 'expertise', label: 'Our Expertise', path: '/sayge/expertise' }
     ]
   };
 
-  const navItems = navigationConfig.sections;
+  const navItems = navigationConfig.items;
 
   // Update scroll position and active section
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
-      
-      if (!isHomePage) return;
+    };
+    items: [
+      { id: 'home', label: 'Home', path: '/sayge' },
+      { id: 'about', label: 'About', path: '/sayge#about' },
+      { id: 'expertise', label: 'Expertise', path: '/sayge#services' }
+    ]
+  };
 
-      const sections = document.querySelectorAll('section[id]');
-      let currentSection = '';
+  const navItems = navigationConfig.items;
 
-      sections.forEach((section) => {
-        const rect = section.getBoundingClientRect();
-        const offset = window.innerHeight * 0.3; // 30% of viewport height
-
-        if (rect.top <= offset && rect.bottom >= offset) {
-          currentSection = section.id;
-        }
-      });
-
-      if (currentSection) {
-        const activeNavItem = navItems.find(item => item.sectionId === currentSection);
-        if (activeNavItem) {
-          setActiveSection(activeNavItem.id);
-        }
-      }
+  // Update scroll position
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+>>>>>>> seo
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll(); // Initial check
     return () => window.removeEventListener('scroll', handleScroll);
+<<<<<<< HEAD
   }, [isHomePage, navItems]);
 
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, item: typeof navItems[0]) => {
@@ -62,26 +55,52 @@ const Header = () => {
       const element = document.getElementById(item.sectionId);
       if (element) {
         const headerOffset = 80; // Height of fixed header
+=======
+  }, []);
+
+  const handleNavigation = (e: React.MouseEvent<HTMLAnchorElement>, item: typeof navItems[0]) => {
+    const isHashLink = item.path.includes('#');
+    
+    if (isHashLink) {
+      e.preventDefault();
+      if (!isHomePage) {
+        // Navigate to home page first
+        window.location.href = item.path;
+        return;
+      }
+      const sectionId = item.path.split('#')[1];
+      const element = document.getElementById(sectionId);
+      if (element) {
+        const headerOffset = 80;
+>>>>>>> seo
         const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
         window.scrollTo({
           top: elementPosition - headerOffset,
           behavior: 'smooth'
         });
+<<<<<<< HEAD
         setIsMenuOpen(false);
+=======
+>>>>>>> seo
       }
     }
+    setIsMenuOpen(false);
   };
 
   const renderNavItem = (item: typeof navItems[0], index: number) => {
+<<<<<<< HEAD
     const isActive = activeSection === item.id;
     const baseClassName = "relative text-gray-700 hover:text-blue-600 transition-all duration-300 py-2 group";
 
+=======
+>>>>>>> seo
     return (
       <motion.a
         key={item.id}
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3, delay: index * 0.1 }}
+<<<<<<< HEAD
         href={`#${item.sectionId}`}
         onClick={(e) => scrollToSection(e, item)}
         className={`${baseClassName} ${isActive ? 'text-blue-600' : ''}`}
@@ -95,6 +114,13 @@ const Header = () => {
           }}
           className="absolute bottom-0 left-0 h-0.5 bg-blue-600 group-hover:w-full group-hover:opacity-100 transition-all duration-300"
         />
+=======
+        href={item.path}
+        onClick={(e) => handleNavigation(e, item)}
+        className="text-gray-700 hover:text-blue-600 transition-all duration-300 py-2"
+      >
+        {item.label}
+>>>>>>> seo
       </motion.a>
     );
   };
@@ -182,9 +208,15 @@ const Header = () => {
                       transition={{ delay: index * 0.1 }}
                     >
                       <a
+<<<<<<< HEAD
                         href={`#${item.sectionId}`}
                         onClick={(e) => scrollToSection(e, item)}
-                        className={`text-xl font-medium ${activeSection === item.id ? 'text-blue-600' : 'text-gray-900'} hover:text-blue-600 transition-colors duration-200`}
+                        className="text-xl font-medium text-gray-900 hover:text-blue-600 transition-colors duration-200"
+=======
+                        href={item.path}
+                        onClick={(e) => handleNavigation(e, item)}
+                        className="text-xl font-medium text-gray-900 hover:text-blue-600 transition-colors duration-200"
+>>>>>>> seo
                       >
                         {item.label}
                       </a>

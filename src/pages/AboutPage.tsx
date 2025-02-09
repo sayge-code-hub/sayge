@@ -1,6 +1,5 @@
-import React from 'react';
 import { motion } from 'framer-motion';
-import { Users, Target, Rocket, Award } from 'lucide-react';
+import { Target, Rocket, Award } from 'lucide-react';
 import Layout from '../components/Layout';
 
 // Import team member images
@@ -173,17 +172,7 @@ const AboutPage = () => {
         viewport={{ once: true }}
         className="py-16 bg-blue-50/30"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div {...fadeInUp} className="text-center">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Get in Touch</h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto mb-8">
-              Ready to transform your business with AI? We're here to help you succeed.
-            </p>
-            <button className="bg-blue-600 text-white px-8 py-3 rounded-full font-medium hover:bg-blue-700 transition-colors">
-              Contact Us
-            </button>
-          </motion.div>
-        </div>
+
       </motion.section>
       </div>
     </Layout>
