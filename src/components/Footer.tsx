@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import whiteLogo from '../assets/logo/white logo.svg';
 
 const Footer = () => {
@@ -13,17 +14,35 @@ const Footer = () => {
                 className="h-10 w-auto filter brightness-100"
               />
             </div>
-            <p className="mt-4 text-gray-400">
-              Transforming ideas into innovative products, fast.
-            </p>
+            <div className="mt-4 space-y-2">
+              <p className="text-gray-400">
+                Nagpur | Pune | California | Frankfurt
+              </p>
+              <p className="text-gray-400">
+                <a 
+                  href="mailto:humans@sayge.com?subject=Let's%20Create%20Something%20Amazing%20Together!&body=Hi%20Sayge%20Team,%0A%0AI'm%20interested%20in%20discussing%20a%20potential%20project.%20Looking%20forward%20to%20hearing%20from%20you!%0A%0ABest%20regards"
+                  className="hover:text-white transition-colors"
+                >
+                  humans@sayge.com
+                </a>
+              </p>
+              <p className="text-gray-400">
+                <a 
+                  href="tel:+918858506876" 
+                  className="hover:text-white transition-colors"
+                >
+                  +91 88585 06876
+                </a>
+              </p>
+            
+            </div>
           </div>
 
           <div>
             <h3 className="text-lg font-semibold mb-4">Company</h3>
             <ul className="space-y-2">
-              <li><a href="/about" className="text-gray-400 hover:text-white">Blog</a></li>
-              <li><a href="#careers" className="text-gray-400 hover:text-white">Careers</a></li>
-              <li><a href="https://www.linkedin.com/company/sayge-it/"  className="text-gray-400 hover:text-white">LinkedIn</a></li>
+              <li><a href="/sayge/careers" className="text-gray-400 hover:text-white transition-colors">Careers</a></li>
+              <li><a href="https://www.linkedin.com/company/sayge-it/"  className="text-gray-400 hover:text-white transition-colors">LinkedIn</a></li>
 
             </ul>
           </div>

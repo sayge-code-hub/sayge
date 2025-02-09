@@ -11,90 +11,64 @@ const Header = () => {
   const isHomePage = location.pathname === '/';
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState('home');
-
   // Navigation items configuration
   const navigationConfig = {
-    sections: [
-      { id: 'home', label: 'Home', sectionId: 'hero' },
-      { id: 'about', label: 'About Sayge', sectionId: 'about' },
-      { id: 'expertise', label: 'Our Expertise', sectionId: 'services' }
+    items: [
+      { id: 'home', label: 'Home', path: '/' },
+      { id: 'about', label: 'About', path: '/#about' },
+      { id: 'expertise', label: 'Expertise', path: '/#services' }
     ]
   };
 
-  const navItems = navigationConfig.sections;
+  const navItems = navigationConfig.items;
 
-  // Update scroll position and active section
+  // Update scroll position
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
-      
-      if (!isHomePage) return;
-
-      const sections = document.querySelectorAll('section[id]');
-      let currentSection = '';
-
-      sections.forEach((section) => {
-        const rect = section.getBoundingClientRect();
-        const offset = window.innerHeight * 0.3; // 30% of viewport height
-
-        if (rect.top <= offset && rect.bottom >= offset) {
-          currentSection = section.id;
-        }
-      });
-
-      if (currentSection) {
-        const activeNavItem = navItems.find(item => item.sectionId === currentSection);
-        if (activeNavItem) {
-          setActiveSection(activeNavItem.id);
-        }
-      }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll(); // Initial check
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [isHomePage, navItems]);
+  }, []);
 
-  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, item: typeof navItems[0]) => {
-    e.preventDefault();
-    if (isHomePage) {
-      const element = document.getElementById(item.sectionId);
+  const handleNavigation = (e: React.MouseEvent<HTMLAnchorElement>, item: typeof navItems[0]) => {
+    const isHashLink = item.path.includes('#');
+    
+    if (isHashLink) {
+      e.preventDefault();
+      if (!isHomePage) {
+        // Navigate to home page first
+        window.location.href = item.path;
+        return;
+      }
+      const sectionId = item.path.split('#')[1];
+      const element = document.getElementById(sectionId);
       if (element) {
-        const headerOffset = 80; // Height of fixed header
+        const headerOffset = 80;
         const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
         window.scrollTo({
           top: elementPosition - headerOffset,
           behavior: 'smooth'
         });
-        setIsMenuOpen(false);
       }
     }
+    setIsMenuOpen(false);
   };
 
   const renderNavItem = (item: typeof navItems[0], index: number) => {
-    const isActive = activeSection === item.id;
-    const baseClassName = "relative text-gray-700 hover:text-blue-600 transition-all duration-300 py-2 group";
-
     return (
       <motion.a
         key={item.id}
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3, delay: index * 0.1 }}
-        href={`#${item.sectionId}`}
-        onClick={(e) => scrollToSection(e, item)}
-        className={`${baseClassName} ${isActive ? 'text-blue-600' : ''}`}
+        href={item.path}
+        onClick={(e) => handleNavigation(e, item)}
+        className="text-gray-700 hover:text-blue-600 transition-all duration-300 py-2"
       >
         {item.label}
-        <motion.span
-          initial={false}
-          animate={{
-            width: isActive ? '100%' : '0%',
-            opacity: isActive ? 1 : 0,
-          }}
-          className="absolute bottom-0 left-0 h-0.5 bg-blue-600 group-hover:w-full group-hover:opacity-100 transition-all duration-300"
-        />
       </motion.a>
     );
   };
@@ -182,9 +156,9 @@ const Header = () => {
                       transition={{ delay: index * 0.1 }}
                     >
                       <a
-                        href={`#${item.sectionId}`}
-                        onClick={(e) => scrollToSection(e, item)}
-                        className={`text-xl font-medium ${activeSection === item.id ? 'text-blue-600' : 'text-gray-900'} hover:text-blue-600 transition-colors duration-200`}
+                        href={item.path}
+                        onClick={(e) => handleNavigation(e, item)}
+                        className="text-xl font-medium text-gray-900 hover:text-blue-600 transition-colors duration-200"
                       >
                         {item.label}
                       </a>
