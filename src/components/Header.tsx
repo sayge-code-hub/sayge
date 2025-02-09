@@ -15,22 +15,8 @@ const Header = () => {
   const navigationConfig = {
     items: [
       { id: 'home', label: 'Home', path: '/sayge/' },
-      { id: 'about', label: 'About Sayge', path: '/sayge/about' },
-      { id: 'expertise', label: 'Our Expertise', path: '/sayge/expertise' }
-    ]
-  };
-
-  const navItems = navigationConfig.items;
-
-  // Update scroll position and active section
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
-    items: [
-      { id: 'home', label: 'Home', path: '/sayge' },
-      { id: 'about', label: 'About', path: '/sayge#about' },
-      { id: 'expertise', label: 'Expertise', path: '/sayge#services' }
+      { id: 'about', label: 'About Sayge', path: '/sayge/#about' },
+      { id: 'expertise', label: 'Our Expertise', path: '/sayge/#services' }
     ]
   };
 
@@ -40,22 +26,11 @@ const Header = () => {
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
->>>>>>> seo
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll(); // Initial check
     return () => window.removeEventListener('scroll', handleScroll);
-<<<<<<< HEAD
-  }, [isHomePage, navItems]);
-
-  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, item: typeof navItems[0]) => {
-    e.preventDefault();
-    if (isHomePage) {
-      const element = document.getElementById(item.sectionId);
-      if (element) {
-        const headerOffset = 80; // Height of fixed header
-=======
   }, []);
 
   const handleNavigation = (e: React.MouseEvent<HTMLAnchorElement>, item: typeof navItems[0]) => {
@@ -72,28 +47,18 @@ const Header = () => {
       const element = document.getElementById(sectionId);
       if (element) {
         const headerOffset = 80;
->>>>>>> seo
         const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
         window.scrollTo({
           top: elementPosition - headerOffset,
           behavior: 'smooth'
         });
-<<<<<<< HEAD
         setIsMenuOpen(false);
-=======
->>>>>>> seo
       }
     }
     setIsMenuOpen(false);
   };
 
   const renderNavItem = (item: typeof navItems[0], index: number) => {
-<<<<<<< HEAD
-    const isActive = activeSection === item.id;
-    const baseClassName = "relative text-gray-700 hover:text-blue-600 transition-all duration-300 py-2 group";
-
-=======
->>>>>>> seo
     return (
       <motion.a
         key={item.id}
@@ -208,15 +173,9 @@ const Header = () => {
                       transition={{ delay: index * 0.1 }}
                     >
                       <a
-<<<<<<< HEAD
-                        href={`#${item.sectionId}`}
-                        onClick={(e) => scrollToSection(e, item)}
-                        className="text-xl font-medium text-gray-900 hover:text-blue-600 transition-colors duration-200"
-=======
                         href={item.path}
                         onClick={(e) => handleNavigation(e, item)}
                         className="text-xl font-medium text-gray-900 hover:text-blue-600 transition-colors duration-200"
->>>>>>> seo
                       >
                         {item.label}
                       </a>
