@@ -1,0 +1,38 @@
+/* System Font Fallback Stack */
+@font-face {
+    font-family: 'Inter Fallback';
+    src: local('Arial');
+    ascent-override: 90%;
+    descent-override: 22%;
+    line-gap-override: 0%;
+    size-adjust: 107%;
+}
+
+/* Fallback class for when web fonts fail to load */
+.fonts-failed {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+/* Prevent FOUT (Flash of Unstyled Text) */
+.fonts-loading {
+    visibility: hidden;
+}
+
+/* Optimize font loading for different weights */
+@font-face {
+    font-family: 'Inter Fallback Light';
+    src: local('Arial');
+    ascent-override: 88%;
+    descent-override: 20%;
+    line-gap-override: 0%;
+    size-adjust: 105%;
+}
+
+@font-face {
+    font-family: 'Inter Fallback Medium';
+    src: local('Arial');
+    ascent-override: 92%;
+    descent-override: 24%;
+    line-gap-override: 0%;
+    size-adjust: 109%;
+}
