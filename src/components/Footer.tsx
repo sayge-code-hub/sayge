@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import whiteLogo from '../assets/logo/white logo.svg';
+import DownloadSaygeProfile from './DownloadSaygeProfile';
 
 const Footer = () => {
   return (
@@ -43,7 +44,11 @@ const Footer = () => {
             <ul className="space-y-2">
               <li><Link to="/sayge/careers" className="text-gray-400 hover:text-white transition-colors">Careers</Link></li>
               <li><a href="https://www.linkedin.com/company/sayge-it/"  className="text-gray-400 hover:text-white transition-colors">LinkedIn</a></li>
-
+              <li className="mt-4">
+                <div className="inline-block">
+                  <DownloadSaygeProfile />
+                </div>
+              </li>
             </ul>
           </div>
 
