@@ -16,8 +16,6 @@ const Header = () => {
   const navigationConfig = {
     items: [
       { id: 'home', label: 'Home', path: '/' },
-      { id: 'about', label: 'About', path: '/#about' },
-      { id: 'expertise', label: 'Expertise', path: '/#services' },
       { id: 'our-work', label: 'Portfolio', path: 'our-work' },
       { id: 'blog', label: 'Blog', path: 'blog' }
     ]
