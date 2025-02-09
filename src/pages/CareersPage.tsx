@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Layout from '../components/Layout';
+import SEO from '../components/SEO';
 
 interface JobPosition {
   id: string;
@@ -63,7 +64,36 @@ const staggerContainer = {
 };
 
 const CareersPage = () => {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "JobPosting",
+    "title": "Careers at Sayge",
+    "description": "Join our team of innovators at Sayge. We're looking for talented individuals in Flutter, Java, Python, AI, and cloud technologies.",
+    "datePosted": "2024-02-09",
+    "validThrough": "2024-12-31",
+    "employmentType": "FULL_TIME",
+    "hiringOrganization": {
+      "@type": "Organization",
+      "name": "Sayge",
+      "sameAs": "https://craftedbyaditya.github.io/sayge/"
+    },
+    "jobLocation": {
+      "@type": "Place",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Nagpur, Pune, California, Frankfurt"
+      }
+    }
+  };
   return (
+    <>
+      <SEO
+        title="Careers at Sayge | Join Our Team of Innovators"
+        description="Join Sayge's team of innovators. We're hiring talented individuals in Flutter, Java, Python, AI, and cloud technologies. Shape the future of technology with us."
+        type="website"
+        url="https://craftedbyaditya.github.io/sayge/careers"
+        schema={schema}
+      />
     <Layout>
       <div className="min-h-screen">
         <section className="py-20 bg-gray-50">
@@ -129,6 +159,7 @@ const CareersPage = () => {
         </section>
       </div>
     </Layout>
+    </>
   );
 };
 
