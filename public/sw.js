@@ -1,1 +1,0 @@
-const CACHE_NAME="techpro-cache-v1",urlsToCache=["/","/css/critical.min.css","/css/main.min.css","/js/main.min.js","/images/logo.png"];self.addEventListener("install",e=>{e.waitUntil(caches.open(CACHE_NAME).then(e=>e.addAll(urlsToCache)))}),self.addEventListener("fetch",e=>{e.respondWith(caches.match(e.request).then(t=>t||fetch(e.request)))});
