@@ -1,22 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 // Import logo
 import logo from '../assets/logo/logo.png';
 
 const Header = () => {
   const location = useLocation();
-  const isHomePage = location.pathname === '/';
+  const navigate = useNavigate();
+  const isHomePage = location.pathname === '/' || location.pathname === '/sayge';
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   // Navigation items configuration
   const navigationConfig = {
     items: [
-      { id: 'home', label: 'Home', path: '/sayge' },
-      { id: 'about', label: 'About', path: '/sayge#about' },
-      { id: 'expertise', label: 'Expertise', path: '/sayge#services' }
+      { id: 'home', label: 'Home', path: '/' },
+      { id: 'about', label: 'About', path: '/#about' },
+      { id: 'expertise', label: 'Expertise', path: '/#services' },
+      { id: 'our-work', label: 'Portfolio', path: '/our-work' }
     ]
   };
 
@@ -34,13 +36,13 @@ const Header = () => {
   }, []);
 
   const handleNavigation = (e: React.MouseEvent<HTMLAnchorElement>, item: typeof navItems[0]) => {
+    e.preventDefault();
     const isHashLink = item.path.includes('#');
     
     if (isHashLink) {
-      e.preventDefault();
       if (!isHomePage) {
         // Navigate to home page first
-        window.location.href = item.path;
+        navigate('/');
         return;
       }
       const sectionId = item.path.split('#')[1];
@@ -53,6 +55,9 @@ const Header = () => {
           behavior: 'smooth'
         });
       }
+    } else {
+      // Use React Router's navigate for client-side navigation
+      navigate(item.path);
     }
     setIsMenuOpen(false);
   };
@@ -66,7 +71,7 @@ const Header = () => {
         transition={{ duration: 0.3, delay: index * 0.1 }}
         href={item.path}
         onClick={(e) => handleNavigation(e, item)}
-        className="text-gray-700 hover:text-blue-600 transition-all duration-300 py-2"
+        className={`text-gray-700 hover:text-blue-600 transition-all duration-300 py-2 ${location.pathname === item.path ? 'text-blue-600 font-semibold' : ''}`}
       >
         {item.label}
       </motion.a>

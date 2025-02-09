@@ -1,8 +1,22 @@
 import React from 'react';
 import { ArrowRight, Code2, Cpu, Database, Globe } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 
 const Hero = () => {
+  const navigate = useNavigate();
+
+  const scrollToContact = () => {
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      const headerOffset = 80;
+      const elementPosition = contactSection.getBoundingClientRect().top + window.pageYOffset;
+      window.scrollTo({
+        top: elementPosition - headerOffset,
+        behavior: 'smooth'
+      });
+    }
+  };
   return (
     <div className="relative min-h-screen overflow-hidden bg-gradient-to-b from-gray-50 to-white">
       {/* Animated background elements */}
@@ -80,6 +94,7 @@ const Hero = () => {
               className="mt-10 flex flex-col sm:flex-row gap-4"
             >
               <motion.button
+                onClick={scrollToContact}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="group relative px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-500 text-white rounded-full overflow-hidden shadow-lg hover:shadow-blue-500/25 transition-all duration-300"
@@ -104,10 +119,27 @@ const Hero = () => {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 border-2 border-blue-600 text-blue-600 rounded-full hover:bg-blue-50 transition-colors duration-300"
+                onClick={() => navigate('/sayge/our-work')}
+                className="group relative px-8 py-4 bg-white text-blue-600 border-2 border-blue-600 rounded-full overflow-hidden shadow-lg hover:shadow-blue-500/25 transition-all duration-300"
               >
-                View Our Work
+                <motion.div
+                  className="absolute inset-0 bg-blue-50 opacity-0 group-hover:opacity-20 transition-opacity duration-300"
+                  animate={{
+                    scale: [1, 1.5],
+                    opacity: [0, 0.3, 0],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                  }}
+                />
+                <span className="relative flex items-center">
+                  View Our Work
+                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                </span>
               </motion.button>
+
+
             </motion.div>
 
             <motion.div

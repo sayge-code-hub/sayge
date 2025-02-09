@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import whiteLogo from '../assets/logo/white logo.svg';
 
 const Footer = () => {
@@ -16,7 +16,7 @@ const Footer = () => {
             </div>
             <div className="mt-4 space-y-2">
               <p className="text-gray-400">
-                Nagpur | Pune | California | Frankfurt
+                 California | Frankfurt | Pune | Nagpur 
               </p>
               <p className="text-gray-400">
                 <a 
@@ -39,22 +39,24 @@ const Footer = () => {
           </div>
 
           <div>
-            <h3 className="text-lg font-semibold mb-4">Company</h3>
+            <h3 className="text-lg font-semibold mb-4">Navigation</h3>
             <ul className="space-y-2">
-              <li><Link to="/sayge/careers" className="text-gray-400 hover:text-white transition-colors">Careers</Link></li>
-              <li><a href="https://www.linkedin.com/company/sayge-it/"  className="text-gray-400 hover:text-white transition-colors">LinkedIn</a></li>
-
+              <li><Link to="/" className="text-gray-400 hover:text-white transition-colors">Home</Link></li>
+              <li><Link to="/#about" className="text-gray-400 hover:text-white transition-colors">About</Link></li>
+              <li><Link to="/#services" className="text-gray-400 hover:text-white transition-colors">Expertise</Link></li>
+              <li><Link to="/our-work" className="text-gray-400 hover:text-white transition-colors">Portfolio</Link></li>
             </ul>
           </div>
 
           <div>
-            <h3 className="text-lg font-semibold mb-4">Legal</h3>
+            <h3 className="text-lg font-semibold mb-4">Company</h3>
             <ul className="space-y-2">
-              <li><a href="#" className="text-gray-400 hover:text-white">Privacy Policy</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white">Terms of Service</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white">Cookie Policy</a></li>
+              <li><Link to="/careers" className="text-gray-400 hover:text-white transition-colors">Careers</Link></li>
+              <li><a href="https://www.linkedin.com/company/sayge-it/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">LinkedIn</a></li>
             </ul>
           </div>
+
+         
         </div>
 
         <div className="mt-12 pt-8 border-t border-gray-800">
