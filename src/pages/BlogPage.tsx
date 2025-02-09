@@ -19,22 +19,22 @@ interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '2',
+    title: 'Building Scalable Flutter Applications',
+    excerpt: 'A comprehensive guide to architecting and scaling Flutter applications for enterprise needs, covering state management, modular development, and performance optimization.',
+    author: 'Aditya Rana',
+    date: 'July 22, 2024',
+    readTime: '8 min read',
+    category: 'Mobile Development',
+  },
+  {
     id: '1',
     title: 'The Future of AI in Software Development',
     excerpt: 'Exploring how artificial intelligence is revolutionizing the way we build and maintain software applications.',
-    author: 'Aditya Rana',
+    author: 'Joel Andriyas',
     date: 'Feb 10, 2024',
     readTime: '5 min read',
     category: 'Technology',
-  },
-  {
-    id: '2',
-    title: 'Building Scalable Flutter Applications',
-    excerpt: 'Best practices and architecture patterns for developing large-scale Flutter applications that can grow with your business.',
-    author: 'Joel Mathew',
-    date: 'Feb 8, 2024',
-    readTime: '7 min read',
-    category: 'Mobile Development',
   },
   {
     id: '3',
