@@ -65,27 +65,11 @@ const Header = () => {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3, delay: index * 0.1 }}
-<<<<<<< HEAD
-        href={`#${item.sectionId}`}
-        onClick={(e) => scrollToSection(e, item)}
-        className={`${baseClassName} ${isActive ? 'text-blue-600' : ''}`}
-      >
-        {item.label}
-        <motion.span
-          initial={false}
-          animate={{
-            width: isActive ? '100%' : '0%',
-            opacity: isActive ? 1 : 0,
-          }}
-          className="absolute bottom-0 left-0 h-0.5 bg-blue-600 group-hover:w-full group-hover:opacity-100 transition-all duration-300"
-        />
-=======
         href={item.path}
         onClick={(e) => handleNavigation(e, item)}
         className="text-gray-700 hover:text-blue-600 transition-all duration-300 py-2"
       >
         {item.label}
->>>>>>> seo
       </motion.a>
     );
   };
