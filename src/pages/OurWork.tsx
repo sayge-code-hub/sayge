@@ -116,14 +116,14 @@ const OurWork: React.FC = () => {
                   <p className="text-gray-600 text-sm">
                     {project.description}
                   </p>
-                  <div className="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  {/* <div className="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <span className="text-blue-600 text-sm font-medium flex items-center">
                       Learn More
                       <svg className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                       </svg>
                     </span>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </motion.div>

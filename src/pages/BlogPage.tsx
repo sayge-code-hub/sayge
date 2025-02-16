@@ -22,7 +22,7 @@ export const blogPosts: BlogPost[] = [
     id: '2',
     title: 'Building Scalable Flutter Applications',
     excerpt: 'A comprehensive guide to architecting and scaling Flutter applications for enterprise needs, covering state management, modular development, and performance optimization.',
-    author: 'Aditya Rana',
+    author: 'Jay Dee',
     date: 'July 22, 2024',
     readTime: '8 min read',
     category: 'Mobile Development',
@@ -36,15 +36,15 @@ export const blogPosts: BlogPost[] = [
     readTime: '5 min read',
     category: 'Technology',
   },
-  {
-    id: '3',
-    title: 'The Impact of Cloud Computing on Modern Business',
-    excerpt: 'How cloud technologies are transforming business operations and enabling new possibilities for growth and innovation.',
-    author: 'Laura Chen',
-    date: 'Feb 5, 2024',
-    readTime: '6 min read',
-    category: 'Cloud Computing',
-  },
+  // {
+  //   id: '3',
+  //   title: 'The Impact of Cloud Computing on Modern Business',
+  //   excerpt: 'How cloud technologies are transforming business operations and enabling new possibilities for growth and innovation.',
+  //   author: 'Laura Chen',
+  //   date: 'Feb 5, 2024',
+  //   readTime: '6 min read',
+  //   category: 'Cloud Computing',
+  // },
 ];
 
 const BlogPage = () => {

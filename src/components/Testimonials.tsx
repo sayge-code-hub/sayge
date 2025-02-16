@@ -1,5 +1,5 @@
-import React, { useRef, useEffect } from 'react';
-import { Star, ChevronLeft, ChevronRight } from 'lucide-react';
+import React, { useRef, useState } from 'react';
+import { Star, ChevronLeft, ChevronRight, User } from 'lucide-react';
 
 const scrollAmount = 800; // Amount to scroll on each button click
 
@@ -29,7 +29,7 @@ const testimonials = [
     image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=150&q=80',
   },
   {
-    name: 'Sofia Patel',
+    name: 'Simone J.',
     role: 'Head of Engineering, DataFlow Systems',
     content: 'The UI/UX overhaul by Sayge transformed our platform. The new design is clean, intuitive, and our users have had nothing but positive feedback. It’s made a big difference.',
     image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80',
@@ -102,11 +102,23 @@ const Testimonials = () => {
               </div>
               <p className="text-gray-600 italic mb-6">{testimonial.content}</p>
               <div className="flex items-center">
-                <img
-                  src={testimonial.image}
-                  alt={testimonial.name}
-                  className="h-12 w-12 rounded-full"
-                />
+                {
+                testimonial.image ? (
+                  <img
+                    src={testimonial.image}
+                    alt={testimonial.name}
+                    className="h-12 w-12 rounded-full object-cover"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.style.display = 'none';
+                      target.nextElementSibling?.classList.remove('hidden');
+                    }}
+                  />
+                ) : null
+                }
+                <div className={`h-12 w-12 rounded-full bg-gray-200 flex items-center justify-center ${testimonial.image ? 'hidden' : ''}`}>
+                  <User className="h-6 w-6 text-gray-500" />
+                </div>
                 <div className="ml-4">
                   <div className="font-medium text-gray-900">{testimonial.name}</div>
                   <div className="text-gray-600 text-sm">{testimonial.role}</div>
