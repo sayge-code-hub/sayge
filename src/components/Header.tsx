@@ -16,8 +16,9 @@ const Header = () => {
   const navigationConfig = {
     items: [
       { id: 'home', label: 'Home', path: '/' },
-      { id: 'our-work', label: 'Portfolio', path: 'our-work' },
-      { id: 'blog', label: 'Blog', path: 'blog' }
+      { id: 'our-work', label: 'Portfolio', path: '/our-work' },
+      { id: 'blog', label: 'Blog', path: '/blog' },
+      { id: 'careers', label: 'Careers', path: '/careers' }
     ]
   };
 
@@ -36,28 +37,7 @@ const Header = () => {
 
   const handleNavigation = (e: React.MouseEvent<HTMLAnchorElement>, item: typeof navItems[0]) => {
     e.preventDefault();
-    const isHashLink = item.path.includes('#');
-    
-    if (isHashLink) {
-      if (!isHomePage) {
-        // Navigate to home page first
-        navigate('/');
-        return;
-      }
-      const sectionId = item.path.split('#')[1];
-      const element = document.getElementById(sectionId);
-      if (element) {
-        const headerOffset = 80;
-        const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
-        window.scrollTo({
-          top: elementPosition - headerOffset,
-          behavior: 'smooth'
-        });
-      }
-    } else {
-      // Use React Router's navigate for client-side navigation
-      navigate(item.path);
-    }
+    navigate(item.path);
     setIsMenuOpen(false);
   };
 
@@ -70,7 +50,7 @@ const Header = () => {
         transition={{ duration: 0.3, delay: index * 0.1 }}
         href={item.path}
         onClick={(e) => handleNavigation(e, item)}
-        className={`text-gray-700 hover:text-blue-600 transition-all duration-300 py-2 ${location.pathname === item.path ? 'text-blue-600 font-semibold' : ''}`}
+        className={`text-gray-700 hover:text-blue-600 transition-all duration-300 py-2 ${location.pathname === item.path ? 'text-blue-600 font-semibold' : 'font-medium'}`}
       >
         {item.label}
       </motion.a>

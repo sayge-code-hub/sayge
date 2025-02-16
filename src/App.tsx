@@ -1,4 +1,4 @@
-import { HashRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import BlogPage from './pages/BlogPage';
 import { HelmetProvider } from 'react-helmet-async';
 import HomePage from './pages/HomePage';
