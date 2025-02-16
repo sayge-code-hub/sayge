@@ -3,9 +3,11 @@ import { Search, X, CheckCircle, Mail } from 'lucide-react';
 
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { Settings } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import AdminModal from '../components/AdminModal';
 
 import { BlogPost, client, urlFor } from '../lib/sanity';
 
@@ -44,6 +46,7 @@ const BlogPage = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [email, setEmail] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isAdminModalOpen, setIsAdminModalOpen] = useState(false);
   const [subscribeStatus, setSubscribeStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
 
   const handleSubscribe = async (e: FormEvent) => {
@@ -90,7 +93,22 @@ const BlogPage = () => {
 
       <Header />
 
-      <main className="min-h-screen bg-white">
+      <main className="min-h-screen bg-white relative">
+        <div 
+          onClick={() => setIsAdminModalOpen(true)} 
+          className="fixed bottom-8 right-8 p-2 text-gray-600 hover:text-blue-600 cursor-pointer transition-colors duration-200 z-50"
+          title="Admin Access"
+        >
+          <Settings className="w-4 h-4" />
+        </div>
+        <AdminModal 
+          isOpen={isAdminModalOpen}
+          onClose={() => setIsAdminModalOpen(false)}
+          onSubmit={() => {
+            setIsAdminModalOpen(false);
+            window.open('/admin', '_blank');
+          }}
+        />
         {/* Hero Section */}
         <section className="pt-28 pb-12">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -136,7 +154,7 @@ const BlogPage = () => {
                   className="group py-8 first:pt-0 last:pb-0 cursor-pointer hover:bg-gray-50 -mx-4 px-4 transition-colors"
                 >
                   <div className="flex items-center space-x-2 text-sm mb-2">
-                    <span className="text-gray-500">
+                    <span className="text-xs text-gray-500">
                       {new Date(post.publishedAt).toLocaleDateString('en-US', {
                         year: 'numeric',
                         month: 'long',
