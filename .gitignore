@@ -26,3 +26,9 @@ dist-ssr
 # Cache directories
 .cache
 node_modules/.cache/
+
+# Environment variables
+.env
+.env.local
+.env.development
+.env.production

@@ -5,6 +5,13 @@ import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
 
 export default defineConfig({
+  server: {
+    proxy: {},
+    open: true
+  },
+  preview: {
+    port: 3000
+  },
   base: '/',
   plugins: [
     react(),

@@ -1,4 +1,4 @@
-import React, { useState, useMemo, FormEvent } from 'react';
+import React, { useState, useMemo, FormEvent, useEffect } from 'react';
 import { Search, X, CheckCircle, Mail } from 'lucide-react';
 
 import { useNavigate } from 'react-router-dom';
@@ -7,48 +7,40 @@ import { Helmet } from 'react-helmet-async';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
-interface BlogPost {
-  id: string;
-  title: string;
-  excerpt: string;
-  author: string;
-  date: string;
-  readTime: string;
-  category: string;
-}
+import { BlogPost, client, urlFor } from '../lib/sanity';
 
-export const blogPosts: BlogPost[] = [
-  {
-    id: '2',
-    title: 'Building Scalable Flutter Applications',
-    excerpt: 'A comprehensive guide to architecting and scaling Flutter applications for enterprise needs, covering state management, modular development, and performance optimization.',
-    author: 'Jay Dee',
-    date: 'July 22, 2024',
-    readTime: '8 min read',
-    category: 'Mobile Development',
-  },
-  {
-    id: '1',
-    title: 'The Future of AI in Software Development',
-    excerpt: 'Exploring how artificial intelligence is revolutionizing the way we build and maintain software applications.',
-    author: 'Joel Andriyas',
-    date: 'Feb 10, 2024',
-    readTime: '5 min read',
-    category: 'Technology',
-  },
-  // {
-  //   id: '3',
-  //   title: 'The Impact of Cloud Computing on Modern Business',
-  //   excerpt: 'How cloud technologies are transforming business operations and enabling new possibilities for growth and innovation.',
-  //   author: 'Laura Chen',
-  //   date: 'Feb 5, 2024',
-  //   readTime: '6 min read',
-  //   category: 'Cloud Computing',
-  // },
-];
+
 
 const BlogPage = () => {
   const navigate = useNavigate();
+  const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        console.log('Fetching posts...');
+        const query = `*[_type == "post"] | order(publishedAt desc) {
+          _id,
+          title,
+          slug,
+          publishedAt,
+          image,
+          body
+        }`;
+        console.log('Query:', query);
+        const posts = await client.fetch(query);
+        console.log('Raw posts data:', posts);
+        setBlogPosts(posts);
+      } catch (error) {
+        console.error('Error fetching blog posts:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchPosts();
+  }, []);
   const [searchQuery, setSearchQuery] = useState('');
   const [email, setEmail] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -78,10 +70,14 @@ const BlogPage = () => {
     const query = searchQuery.toLowerCase();
     return blogPosts.filter(post =>
       post.title.toLowerCase().includes(query) ||
-      post.excerpt.toLowerCase().includes(query) ||
-      post.category.toLowerCase().includes(query)
+      (post.body || []).some((block: any) => 
+        block._type === 'block' && 
+        block.children?.some((child: any) => 
+          child.text?.toLowerCase().includes(query)
+        )
+      )
     );
-  }, [searchQuery]);
+  }, [searchQuery, blogPosts]);
   return (
     <>
       <Helmet>
@@ -132,28 +128,37 @@ const BlogPage = () => {
             <div className="divide-y divide-gray-100">
               {filteredPosts.map((post, index) => (
                 <motion.article
-                  key={post.id}
+                  key={post._id}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  onClick={() => navigate(`/blog/${post.id}`)}
+                  onClick={() => navigate(`/blog/${post.slug.current}`)}
                   className="group py-8 first:pt-0 last:pb-0 cursor-pointer hover:bg-gray-50 -mx-4 px-4 transition-colors"
                 >
                   <div className="flex items-center space-x-2 text-sm mb-2">
-                    <span className="text-blue-600 font-medium">{post.category}</span>
-                    <span className="text-gray-300">•</span>
-                    <span className="text-gray-500">{post.readTime}</span>
+                    <span className="text-gray-500">
+                      {new Date(post.publishedAt).toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                      })}
+                    </span>
                   </div>
                   <h2 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
                     {post.title}
                   </h2>
+                  {post.mainImage && (
+                    <div className="mb-3 relative h-48 overflow-hidden rounded-lg">
+                      <img
+                        src={urlFor(post.mainImage).width(600).height(300).url()}
+                        alt={post.title}
+                        className="object-cover w-full h-full"
+                      />
+                    </div>
+                  )}
                   <p className="text-gray-600 mb-3 line-clamp-2 text-sm">
-                    {post.excerpt}
+                    {post.body?.[0]?.children?.[0]?.text || 'No preview available'}
                   </p>
-                  <div className="flex items-center space-x-4 text-sm">
-                    <span className="text-gray-600 font-medium">{post.author}</span>
-                    <span className="text-gray-400">{post.date}</span>
-                  </div>
                 </motion.article>
               ))}
             </div>
