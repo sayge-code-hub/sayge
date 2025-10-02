@@ -1,58 +1,20 @@
 import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
+import { Search } from 'lucide-react';
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
+import { fetchCareers, type Career } from '../lib/careers';
 
 interface JobPosition {
   id: string;
   title: string;
   level: string;
-  description: string;
+  description: string | null;
   techStack: string[];
+  apply_url: string | null;
+  location?: string;
+  employment_type?: string;
 }
-
-const positions: JobPosition[] = [
-  {
-    id: 'flutter-senior',
-    title: 'Flutter Craftsperson',
-    level: 'Senior',
-    description: "Join us in crafting beautiful, responsive mobile experiences. We're looking for someone who sees Flutter not just as a framework, but as a canvas for creating exceptional user experiences.",
-    techStack: ['Flutter', 'Dart', 'Firebase', 'State Management', 'CI/CD'],
-  },
-  {
-    id: 'java-mid',
-    title: 'Java Solution Builder',
-    level: 'Mid-Level',
-    description: 'Help us architect robust backend systems. We value those who can balance elegant code with practical solutions, turning complex requirements into maintainable systems.',
-    techStack: ['Java', 'Spring Boot', 'Microservices', 'SQL', 'AWS'],
-  },
-  {
-    id: 'python-ai',
-    title: 'AI/ML Engineer',
-    level: 'Mid to Senior',
-    description: "Shape the future of AI applications. We're seeking curious minds who can transform data into insights and build intelligent systems that make a difference.",
-    techStack: ['Python', 'TensorFlow', 'PyTorch', 'MLOps', 'AWS/GCP'],
-  },
-  {
-    id: 'cloud-arch',
-    title: 'Cloud Infrastructure Designer',
-    level: 'Senior',
-    description: 'Design and implement scalable cloud solutions. Looking for architects who can navigate both AWS and GCP, creating reliable and efficient infrastructure.',
-    techStack: ['AWS', 'GCP', 'Terraform', 'Kubernetes', 'DevOps'],
-  },
-  {
-    id: 'flutter-entry',
-    title: 'Mobile App Developer',
-    level: 'Entry-Level',
-    description: 'Start your journey in mobile development. We offer mentorship and hands-on experience in building real-world Flutter applications.',
-    techStack: ['Flutter', 'Dart', 'Git', 'REST APIs'],
-  },
-];
-
-const fadeInUp = {
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.5 }
-};
 
 const staggerContainer = {
   animate: {
@@ -62,103 +24,194 @@ const staggerContainer = {
   }
 };
 
+const fadeInUp = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.5 }
+};
+
 const CareersPage = () => {
-  const schema = {
-    "@context": "https://schema.org",
-    "@type": "JobPosting",
-    "title": "Careers at Sayge",
-    "description": "Join our team of innovators at Sayge. We're looking for talented individuals in Flutter, Java, Python, AI, and cloud technologies.",
-    "datePosted": "2024-02-09",
-    "validThrough": "2024-12-31",
-    "employmentType": "FULL_TIME",
-    "hiringOrganization": {
-      "@type": "Organization",
-      "name": "Sayge",
-      "sameAs": "https://craftedbyaditya.github.io/sayge/"
-    },
-    "jobLocation": {
-      "@type": "Place",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Nagpur, Pune, California, Frankfurt"
+  const [allPositions, setAllPositions] = useState<JobPosition[]>([]);
+  const [filteredPositions, setFilteredPositions] = useState<JobPosition[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState('');
+
+  // Load careers data
+  useEffect(() => {
+    const loadCareers = async () => {
+      try {
+        const careers = await fetchCareers();
+        const formattedCareers: JobPosition[] = careers.map((career: Career) => ({
+          id: career.id,
+          title: career.title,
+          level: career.seniority || 'Not Specified',
+          description: career.description || 'No description available.',
+          techStack: career.skills || [],
+          apply_url: career.apply_url,
+          location: career.location,
+          employment_type: career.employment_type
+        }));
+        setAllPositions(formattedCareers);
+        setFilteredPositions(formattedCareers);
+      } catch (err) {
+        console.error('Failed to load careers:', err);
+        setError('Failed to load career opportunities. Please try again later.');
+      } finally {
+        setIsLoading(false);
       }
+    };
+
+    loadCareers();
+  }, []);
+
+  // Filter positions based on search query
+  useEffect(() => {
+    if (!searchQuery.trim()) {
+      setFilteredPositions(allPositions);
+      return;
     }
-  };
+
+    const query = searchQuery.toLowerCase();
+    const filtered = allPositions.filter(position => 
+      position.title.toLowerCase().includes(query) ||
+      (position.description?.toLowerCase().includes(query) ?? false) ||
+      position.techStack.some(tech => tech.toLowerCase().includes(query))
+    );
+    setFilteredPositions(filtered);
+  }, [searchQuery, allPositions]);
+
   return (
-    <>
+    <Layout>
       <SEO
         title="Careers at Sayge | Join Our Team of Innovators"
-        description="Join Sayge's team of innovators. We're hiring talented individuals in Flutter, Java, Python, AI, and cloud technologies. Shape the future of technology with us."
+        description="Explore career opportunities at Sayge. Join our team of innovators working with cutting-edge technologies."
         type="website"
-        url="https://craftedbyaditya.github.io/sayge/careers"
-        schema={schema}
+        url="https://sayge.tech/careers"
       />
-    <Layout>
-      <div className="min-h-screen">
-        <section className="py-20 bg-gray-50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <main className="min-h-screen bg-white">
+        <section className="pt-28 pb-12">
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
-              initial="initial"
-              animate="animate"
-              variants={fadeInUp}
-              className="text-center mb-16"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="text-left"
             >
-              <h1 className="text-4xl font-bold text-gray-900 mb-4">
+              <h1 className="text-3xl font-bold text-gray-900 mb-1">
                 Join Our Team
               </h1>
-              <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-                We're looking for passionate individuals who want to shape the future of technology.
-                Work with cutting-edge tech in a collaborative environment.
+              <p className="text-base text-gray-600">
+                We're looking for passionate individuals who want to shape the future of technology. Work with cutting-edge tech in a collaborative environment.
               </p>
+              
+              <div className="relative mt-6">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <Search className="h-5 w-5 text-gray-400" />
+                </div>
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder="Search positions by title, skills, or description..."
+                  className="block w-full pl-10 pr-3 py-2 border border-gray-200 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm transition-colors"
+                />
+              </div>
             </motion.div>
 
-            <motion.div
-              variants={staggerContainer}
-              initial="initial"
-              animate="animate"
-              className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
-            >
-              {positions.map((position) => (
-                <motion.div
-                  key={position.id}
-                  variants={fadeInUp}
-                  className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow p-6 flex flex-col"
-                >
-                  <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-xl font-semibold text-gray-900">{position.title}</h3>
-                    <span className="px-3 py-1 text-sm font-medium text-blue-600 bg-blue-50 rounded-full">
-                      {position.level}
-                    </span>
+            <section className="py-8">
+              <div className="max-w-3xl mx-auto">
+                <h2 className="text-2xl font-semibold text-gray-900 mb-6">
+                  Open Positions
+                </h2>
+                
+                {isLoading ? (
+                  <div className="text-center py-12">
+                    <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500 mx-auto"></div>
+                    <p className="mt-4 text-gray-600">Loading positions...</p>
                   </div>
-                  <p className="text-gray-600 mb-6 flex-grow">
-                    {position.description}
-                  </p>
-                  <div>
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {position.techStack.map((tech) => (
-                        <span
-                          key={tech}
-                          className="px-2 py-1 text-sm bg-gray-100 text-gray-600 rounded"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
+                ) : error ? (
+                  <div className="text-center py-12">
+                    <p className="text-red-500">{error}</p>
                     <button
-                      onClick={() => window.location.href = `mailto:humans@sayge.com?subject=Application for ${position.title}&body=Hi Sayge Team,%0A%0AI'm interested in the ${position.title} position.%0A%0ABest regards`}
-                      className="w-full bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium"
+                      onClick={() => window.location.reload()}
+                      className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
                     >
-                      Apply Now
+                      Retry
                     </button>
                   </div>
-                </motion.div>
-              ))}
-            </motion.div>
+                ) : filteredPositions.length === 0 ? (
+                  <div className="text-center py-12">
+                    <p className="text-gray-600">
+                      {searchQuery ? 'No matching positions found. Try a different search term.' : 'No open positions at the moment. Please check back later.'}
+                    </p>
+                  </div>
+                ) : (
+                  <motion.div
+                    variants={staggerContainer}
+                    initial="initial"
+                    animate="animate"
+                    className="space-y-6"
+                  >
+                    {filteredPositions.map((position) => (
+                      <motion.div
+                        key={position.id}
+                        variants={fadeInUp}
+                        className="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow p-6"
+                      >
+                        <div className="flex justify-between items-start">
+                          <div>
+                            <h3 className="text-lg font-semibold text-gray-900">
+                              {position.title}
+                            </h3>
+                            <p className="text-sm text-gray-500 mt-1">
+                              {position.level} • {position.location || 'Location not specified'}
+                            </p>
+                          </div>
+                          {position.employment_type && (
+                            <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                              {position.employment_type}
+                            </span>
+                          )}
+                        </div>
+                        
+                        <p className="mt-3 text-gray-600">
+                          {position.description}
+                        </p>
+                        
+                        {position.techStack.length > 0 && (
+                          <div className="mt-4 flex flex-wrap gap-2">
+                            {position.techStack.map((tech) => (
+                              <span
+                                key={tech}
+                                className="px-2 py-1 text-xs bg-gray-100 text-gray-600 rounded"
+                              >
+                                {tech}
+                              </span>
+                            ))}
+                          </div>
+                        )}
+                        
+                        <div className="mt-6">
+                          <a
+                            href={position.apply_url || `mailto:careers@sayge.in?subject=Application for ${encodeURIComponent(position.title)} Position`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-block w-full sm:w-auto text-center bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium"
+                          >
+                            Apply Now
+                          </a>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </motion.div>
+                )}
+              </div>
+            </section>
           </div>
         </section>
-      </div>
+      </main>
     </Layout>
-    </>
   );
 };
 
