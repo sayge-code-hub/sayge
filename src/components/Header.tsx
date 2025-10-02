@@ -15,6 +15,7 @@ const Header = () => {
   const navigationConfig = {
     items: [
       { id: 'home', label: 'Home', path: '/sayge/' },
+      { id: 'work', label: 'Our Work', path: '/sayge/our-work' },
       { id: 'blog', label: 'Blog', path: '/sayge/blog' },
       { id: 'contact', label: 'Contact Us', path: '/sayge/contact' }
     ]

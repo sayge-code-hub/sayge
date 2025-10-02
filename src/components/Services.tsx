@@ -1,4 +1,3 @@
-import React from 'react';
 import { Smartphone, Globe, Server, Palette, Cloud, Brain } from 'lucide-react';
 
 const services = [
@@ -54,12 +53,6 @@ const Services = () => {
               <service.icon className="h-12 w-12 text-blue-600" />
               <h3 className="mt-6 text-xl font-medium text-gray-900">{service.title}</h3>
               <p className="mt-2 text-gray-600">{service.description}</p>
-              <a
-                href="#contact"
-                className="mt-4 inline-flex items-center text-blue-600 hover:text-blue-700"
-              >
-                Learn More →
-              </a>
             </div>
           ))}
         </div>
