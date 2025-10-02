@@ -17,6 +17,7 @@ const Header = () => {
       { id: 'home', label: 'Home', path: '/sayge/' },
       { id: 'about', label: 'About Sayge', path: '/sayge/#about' },
       { id: 'expertise', label: 'Our Expertise', path: '/sayge/#services' },
+      { id: 'blog', label: 'Blog', path: '/sayge/blog' },
       { id: 'contact', label: 'Contact Us', path: '/sayge/contact' }
     ]
   };
