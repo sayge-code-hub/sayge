@@ -42,8 +42,8 @@ const Footer = () => {
             <h3 className="text-lg font-semibold mb-4">Company</h3>
             <ul className="space-y-2">
               <li><Link to="/sayge/careers" className="text-gray-400 hover:text-white transition-colors">Careers</Link></li>
+              <li><Link to="/sayge/contact" className="text-gray-400 hover:text-white transition-colors">Contact Us</Link></li>
               <li><a href="https://www.linkedin.com/company/sayge-it/"  className="text-gray-400 hover:text-white transition-colors">LinkedIn</a></li>
-
             </ul>
           </div>
 

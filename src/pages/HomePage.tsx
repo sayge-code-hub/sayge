@@ -3,10 +3,8 @@ import SEO from '../components/SEO';
 import Hero from '../components/Hero';
 import Services from '../components/Services';
 import StaffingSolutions from '../components/StaffingSolutions';
-import Team from '../components/Team';
 import Values from '../components/Values';
 import Testimonials from '../components/Testimonials';
-import Contact from '../components/Contact';
 import About from '../components/About';
 
 const HomePage = () => {
@@ -42,9 +40,7 @@ const HomePage = () => {
       <Services />
       <StaffingSolutions />
       <Values />
-      <Team />
       <Testimonials />
-      <Contact />
     </Layout>
     </>
   );
