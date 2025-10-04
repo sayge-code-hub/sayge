@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { Search } from 'lucide-react';
+import JobApplicationModal from '../components/JobApplicationModal';
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
 import { fetchCareers, type Career } from '../lib/careers';
@@ -36,6 +37,8 @@ const CareersPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
+  const [selectedPosition, setSelectedPosition] = useState<JobPosition | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Load careers data
   useEffect(() => {
@@ -193,14 +196,15 @@ const CareersPage = () => {
                         )}
                         
                         <div className="mt-6">
-                          <a
-                            href={position.apply_url || `mailto:careers@sayge.in?subject=Application for ${encodeURIComponent(position.title)} Position`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-block w-full sm:w-auto text-center bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium"
-                          >
-                            Apply Now
-                          </a>
+                            <button
+                              onClick={() => {
+                                setSelectedPosition(position);
+                                setIsModalOpen(true);
+                              }}
+                              className="w-full sm:w-auto text-center bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium"
+                            >
+                              Apply Now
+                            </button>
                         </div>
                       </motion.div>
                     ))}
@@ -211,6 +215,17 @@ const CareersPage = () => {
           </div>
         </section>
       </main>
+      
+      {selectedPosition && (
+        <JobApplicationModal
+          isOpen={isModalOpen}
+          onClose={() => {
+            setIsModalOpen(false);
+            setSelectedPosition(null);
+          }}
+          positionTitle={selectedPosition.title}
+        />
+      )}
     </Layout>
   );
 };
