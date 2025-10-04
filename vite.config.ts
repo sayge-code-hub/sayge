@@ -7,7 +7,7 @@
 //   optimizeDeps: {
 //     exclude: ['lucide-react'],
 //   },
-//   base: '/sayge/',
+//   base: '/home',
 // });
 
 import { defineConfig } from 'vite';
@@ -40,7 +40,7 @@ export default defineConfig({
       }
     })
   ],
-  base: '/sayge/',
+  base: '/',
   build: {
     cssMinify: 'lightningcss',
     minify: 'terser',
