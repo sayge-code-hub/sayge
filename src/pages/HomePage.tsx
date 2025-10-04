@@ -5,6 +5,7 @@ import Services from '../components/Services';
 import StaffingSolutions from '../components/StaffingSolutions';
 import Values from '../components/Values';
 import Testimonials from '../components/Testimonials';
+import Clients from '../components/Clients';
 import About from '../components/About';
 
 const HomePage = () => {
@@ -39,6 +40,7 @@ const HomePage = () => {
       <About />
       <Services />
       <StaffingSolutions />
+      <Clients />
       <Values />
       <Testimonials />
     </Layout>
