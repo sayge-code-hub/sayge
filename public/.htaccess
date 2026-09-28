@@ -4,6 +4,9 @@ RewriteBase /
 
 # Next.js static export writes pages as /about.html and puts RSC files in /about/.
 # Map extensionless URLs (with or without a trailing slash) to the .html file.
+# Former short URL for the ownership article.
+RewriteRule ^blog/software-you-can-own/?$ /blog/software-you-can-own-a-year-later [R=301,L]
+
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{DOCUMENT_ROOT}/$1.html -f
 RewriteRule ^(.+?)/?$ $1.html [L]

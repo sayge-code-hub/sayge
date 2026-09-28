@@ -2239,36 +2239,324 @@ export const posts: BlogPost[] = [
     ],
   },
   {
-    slug: "software-you-can-own",
+    slug: "software-you-can-own-a-year-later",
     title: "Software you can still own a year later.",
-    dek: "Launch is not the end of the relationship. It is the moment the software starts living in the business.",
-    date: "2026-08-21",
-    dateLabel: "21 August 2026",
-    readingTime: "5 min",
+    dek: "Launch is a test. A year later is the one that tells you whether the business actually owns the software.",
+    seoTitle: "Software You Can Still Own a Year Later | Sayge",
+    seoDescription:
+      "What does it really mean to own software after launch? Explore source code, infrastructure, documentation, data, maintainability and vendor lock-in.",
+    date: "2026-09-29",
+    dateLabel: "29 September 2026",
+    dateModified: "2026-09-29",
+    readingTime: "12 min",
     body: [
       {
         type: "p",
-        text: "A system that cannot be explained to the next engineer is not finished. It is deferred. The people who inherit it will pay for every shortcut that was treated as temporary.",
+        text: "Most software projects are judged on the week they go live. Does the application work? Can people sign in? Does the important flow complete? Did someone in the business approve the release?",
       },
       {
         type: "p",
-        text: "Ownership is not a repository. It is whether a team can change the product without fear, whether the architecture still matches the business, and whether someone remains accountable after the applause.",
+        text: "Those questions matter. They are also incomplete. There is a quieter test, and it arrives later: you open the project twelve months on, and you try to change it.",
+      },
+      {
+        type: "p",
+        text: "Software ownership is not a feeling you get at handover. It is whether the company can still operate, understand and evolve the system without treating the original developers as the only people who know how it works.",
       },
       {
         type: "h2",
-        text: "Stay after launch.",
+        text: "Launch is not the test that lasts",
       },
       {
         type: "p",
-        text: "We care about what happens next: the first awkward week in production, the report that was not in the brief, the integration that only appears once real volume arrives. Partnership is the work after the thing goes live.",
+        text: "A system can look finished on the day it ships and still be fragile a year later. The screens work. The first users get through. Then the people who built it move on, a library falls behind, a credential lives in someone’s personal account, and a business rule exists only in a function nobody wants to touch.",
       },
       {
         type: "p",
-        text: "That is why we prefer to leave software that can be held — documented enough, simple enough, honest about its edges. Beautiful digital experiences still have to be operable on a Tuesday morning.",
+        text: "That is how software maintainability is lost. Not always through a dramatic failure. More often through small absences: no picture of the application architecture, no note on how to run the project locally, a deployment that only one person has ever done by hand, tests that were going to be added later.",
+      },
+      {
+        type: "p",
+        text: "Custom software development is expensive enough that the useful question is not only “Did it launch?” It is:",
       },
       {
         type: "quote",
-        text: "Our relationship doesn’t end when something goes live. We care about what happens next.",
+        text: "Can the business still operate, change and evolve this software a year from now?",
+      },
+      {
+        type: "h2",
+        text: "What owning software actually means",
+      },
+      {
+        type: "p",
+        text: "Receiving a GitHub repository is not the same as source code ownership in any complete sense. A zip file of the last build is even less so. Ownership is a set of practical facts the business can point to.",
+      },
+      {
+        type: "h3",
+        text: "Source-code ownership",
+      },
+      {
+        type: "p",
+        text: "The organisation should be able to reach the source, including history. An organisation-owned repository, with the right people as owners, is different from a project that lives under one contractor’s personal account. If the only copy is on a laptop, you do not own the work. You are borrowing it.",
+      },
+      {
+        type: "h3",
+        text: "Infrastructure ownership",
+      },
+      {
+        type: "p",
+        text: "Someone in the business should know where the application runs, where the database sits, where files are stored, and which accounts control those services. “It is in the cloud” is not a location. Hosting, DNS, object storage and scheduled jobs are part of the product, even when they never appear on a screen.",
+      },
+      {
+        type: "h3",
+        text: "Data ownership",
+      },
+      {
+        type: "p",
+        text: "You should know where customer and operational data lives, who can read it, how it is backed up, and whether it can be exported in a form another system could use. If restoring a backup requires a particular person and an undocumented ritual, the data is not really under the company’s control.",
+      },
+      {
+        type: "p",
+        text: "This is also where software ownership and day-to-day operations meet. A report that can only be produced by querying a live database by hand is not a feature the business owns. It is a favour someone still knows how to do.",
+      },
+      {
+        type: "h3",
+        text: "Account and credential ownership",
+      },
+      {
+        type: "p",
+        text: "Critical services should not permanently depend on one developer’s personal login. That includes cloud consoles, the domain registrar, app stores, payment providers, email or SMS gateways, analytics, the repository host, and any third-party API that production depends on. People leave. Personal inboxes get locked. The product should not leave with them.",
+      },
+      {
+        type: "h3",
+        text: "Knowledge ownership",
+      },
+      {
+        type: "p",
+        text: "Software documentation is part of the asset. Not a novel. A set of notes a competent engineer can use: what the system is, how it is shaped, how to run it, how it is released, which decisions were deliberate. If the only briefing is a conversation that happened once, the knowledge is not owned. It is remembered, until it is not.",
+      },
+      {
+        type: "h3",
+        text: "Operational ownership",
+      },
+      {
+        type: "p",
+        text: "The business should understand, at a useful level, how the application is built, tested, deployed, watched and patched. You do not need every stakeholder to run a production release. You do need a path that does not collapse if one person is on leave.",
+      },
+      {
+        type: "h3",
+        text: "Change ownership",
+      },
+      {
+        type: "p",
+        text: "Another competent team should be able to change the product without reverse-engineering it from behaviour alone. That is the difference between a maintainable codebase and a black box that happens to still run.",
+      },
+      {
+        type: "h2",
+        text: "The one-year-later test",
+      },
+      {
+        type: "p",
+        text: "Imagine the company writes to the original development partner a year after launch. Not in a crisis. A small change: a new report, a new payment method, a new role. Before anyone opens an editor, these questions are worth answering honestly.",
+      },
+      {
+        type: "ul",
+        items: [
+          "Can someone else access the repository, with history?",
+          "Can the application be deployed without calling the original developer?",
+          "Can the database be backed up, and has that been done recently?",
+          "Can the company retrieve its own data in a usable form?",
+          "Are production credentials controlled by the business, not a personal account?",
+          "Is there a current list of external services the product depends on?",
+          "Are there instructions for running the project locally?",
+          "Is there a documented deployment process?",
+          "Are important business rules written down, or only implied in code?",
+          "Could a new developer form a working picture of the system in a reasonable time?",
+          "Are language, framework and major dependency versions known?",
+          "Is there a testing approach that matches the risk of the product?",
+        ],
+      },
+      {
+        type: "p",
+        text: "If most answers are no, the company may have software it uses every day and still does not control. That is not a moral failure. It is a common outcome when delivery is treated as the finish line and software maintenance is left unnamed.",
+      },
+      {
+        type: "h2",
+        text: "Documentation is part of the product",
+      },
+      {
+        type: "p",
+        text: "Useful documentation is not hundreds of pages nobody opens. It is the smallest set of artefacts that lets a competent developer become productive without a personal handover from one specific person.",
+      },
+      {
+        type: "p",
+        text: "In practice that usually means a short system overview, a sketch of the architecture, setup instructions, environment configuration, the deployment path, a plain description of the database, API notes where they exist, third-party integrations, who owns which accounts, backup and recovery, the architectural decisions that would otherwise look like accidents, and the known limitations. That last item is underrated. A honest list of what the system does not do saves months of guesswork.",
+      },
+      {
+        type: "p",
+        text: "If the only way to learn the product is to sit next to the person who wrote it, you do not have documentation. You have a bottleneck.",
+      },
+      {
+        type: "h2",
+        text: "Vendor lock-in is a choice, until it isn’t",
+      },
+      {
+        type: "p",
+        text: "Not all vendor lock-in is a mistake. A managed database, a payment processor or a particular cloud can be a good decision because it buys reliability, compliance features or speed you would otherwise have to staff. The problem is not dependence. The problem is dependence you cannot see.",
+      },
+      {
+        type: "p",
+        text: "There is a difference between “we chose this because it earns its keep” and “we cannot leave because nobody designed for the possibility of change.” Zero lock-in is usually expensive and often fake: you still depend on languages, operating systems and people. The useful goal is to understand the dependencies and to keep migration cost visible before it becomes urgent.",
+      },
+      {
+        type: "p",
+        text: "Portability, where it is worth paying for, looks ordinary: data you can export in a standard form, APIs that are documented, integration boundaries that are not smeared through the whole codebase, architecture that does not assume one vendor’s unique feature in every layer. Avoiding a proprietary service just to feel independent can be as unwise as wrapping the whole product around one.",
+      },
+      {
+        type: "h2",
+        text: "Complexity is not the same as craft",
+      },
+      {
+        type: "p",
+        text: "Technical debt is not only old libraries. It is also the extra service nobody can explain, the abstraction that hides a simple rule, the pipeline that three people fear, the tool that solved a problem the business never had. Teams add these things with good intentions. A year later they are part of the furniture.",
+      },
+      {
+        type: "p",
+        text: "Maintainable software is often the result of appropriate simplicity: enough structure to change safely, not so much machinery that the machinery is the product. Sophistication that only the original team can operate is not sophistication. It is a private language.",
+      },
+      {
+        type: "h2",
+        text: "Tests and deployment are how you keep the keys",
+      },
+      {
+        type: "p",
+        text: "A year-old system is easier to own when a change can be checked, a build can be repeated, a release can be described, versions are in source control, logs exist when something fails, and dependencies are listed rather than discovered in production. That is not a DevOps religion. It is how you avoid making the original author the only safe person to type a command.",
+      },
+      {
+        type: "p",
+        text: "You do not need a perfect pipeline on day one. You do need a path that can be written down and followed twice. Repeatability is what turns a release from folklore into something the company can keep.",
+      },
+      {
+        type: "p",
+        text: "Manual deployment is not a crime. Undocumented, unreproducible deployment is. If shipping still means “ask the person who last did it,” the business does not own the release. That person does.",
+      },
+      {
+        type: "h2",
+        text: "A software development partner should not be a single point of failure",
+      },
+      {
+        type: "p",
+        text: "Continuing with the same partner after launch can be a good decision. They know the product. They have context. They can provide software maintenance without a cold start. That is a partnership.",
+      },
+      {
+        type: "p",
+        text: "It is a different situation if the product cannot be operated, understood or handed to another team without them. Then the relationship is not extra capacity. It is the only map. One is chosen. The other is stuck.",
+      },
+      {
+        type: "p",
+        text: "Good engineering work should make the second situation unnecessary. The partner can still be valuable. The product should still be intelligible without them.",
+      },
+      {
+        type: "h2",
+        text: "A one-year ownership checklist",
+      },
+      {
+        type: "p",
+        text: "This is not a certificate. It is a conversation you can have with whoever is responsible for the product.",
+      },
+      {
+        type: "h3",
+        text: "Code",
+      },
+      {
+        type: "ul",
+        dense: true,
+        items: [
+          "Source code is accessible to the business.",
+          "Repository ownership is clear.",
+          "Dependencies are documented.",
+        ],
+      },
+      {
+        type: "h3",
+        text: "Infrastructure",
+      },
+      {
+        type: "ul",
+        dense: true,
+        items: [
+          "Hosting account ownership is clear.",
+          "The production environment is documented.",
+          "The deployment process is documented.",
+        ],
+      },
+      {
+        type: "h3",
+        text: "Data",
+      },
+      {
+        type: "ul",
+        dense: true,
+        items: [
+          "Database ownership is clear.",
+          "Backups exist and someone knows how to restore them.",
+          "Data export is possible.",
+        ],
+      },
+      {
+        type: "h3",
+        text: "Access",
+      },
+      {
+        type: "ul",
+        dense: true,
+        items: [
+          "Domains are controlled by the business.",
+          "App-store accounts are controlled by the business where they apply.",
+          "Payment, API, email and SMS accounts are controlled appropriately.",
+        ],
+      },
+      {
+        type: "h3",
+        text: "Knowledge",
+      },
+      {
+        type: "ul",
+        dense: true,
+        items: [
+          "The architecture is documented.",
+          "Setup instructions exist.",
+          "Important business logic is understandable.",
+          "Third-party integrations are documented.",
+        ],
+      },
+      {
+        type: "h3",
+        text: "Operations",
+      },
+      {
+        type: "ul",
+        dense: true,
+        items: [
+          "The application can be deployed by more than one person.",
+          "Monitoring or logging exists where the risk justifies it.",
+          "A new developer can reasonably get started.",
+        ],
+      },
+      {
+        type: "h2",
+        text: "What a serious engagement should leave behind",
+      },
+      {
+        type: "p",
+        text: "Working screens are not enough. A [custom software](/services/custom-software-development) project that is done well also leaves source the company can reach, infrastructure it can name, data it can recover, integrations it can list, enough technical knowledge to continue, a release path that can be repeated, and an architecture that can take the next change. That is what [thoughtful engineering](/about) looks like when the applause has stopped.",
+      },
+      {
+        type: "p",
+        text: "The job is not only to make the software work today. It is to leave it understandable enough to keep working tomorrow — so the business has more control as the product matures, not less. The best engagement does not leave a client dependent on one person, one vendor, or a process that exists only in someone’s head. It leaves a product they can operate, change and keep building.",
+      },
+      {
+        type: "p",
+        text: "If you’re planning custom software, start by asking not only what will be built, but what you’ll actually own a year after launch. [Start a conversation →](/contact)",
       },
     ],
   },
