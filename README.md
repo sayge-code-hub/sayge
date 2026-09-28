@@ -46,11 +46,34 @@ npx tsc --noEmit
 npm run build
 ```
 
-The static site is written to `out/`. Upload **the contents** of `out/` into `public_html/` — not `public_html/out/`. Include `.htaccess` at the site root.
+The static site is written to `out/`. `out/` is gitignored.
 
-The host should serve the apex site at `https://sayge.in`. Point `www` at the same host if that is not already configured in the panel.
+### Automatic deploy (GitHub → Hostinger)
 
-`out/` is gitignored. Rebuild before each deploy.
+Do **not** use Hostinger’s “Deployment from GitHub” on this repo. That copies source files and will 403 the live site.
+
+Each push to `main` runs `.github/workflows/deploy-hostinger.yml`: it builds the site and FTP-uploads the **contents** of `out/` over the previous `public_html` files.
+
+**Once, in Hostinger**
+
+1. Disconnect any existing GitHub connection on sayge.in.
+2. Create an FTP account (Files → FTP accounts).
+3. If you can, set that account’s directory to `public_html` only.
+
+**Once, in GitHub** (repo **Settings → Secrets and variables → Actions**):
+
+| Secret | Typical value |
+| --- | --- |
+| `FTP_SERVER` | FTP host from hPanel (often `ftp.sayge.in` or the hostname shown there) |
+| `FTP_USERNAME` | FTP username |
+| `FTP_PASSWORD` | FTP password |
+| `FTP_SERVER_DIR` | `/public_html/` if the FTP user starts in the hosting home; `/` if the user is already locked to `public_html` |
+
+Trailing slashes on `FTP_SERVER_DIR` matter. `dangerous-clean-slate` is on: the remote folder is emptied before upload, so the FTP path must be the website directory, not the whole hosting account.
+
+After the secrets exist, push to `main` or run **Actions → Deploy to Hostinger → Run workflow**.
+
+The live host should stay `https://sayge.in`. Point `www` at the same site in the Hostinger domain panel.
 
 ## Repository
 
