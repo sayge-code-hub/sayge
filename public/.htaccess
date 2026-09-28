@@ -1,0 +1,14 @@
+DirectorySlash Off
+RewriteEngine On
+RewriteBase /
+
+# Next.js static export writes pages as /about.html and puts RSC files in /about/.
+# Map extensionless URLs (with or without a trailing slash) to the .html file.
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+RewriteRule ^(.+?)/?$ $1.html [L]
+
+# /services/ is a real folder (nested pages) with no services.html — avoid Apache 403.
+RewriteRule ^services/?$ /services/custom-software-development [R=301,L]
+
+ErrorDocument 404 /404.html
