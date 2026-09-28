@@ -52,7 +52,7 @@ The static site is written to `out/`. `out/` is gitignored.
 
 Do **not** use Hostinger’s “Deployment from GitHub” on this repo. That copies source files and will 403 the live site.
 
-Each push to `main` runs `.github/workflows/deploy-hostinger.yml`: it builds the site and FTP-uploads the **contents** of `out/` over the previous `public_html` files.
+Each push to `main` runs `.github/workflows/deploy-hostinger.yml`: it bumps the **patch** version (`0.3.0` → `0.3.1`, and the footer), builds the site, FTP-uploads the **contents** of `out/`, then commits the version files with `[skip ci]` so that commit does not deploy again.
 
 **Once, in Hostinger**
 
@@ -72,6 +72,8 @@ Each push to `main` runs `.github/workflows/deploy-hostinger.yml`: it builds the
 Trailing slashes on `FTP_SERVER_DIR` matter. `dangerous-clean-slate` is on: the remote folder is emptied before upload, so the FTP path must be the website directory, not the whole hosting account.
 
 After the secrets exist, push to `main` or run **Actions → Deploy to Hostinger → Run workflow**.
+
+The workflow needs permission to push the version commit: **Settings → Actions → General → Workflow permissions → Read and write**.
 
 The live host should stay `https://sayge.in`. Point `www` at the same site in the Hostinger domain panel.
 
