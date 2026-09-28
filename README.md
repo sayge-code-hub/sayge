@@ -1,36 +1,57 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Sayge
 
-## Getting Started
+Source for [sayge.in](https://sayge.in) — the public website of Sayge, a technology partner for software, products and teams.
 
-First, run the development server:
+This repository is the site itself: pages, copy, selected work, and the static export used for hosting. It is not a Node.js server in production.
+
+**Live:** [https://sayge.in](https://sayge.in)  
+**Version:** 0.3.0  
+**Contact:** [humans@sayge.in](mailto:humans@sayge.in)
+
+## What is in this repo
+
+- Marketing and company pages (`/`, `/about`, `/contact`)
+- Custom software service page
+- Selected work and case studies (`/work`)
+- Editorial articles (`/blog`)
+- Privacy and legal notice
+- Employee / employer / client sign-in (`/login`) — not listed in the sitemap
+
+## Stack
+
+- Next.js 16 (App Router) with `output: "export"`
+- React 19 and TypeScript
+- Tailwind CSS v4
+- Static files for Hostinger (Apache), including `public/.htaccess` for clean URLs
+
+There is no database and no production Node runtime. `npm start` is only for local preview of a Next server, not for Hostinger.
+
+## Local development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run lint
+npx tsc --noEmit
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Production build (Hostinger)
 
-## Learn More
+```bash
+npm run build
+```
 
-To learn more about Next.js, take a look at the following resources:
+The static site is written to `out/`. Upload **the contents** of `out/` into `public_html/` — not `public_html/out/`. Include `.htaccess` at the site root.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The host should serve the apex site at `https://sayge.in`. Point `www` at the same host if that is not already configured in the panel.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+`out/` is gitignored. Rebuild before each deploy.
 
-## Deploy on Vercel
+## Repository
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+[github.com/sayge-code-hub/sayge](https://github.com/sayge-code-hub/sayge)
