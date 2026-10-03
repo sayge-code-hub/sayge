@@ -1,6 +1,6 @@
 export const siteUrl = "https://sayge.in";
 export const siteName = "Sayge";
-export const siteVersion = "0.3.1";
+export const siteVersion = "0.3.2";
 export const siteEmail = "humans@sayge.in";
 export const sitePhoneDisplay = "+91 87886 81499";
 export const sitePhoneHref = "tel:+918788681499";
