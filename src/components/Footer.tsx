@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import Link from "next/link";
 import { Logo } from "@/components/Logo";
 import { SiteVersion } from "@/components/SiteVersion";
-import { siteEmail, sitePhoneDisplay, sitePhoneHref } from "@/lib/site";
+import { portalUrl, siteEmail, sitePhoneDisplay, sitePhoneHref } from "@/lib/site";
 
 const services = [
   { href: "/services/custom-software-development", label: "Custom software" },
@@ -101,8 +101,10 @@ export function Footer() {
             <SiteVersion />
           </p>
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-8">
-            <Link
-              href="/login"
+            <a
+              href={portalUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex min-h-11 items-center gap-2 text-[12px] tracking-[0.04em] text-muted transition hover:text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-[var(--brand)]"
             >
               <svg
@@ -126,8 +128,10 @@ export function Footer() {
                   strokeLinecap="round"
                 />
               </svg>
-              Employee / employer / client login
-            </Link>
+              Login
+              <span aria-hidden="true">↗</span>
+              <span className="sr-only">(opens in a new tab)</span>
+            </a>
             <p className="text-[12px] tracking-[0.04em] text-muted">
               India · UAE · Germany
             </p>

@@ -15,7 +15,7 @@ This repository is the site itself: pages, copy, selected work, and the static e
 - Selected work and case studies (`/work`)
 - Editorial articles (`/blog`)
 - Privacy and legal notice
-- Employee / employer / client sign-in (`/login`) — not listed in the sitemap
+- Employee / employer / client sign-in is an external portal (footer Login)
 
 ## Stack
 

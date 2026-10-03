@@ -35,10 +35,7 @@ export const legalNoticeTitle = "Legal Notice | Sayge";
 export const legalNoticeDescription =
   "Legal information and website notices for Sayge.";
 
-export const loginPath = "/login";
-export const loginTitle = "Sign in | Sayge";
-export const loginDescription =
-  "Sign in to Sayge as an employee, employer or client.";
+export const portalUrl = "https://saaaasify.netlify.app/";
 
 export const blogPath = "/blog";
 export const blogTitle = "Blog | Sayge";
