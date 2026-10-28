@@ -22,7 +22,7 @@ const facts = [
   { label: "Starts", value: "15 December" },
   { label: "Duration", value: "4 months" },
   { label: "Team", value: "8 people" },
-  { label: "Choice by", value: "25 December" },
+  { label: "Apps", value: "Fintech and pet care" },
 ];
 
 const outcomes = [
@@ -183,28 +183,23 @@ export default function FoundingPage() {
             </h2>
             <div className="mt-6 grid gap-px overflow-hidden rounded-2xl border border-black/10 bg-black/10 sm:grid-cols-2">
               <div className="min-w-0 bg-[#f7f3ec]/75 p-5 sm:p-6">
-                <p className="text-[11px] tracking-[0.16em] text-muted uppercase">Option one</p>
-                <h3 className="mt-3 font-display text-[clamp(2rem,4vw,3.2rem)] leading-none tracking-[-0.04em]">
+                <h3 className="font-display text-[clamp(2rem,4vw,3.2rem)] leading-none tracking-[-0.04em]">
                   Fintech
                 </h3>
                 <p className="mt-4 text-[16px] leading-7 text-foreground/85">A fintech app.</p>
               </div>
               <div className="min-w-0 bg-[#f7f3ec]/75 p-5 sm:p-6">
-                <p className="text-[11px] tracking-[0.16em] text-muted uppercase">Option two</p>
-                <h3 className="mt-3 font-display text-[clamp(2rem,4vw,3.2rem)] leading-none tracking-[-0.04em]">
-                  Pet or sustainability
+                <h3 className="font-display text-[clamp(2rem,4vw,3.2rem)] leading-none tracking-[-0.04em]">
+                  Pet care
                 </h3>
-                <p className="mt-4 text-[16px] leading-7 text-foreground/85">
-                  A pet app or a sustainability app.
-                </p>
+                <p className="mt-4 text-[16px] leading-7 text-foreground/85">A pet care app.</p>
               </div>
             </div>
             <div className="mt-6 max-w-[62ch] space-y-5 text-[17px] leading-8 text-foreground/85">
               <p>
-                There are two options. One is fintech. The other is a pet app or a sustainability
-                app. Which of those two it will be is confirmed by 25 December, and then
-                communicated. More detail on the products comes after you join. Both start from
-                nothing, with a team small enough that your work shows.
+                The batch builds both. A fintech app, and a pet care app. They are not a choice.
+                More detail on each comes after you join. Both start from nothing, with a team
+                small enough that your work shows.
               </p>
             </div>
           </section>
