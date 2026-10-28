@@ -546,7 +546,8 @@ body {
   .hero-oval,
   .hero-float,
   .hero-float-delayed,
-  .scroll-hint {
+  .scroll-hint,
+  .founding-rise {
     animation: none !important;
   }
 
@@ -563,7 +564,8 @@ body {
   }
 
   .hero-line,
-  .reveal {
+  .reveal,
+  .founding-rise {
     opacity: 1;
     transform: none;
   }
@@ -986,4 +988,28 @@ textarea.page-control {
   .work-pickup-step:last-child {
     padding-right: 0;
   }
+}
+
+.founding-display {
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(3.25rem, 8.6vw, 7.25rem);
+  line-height: 0.9;
+  letter-spacing: -0.045em;
+  font-weight: 520;
+}
+
+.founding-rise {
+  animation: rise 0.85s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.founding-hero {
+  background:
+    radial-gradient(ellipse 70% 55% at 100% 0%, rgba(232, 93, 44, 0.22), transparent 58%),
+    #111111;
+}
+
+.founding-close {
+  background:
+    radial-gradient(ellipse 60% 80% at 0% 100%, rgba(232, 93, 44, 0.2), transparent 55%),
+    #111111;
 }

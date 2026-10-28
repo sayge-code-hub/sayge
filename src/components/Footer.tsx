@@ -2,7 +2,13 @@ import type { ReactNode } from "react";
 import Link from "next/link";
 import { Logo } from "@/components/Logo";
 import { SiteVersion } from "@/components/SiteVersion";
-import { portalUrl, siteEmail, sitePhoneDisplay, sitePhoneHref } from "@/lib/site";
+import {
+  foundingPath,
+  portalUrl,
+  siteEmail,
+  sitePhoneDisplay,
+  sitePhoneHref,
+} from "@/lib/site";
 
 const services = [
   { href: "/services/custom-software-development", label: "Custom software" },
@@ -13,6 +19,7 @@ const company = [
   { href: "/work", label: "Selected work" },
   { href: "/blog", label: "Blog" },
   { href: "/contact", label: "Contact" },
+  { href: foundingPath, label: "Founding batch" },
   { href: "/privacy", label: "Privacy Policy" },
   { href: "/legal-notice", label: "Legal Notice" },
 ];

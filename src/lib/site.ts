@@ -35,6 +35,12 @@ export const legalNoticeTitle = "Legal Notice | Sayge";
 export const legalNoticeDescription =
   "Legal information and website notices for Sayge.";
 
+export const foundingPath = "/founding";
+export const foundingTitle = "Founding batch | Sayge";
+export const foundingDescription =
+  "A founding internship at Sayge. Eight people, five months from 15 December, building a fintech product and a sustainability product from scratch.";
+export const foundingSubject = "Founding — I made this";
+
 export const portalUrl = "https://saaaasify.netlify.app/";
 
 export const blogPath = "/blog";

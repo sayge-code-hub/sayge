@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { getPosts } from "@/lib/blog";
-import { siteUrl } from "@/lib/site";
+import { foundingPath, siteUrl } from "@/lib/site";
 import { caseStudyPath, getWorkDocuments, workPath } from "@/lib/work";
 
 export const dynamic = "force-static";
@@ -9,12 +9,19 @@ type IndexedRoute = {
   path: string;
   changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"];
   priority: number;
+  lastModified?: string;
 };
 
 const routes: IndexedRoute[] = [
   { path: "/", changeFrequency: "monthly", priority: 1 },
   { path: "/about", changeFrequency: "monthly", priority: 0.8 },
   { path: "/contact", changeFrequency: "monthly", priority: 0.8 },
+  {
+    path: foundingPath,
+    changeFrequency: "monthly",
+    priority: 0.8,
+    lastModified: "2026-10-28",
+  },
   {
     path: "/services/custom-software-development",
     changeFrequency: "monthly",
@@ -30,7 +37,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const pages = routes.map((route) => ({
     url: new URL(route.path, siteUrl).href,
-    lastModified,
+    lastModified: route.lastModified ? new Date(route.lastModified) : lastModified,
     changeFrequency: route.changeFrequency,
     priority: route.priority,
   }));
