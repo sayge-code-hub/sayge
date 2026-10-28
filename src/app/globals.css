@@ -1031,3 +1031,18 @@ textarea.page-control {
   position: relative;
   z-index: 2;
 }
+
+.founding-title {
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(2.7rem, 6.4vw, 5.15rem);
+  line-height: 0.94;
+  letter-spacing: -0.04em;
+  font-weight: 520;
+}
+
+.founding-panel {
+  background: rgba(255, 252, 247, 0.62);
+  border: 1px solid rgba(28, 27, 25, 0.08);
+  border-radius: 1.25rem;
+  backdrop-filter: blur(10px);
+}
