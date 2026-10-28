@@ -19,10 +19,11 @@ import {
 const foundingMailto = `mailto:${siteEmail}?subject=${encodeURIComponent(foundingSubject)}&body=${encodeURIComponent("Hello,\n\nSomething I have built, or a portfolio:\n\nA campaign or other idea I have in mind:\n")}`;
 
 const facts = [
+  { label: "Closes", value: "30 November" },
   { label: "Starts", value: "15 December" },
   { label: "Duration", value: "4 months" },
-  { label: "Team", value: "8 people" },
-  { label: "Apps", value: "Fintech and pet care" },
+  { label: "Batches", value: "2 × 5" },
+  { label: "Apps", value: "Fintech, pet care" },
 ];
 
 const outcomes = [
@@ -112,19 +113,22 @@ export default function FoundingPage() {
           </svg>
           <div className="mt-6 max-w-[62ch] space-y-5 text-[18px] leading-8 md:text-[20px]">
             <p>
-              Sayge is opening a new vertical, and this internship is how it starts. The batch
-              begins on 15 December and runs for four months. The team is eight.
+              Sayge is opening a new vertical, and this internship is how it starts. Two batches.
+              Five people in each. Four months from 15 December, built from scratch, in public.
             </p>
             <p>
-              You join as founding members. There is no finished product to inherit. The work is
-              built from scratch, and it will be built in public.
+              You join as founding members. One batch takes the fintech app. The other takes the
+              pet care app. Same studio, two different sets of work, small enough that your name
+              is on what ships.
             </p>
           </div>
-          <dl className="mt-10 grid grid-cols-2 border-t border-black/10 sm:grid-cols-4">
-            {facts.map((fact) => (
+          <dl className="mt-10 grid grid-cols-2 border-t border-black/10 lg:grid-cols-5">
+            {facts.map((fact, index) => (
               <div
                 key={fact.label}
-                className="min-w-0 border-b border-black/10 py-4 pr-4 sm:border-b-0 sm:py-5 sm:pr-6"
+                className={`min-w-0 border-b border-black/10 py-4 pr-4 lg:border-b-0 lg:py-5 lg:pr-6 ${
+                  index === facts.length - 1 ? "col-span-2 lg:col-span-1" : ""
+                }`}
               >
                 <dt className="text-[11px] tracking-[0.16em] text-muted uppercase">{fact.label}</dt>
                 <dd className="mt-2 text-[17px] leading-6 tracking-[-0.02em]">{fact.value}</dd>
@@ -136,18 +140,17 @@ export default function FoundingPage() {
         <article className="mx-auto max-w-[1080px] px-5 py-14 sm:px-6 md:py-20">
           <section aria-labelledby="shape-heading">
             <h2 id="shape-heading" className="font-display text-[clamp(2rem,4vw,3rem)] leading-none tracking-[-0.04em]">
-              Not a placement. A start.
+              Small on purpose.
             </h2>
             <div className="mt-6 space-y-5 text-[17px] leading-8 text-foreground/85">
               <p>
-                A typical internship drops you into a team that already knows the work. This one
-                does not. The vertical does not exist yet. The eight of you are the people who
-                make it exist.
+                Five people to a batch. Close enough to argue a decision in the morning and ship
+                it in the afternoon. The vertical is new, so the culture is the work itself: taste,
+                craft, and the nerve to put your name on something unfinished.
               </p>
               <p>
-                That is the offer. Four months, starting 15 December, inside a new part of Sayge.
-                You will be close to the decisions, because there is no layer between you and the
-                thing being made. What you ship will be yours to point at.
+                You will be in the room where the product changes. There is no bench and no layer
+                between you and the thing being made. What your batch ships is yours to point at.
               </p>
             </div>
           </section>
@@ -158,13 +161,13 @@ export default function FoundingPage() {
             </h2>
             <div className="mt-4 space-y-5 text-[17px] leading-8 text-foreground/85">
               <p>
-                Developers, designers, product enthusiasts, and people who work in content. Content
-                is not a side task here. Campaigns and other creative work are part of how the
-                products get out into the world.
+                Developers, designers, product enthusiasts, and people who make campaigns and
+                content. Creative work sits in the build, next to the product. It is how the work
+                meets the world.
               </p>
               <p>
-                If your practice sits between those titles, write anyway. We would rather see the
-                thing you made than a perfect match to a label.
+                If your practice sits between those titles, write. Bring the thing you made. A
+                label is less interesting than the way you work.
               </p>
             </div>
             <ul className="mt-8 flex flex-wrap gap-3">
@@ -197,9 +200,9 @@ export default function FoundingPage() {
             </div>
             <div className="mt-6 max-w-[62ch] space-y-5 text-[17px] leading-8 text-foreground/85">
               <p>
-                The batch builds both. A fintech app, and a pet care app. They are not a choice.
-                More detail on each comes after you join. Both start from nothing, with a team
-                small enough that your work shows.
+                Both apps get built. The two batches work on different sets: one on fintech, one
+                on pet care. More detail on each product comes after you join. Both start from
+                nothing.
               </p>
             </div>
           </section>
@@ -209,7 +212,7 @@ export default function FoundingPage() {
               By the end
             </h2>
             <p className="mt-4 max-w-[62ch] text-[17px] leading-8 text-foreground/85">
-              Five things the batch leaves in place.
+              Each batch leaves its set with these in place.
             </p>
             <ol className="mt-8 grid gap-px overflow-hidden rounded-2xl border border-black/10 bg-black/10 sm:grid-cols-2 lg:grid-cols-6">
               {outcomes.map((item, index) => (
@@ -234,14 +237,12 @@ export default function FoundingPage() {
             </h2>
             <div className="mt-6 space-y-5 text-[17px] leading-8 text-foreground/85">
               <p>
-                The work will be built in public. Not a private draft that appears, finished, at
-                the end of four months. The making is part of the record. People outside the team
-                will be able to see the products take shape.
+                The making is public. People outside the studio can watch both products take
+                shape, week by week. The record is the work itself, while it is still being made.
               </p>
               <p>
-                That asks something of you. You have to be willing to show unfinished work, to
-                explain a decision while it is still warm, and to let the outside world watch you
-                get better at it. If that sounds like the room you want, this batch is that room.
+                You show unfinished work. You explain a decision while it is still warm. The other
+                batch can see you get better, and so can anyone paying attention. That is the room.
               </p>
             </div>
           </section>
@@ -252,20 +253,25 @@ export default function FoundingPage() {
             <h2 id="write-heading" className="text-[13px] tracking-[0.16em] text-muted uppercase">
               If you want in
             </h2>
-            <div className="mt-4 max-w-[48ch] space-y-5 text-[17px] leading-8 text-foreground/85">
+            <div className="mt-4 max-w-[54ch] space-y-5 text-[17px] leading-8 text-foreground/85">
               <p>
-                Email{" "}
+                Applications close on 30 November. Email{" "}
                 <a
                   href={foundingMailto}
                   className="text-foreground underline decoration-black/30 underline-offset-4 hover:decoration-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-brand"
                 >
                   {siteEmail}
-                </a>
-                . Use the subject below so the note is easy to find.
+                </a>{" "}
+                before then, with the subject below so the note is easy to find.
               </p>
               <p>
-                Include something you have built, a portfolio, or a campaign or other idea you
-                have in mind. Show us how you work when the brief was yours.
+                Include something you have built, a portfolio, or a campaign or idea that was
+                yours. Show how you work when the brief was yours.
+              </p>
+              <p>
+                Shortlisted candidates get the detail for the rounds that follow. Those rounds are
+                different for each person. You are the best person to help yourself. Bring the
+                work only you could have made, and make the case in your own way.
               </p>
             </div>
             <p className="mt-8 text-[13px] tracking-[0.04em] text-muted">Suggested subject</p>

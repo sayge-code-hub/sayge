@@ -38,7 +38,7 @@ export const legalNoticeDescription =
 export const foundingPath = "/internship";
 export const foundingTitle = "Founding batch | Sayge";
 export const foundingDescription =
-  "A founding internship at Sayge. Eight people, four months from 15 December, building a fintech app and a pet care app from scratch, in public.";
+  "A founding internship at Sayge. Two batches of five, four months from 15 December, building a fintech app and a pet care app from scratch, in public. Applications close 30 November.";
 export const foundingSubject = "From scratch — here's what I made";
 
 export const portalUrl = "https://saaaasify.netlify.app/";
