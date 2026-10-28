@@ -5,8 +5,10 @@ Source for [sayge.in](https://sayge.in) — the public website of Sayge, a techn
 This repository is the site itself: pages, copy, selected work, and the static export used for hosting. It is not a Node.js server in production.
 
 **Live:** [https://sayge.in](https://sayge.in)  
-**Version:** 0.3.0  
+**Version:** 0.3.1  
 **Contact:** [humans@sayge.in](mailto:humans@sayge.in)
+
+**System activity ledger:** [LEDGER.md](./LEDGER.md) — human-readable history, timeline, and ops notes for tech, support, and anyone else who needs to understand what changed on the site.
 
 ## What is in this repo
 
