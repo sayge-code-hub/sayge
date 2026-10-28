@@ -209,18 +209,23 @@ export default function FoundingPage() {
               By the end
             </h2>
             <p className="mt-4 max-w-[62ch] text-[17px] leading-8 text-foreground/85">
-              The batch should leave the vertical with these in place.
+              Five things the batch leaves in place.
             </p>
-            <ul className="mt-6 grid border-t border-black/10 sm:grid-cols-2">
-              {outcomes.map((item) => (
+            <ol className="mt-8 grid gap-px overflow-hidden rounded-2xl border border-black/10 bg-black/10 sm:grid-cols-2 lg:grid-cols-6">
+              {outcomes.map((item, index) => (
                 <li
                   key={item}
-                  className="min-w-0 border-b border-black/10 py-4 pr-6 text-[17px] leading-7"
+                  className={`min-w-0 bg-[#f7f3ec]/80 p-5 sm:p-6 ${
+                    index < 3 ? "lg:col-span-2" : "lg:col-span-3"
+                  } ${index === outcomes.length - 1 ? "sm:col-span-2 lg:col-span-3" : ""}`}
                 >
-                  {item}
+                  <p className="font-display text-[1.35rem] leading-none tracking-[-0.04em] text-foreground/35">
+                    {String(index + 1).padStart(2, "0")}
+                  </p>
+                  <p className="mt-4 text-[18px] leading-7 tracking-[-0.02em]">{item}</p>
                 </li>
               ))}
-            </ul>
+            </ol>
           </section>
 
           <section aria-labelledby="public-heading" className="mt-16 md:mt-20">
