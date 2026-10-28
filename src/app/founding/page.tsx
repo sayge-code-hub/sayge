@@ -20,9 +20,17 @@ const foundingMailto = `mailto:${siteEmail}?subject=${encodeURIComponent(foundin
 
 const facts = [
   { label: "Starts", value: "15 December" },
-  { label: "Duration", value: "5 months" },
+  { label: "Duration", value: "4 months" },
   { label: "Team", value: "8 people" },
-  { label: "Products", value: "Fintech and sustainability" },
+  { label: "Choice by", value: "25 December" },
+];
+
+const outcomes = [
+  "A beta user community",
+  "A mobile app",
+  "A web app",
+  "Branding and design",
+  "Content on relevant media platforms",
 ];
 
 const roles = ["Developers", "Designers", "Product enthusiasts", "Content"];
@@ -87,44 +95,45 @@ export default function FoundingPage() {
         </div>
       </header>
       <main id="founding-main" aria-labelledby="founding-heading" className="overflow-x-clip">
-        <article className="mx-auto grid max-w-[1180px] items-end gap-12 px-5 pt-12 pb-8 sm:px-6 md:pt-16 lg:grid-cols-[minmax(0,1.3fr)_minmax(16rem,0.7fr)] lg:gap-16 lg:pb-12">
-          <div className="min-w-0">
-            <p className="text-[12px] tracking-[0.2em] text-muted uppercase">
-              Founding batch · Sayge
+        <article className="mx-auto max-w-[1080px] px-5 pt-12 sm:px-6 md:pt-16">
+          <p className="text-[12px] tracking-[0.2em] text-muted uppercase">
+            Founding batch · Sayge
+          </p>
+          <h1 id="founding-heading" className="founding-poster mt-4">
+            Internship.
+          </h1>
+          <svg className="founding-scribble" viewBox="0 0 360 28" fill="none" aria-hidden="true">
+            <path
+              d="M4 18c36-14 72 10 112-2 34-10 62 12 104-2 32-10 78 8 136-8"
+              stroke="currentColor"
+              strokeWidth="3"
+              strokeLinecap="round"
+            />
+          </svg>
+          <div className="mt-6 max-w-[62ch] space-y-5 text-[18px] leading-8 md:text-[20px]">
+            <p>
+              Sayge is opening a new vertical, and this internship is how it starts. The batch
+              begins on 15 December and runs for four months. The team is eight.
             </p>
-            <h1 id="founding-heading" className="founding-poster mt-4">
-              Internship.
-            </h1>
-            <svg className="founding-scribble" viewBox="0 0 360 28" fill="none" aria-hidden="true">
-              <path
-                d="M4 18c36-14 72 10 112-2 34-10 62 12 104-2 32-10 78 8 136-8"
-                stroke="currentColor"
-                strokeWidth="3"
-                strokeLinecap="round"
-              />
-            </svg>
-            <div className="mt-6 max-w-[42ch] space-y-5 text-[18px] leading-8 md:text-[20px]">
-              <p>
-                Sayge is opening a new vertical, and this internship is how it starts. The batch
-                begins on 15 December and runs for five months. The team is eight.
-              </p>
-              <p>
-                You join as founding members. There is no finished product to inherit. The work is
-                built from scratch, and it will be built in public.
-              </p>
-            </div>
+            <p>
+              You join as founding members. There is no finished product to inherit. The work is
+              built from scratch, and it will be built in public.
+            </p>
           </div>
-          <dl className="founding-panel grid grid-cols-2">
+          <dl className="mt-10 grid grid-cols-2 border-t border-black/10 sm:grid-cols-4">
             {facts.map((fact) => (
-              <div key={fact.label} className="min-w-0 px-4 py-5 sm:px-5">
+              <div
+                key={fact.label}
+                className="min-w-0 border-b border-black/10 py-4 pr-4 sm:border-b-0 sm:py-5 sm:pr-6"
+              >
                 <dt className="text-[11px] tracking-[0.16em] text-muted uppercase">{fact.label}</dt>
-                <dd className="mt-2 text-[16px] leading-6 tracking-[-0.02em]">{fact.value}</dd>
+                <dd className="mt-2 text-[17px] leading-6 tracking-[-0.02em]">{fact.value}</dd>
               </div>
             ))}
           </dl>
         </article>
 
-        <article className="mx-auto max-w-[760px] px-5 py-10 sm:px-6 md:py-16">
+        <article className="mx-auto max-w-[1080px] px-5 py-14 sm:px-6 md:py-20">
           <section aria-labelledby="shape-heading">
             <h2 id="shape-heading" className="font-display text-[clamp(2rem,4vw,3rem)] leading-none tracking-[-0.04em]">
               Not a placement. A start.
@@ -136,7 +145,7 @@ export default function FoundingPage() {
                 make it exist.
               </p>
               <p>
-                That is the offer. Five months, starting 15 December, inside a new part of Sayge.
+                That is the offer. Four months, starting 15 December, inside a new part of Sayge.
                 You will be close to the decisions, because there is no layer between you and the
                 thing being made. What you ship will be yours to point at.
               </p>
@@ -172,22 +181,51 @@ export default function FoundingPage() {
             <h2 id="products-heading" className="text-[13px] tracking-[0.16em] text-muted uppercase">
               What you will make
             </h2>
-            <div className="mt-6 grid gap-8 sm:grid-cols-2">
-              <h3 className="min-w-0 font-display text-[clamp(2.2rem,5vw,3.6rem)] leading-none tracking-[-0.04em]">
-                Fintech
-              </h3>
-              <h3 className="min-w-0 font-display text-[clamp(2.2rem,5vw,3.6rem)] leading-none tracking-[-0.04em]">
-                Sustainability
-              </h3>
+            <div className="mt-6 grid gap-px overflow-hidden rounded-2xl border border-black/10 bg-black/10 sm:grid-cols-2">
+              <div className="min-w-0 bg-[#f7f3ec]/75 p-5 sm:p-6">
+                <p className="text-[11px] tracking-[0.16em] text-muted uppercase">Option one</p>
+                <h3 className="mt-3 font-display text-[clamp(2rem,4vw,3.2rem)] leading-none tracking-[-0.04em]">
+                  Fintech
+                </h3>
+                <p className="mt-4 text-[16px] leading-7 text-foreground/85">A fintech app.</p>
+              </div>
+              <div className="min-w-0 bg-[#f7f3ec]/75 p-5 sm:p-6">
+                <p className="text-[11px] tracking-[0.16em] text-muted uppercase">Option two</p>
+                <h3 className="mt-3 font-display text-[clamp(2rem,4vw,3.2rem)] leading-none tracking-[-0.04em]">
+                  Pet or sustainability
+                </h3>
+                <p className="mt-4 text-[16px] leading-7 text-foreground/85">
+                  A pet app or a sustainability app.
+                </p>
+              </div>
             </div>
-            <div className="mt-6 space-y-5 text-[17px] leading-8 text-foreground/85">
+            <div className="mt-6 max-w-[62ch] space-y-5 text-[17px] leading-8 text-foreground/85">
               <p>
-                Two products. One is fintech. One is sustainability. Both belong to this new
-                vertical, and both start from nothing. More detail on each comes after you join.
-                Until then, the brief is the chance itself: build them, with a team small enough
-                that your work shows.
+                There are two options. One is fintech. The other is a pet app or a sustainability
+                app. Which of those two it will be is confirmed by 25 December, and then
+                communicated. More detail on the products comes after you join. Both start from
+                nothing, with a team small enough that your work shows.
               </p>
             </div>
+          </section>
+
+          <section aria-labelledby="outcomes-heading" className="mt-16 md:mt-20">
+            <h2 id="outcomes-heading" className="text-[13px] tracking-[0.16em] text-muted uppercase">
+              By the end
+            </h2>
+            <p className="mt-4 max-w-[62ch] text-[17px] leading-8 text-foreground/85">
+              The batch should leave the vertical with these in place.
+            </p>
+            <ul className="mt-6 grid border-t border-black/10 sm:grid-cols-2">
+              {outcomes.map((item) => (
+                <li
+                  key={item}
+                  className="min-w-0 border-b border-black/10 py-4 pr-6 text-[17px] leading-7"
+                >
+                  {item}
+                </li>
+              ))}
+            </ul>
           </section>
 
           <section aria-labelledby="public-heading" className="mt-16 md:mt-20">
@@ -197,7 +235,7 @@ export default function FoundingPage() {
             <div className="mt-6 space-y-5 text-[17px] leading-8 text-foreground/85">
               <p>
                 The work will be built in public. Not a private draft that appears, finished, at
-                the end of five months. The making is part of the record. People outside the team
+                the end of four months. The making is part of the record. People outside the team
                 will be able to see the products take shape.
               </p>
               <p>
@@ -210,7 +248,7 @@ export default function FoundingPage() {
         </article>
 
         <section id="write" aria-labelledby="write-heading" className="scroll-mt-24 px-5 pb-16 sm:px-6 md:pb-24">
-          <div className="founding-panel mx-auto max-w-[760px] px-5 py-8 sm:px-8 md:py-10">
+          <div className="founding-panel mx-auto max-w-[1080px] px-5 py-8 sm:px-8 md:py-10">
             <h2 id="write-heading" className="text-[13px] tracking-[0.16em] text-muted uppercase">
               If you want in
             </h2>
