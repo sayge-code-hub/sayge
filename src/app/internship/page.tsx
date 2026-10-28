@@ -23,7 +23,7 @@ const facts = [
   { label: "Starts", value: "15 December" },
   { label: "Duration", value: "4 months" },
   { label: "Batches", value: "2 × 5" },
-  { label: "Apps", value: "Fintech, pet care" },
+  { label: "Apps", value: "Fintech and Pet care" },
 ];
 
 const outcomes = [
