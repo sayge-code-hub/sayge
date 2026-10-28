@@ -34,7 +34,43 @@ const outcomes = [
   "Content on relevant media platforms",
 ];
 
-const roles = ["Developers", "Designers", "Product enthusiasts", "Content"];
+const roles = [
+  {
+    title: "Developers",
+    work: "You build the product. The mobile app and the web app, from an empty start to something a beta user can open. You ship in public, so the work is visible while it is still rough.",
+    expect:
+      "We expect you to take a decision from the room and turn it into software the same week. You show unfinished work, and you can say why it is built the way it is.",
+    freshers: "Yes. A first role is fine if something you built can be opened and tried.",
+    requirements:
+      "No degree. No year count. No fixed stack on this page. In the email, show a product, a repo, or a feature you owned, in the tools you already use.",
+  },
+  {
+    title: "Designers",
+    work: "You give the product a face. Branding, and the design of the mobile app and the web app. Screens, type, and a system that holds together as the batch ships in public.",
+    expect:
+      "We expect taste you can defend, and the pace to put a direction in front of the batch while it can still change.",
+    freshers: "Yes. A self-initiated brand or a set of real screens is enough. Studio experience is not required.",
+    requirements:
+      "No degree. No named tool list. The email should include a portfolio: product screens, a brand, or both.",
+  },
+  {
+    title: "Product enthusiasts",
+    work: "You decide what the batch builds next. You sit with early users, shape the beta community, and keep the four months pointed at a product people can actually use. The finer product detail comes after you join. Your job is to make that detail real with the batch.",
+    expect:
+      "We expect you to write the problem down, cut scope, and stay with a decision after it ships.",
+    freshers: "Yes, if you have shaped something people used. A side project counts. A product-manager title does not.",
+    requirements:
+      "No degree. No year count. In the email, show one decision you made and what happened after it.",
+  },
+  {
+    title: "Content",
+    work: "You take the product into the world while it is being made. Campaigns, and content on the platforms where these users actually are. By the end, that content is part of what the batch leaves behind, next to the apps and the brand.",
+    expect: "We expect you to publish before the work is precious, and to know what the piece is for.",
+    freshers: "Yes. A personal series, a campaign you ran, or work for a small brand is enough.",
+    requirements:
+      "No degree. No follower count. No platform list on this page. In the email, show the work and where it lived.",
+  },
+];
 
 export const metadata: Metadata = {
   title: foundingTitle,
@@ -159,25 +195,50 @@ export default function FoundingPage() {
             <h2 id="roles-heading" className="text-[13px] tracking-[0.16em] text-muted uppercase">
               Who should write
             </h2>
-            <div className="mt-4 space-y-5 text-[17px] leading-8 text-foreground/85">
+            <div className="mt-4 max-w-[62ch] space-y-5 text-[17px] leading-8 text-foreground/85">
               <p>
-                Developers, designers, product enthusiasts, and people who make campaigns and
-                content. Creative work sits in the build, next to the product. It is how the work
-                meets the world.
+                Four roles. The work has the same shape in both batches. One batch builds Fintech.
+                The other builds Pet care. You write for the role. Both apps get built, from
+                scratch, in public, from 15 December for four months.
               </p>
               <p>
-                If your practice sits between those titles, write. Bring the thing you made. A
-                label is less interesting than the way you work.
+                Freshers can apply for every role. A degree is not required. Years of experience
+                are not the bar. The bar is something you have already made, sent to {siteEmail}{" "}
+                before 30 November.
               </p>
             </div>
             <ul className="mt-8 flex flex-wrap gap-3">
               {roles.map((role) => (
-                <li key={role} className="founding-sticker">
+                <li key={role.title} className="founding-sticker">
                   <span aria-hidden="true">*</span>
-                  {role}
+                  {role.title}
                 </li>
               ))}
             </ul>
+            <ol className="mt-8 grid gap-px overflow-hidden rounded-2xl border border-black/10 bg-black/10 lg:grid-cols-2">
+              {roles.map((role) => (
+                <li key={role.title} className="min-w-0 bg-[#f7f3ec]/80 p-5 sm:p-6">
+                  <h3 className="font-display text-[clamp(1.8rem,3vw,2.4rem)] leading-none tracking-[-0.04em]">
+                    {role.title}
+                  </h3>
+                  <p className="mt-4 text-[16px] leading-7 text-foreground/85">{role.work}</p>
+                  <p className="mt-3 text-[16px] leading-7 text-foreground/85">{role.expect}</p>
+                  <p className="mt-4 text-[15px] leading-7 text-foreground/85">
+                    <span className="text-[11px] tracking-[0.16em] text-muted uppercase">Freshers</span>
+                    <span className="mt-1 block">{role.freshers}</span>
+                  </p>
+                  <p className="mt-3 text-[15px] leading-7 text-foreground/85">
+                    <span className="text-[11px] tracking-[0.16em] text-muted uppercase">
+                      Requirements
+                    </span>
+                    <span className="mt-1 block">{role.requirements}</span>
+                  </p>
+                </li>
+              ))}
+            </ol>
+            <p className="mt-6 max-w-[62ch] text-[17px] leading-8 text-foreground/85">
+              If your practice sits between these titles, write anyway. Bring the thing you made.
+            </p>
           </section>
 
           <section aria-labelledby="products-heading" className="mt-16 md:mt-20">
