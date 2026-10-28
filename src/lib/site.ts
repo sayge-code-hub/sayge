@@ -35,7 +35,7 @@ export const legalNoticeTitle = "Legal Notice | Sayge";
 export const legalNoticeDescription =
   "Legal information and website notices for Sayge.";
 
-export const foundingPath = "/founding";
+export const foundingPath = "/internship";
 export const foundingTitle = "Founding batch | Sayge";
 export const foundingDescription =
   "A founding internship at Sayge. Eight people, four months from 15 December, building a fintech app and a pet care app from scratch, in public.";

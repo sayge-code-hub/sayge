@@ -19,7 +19,7 @@ const company = [
   { href: "/work", label: "Selected work" },
   { href: "/blog", label: "Blog" },
   { href: "/contact", label: "Contact" },
-  { href: foundingPath, label: "Founding batch" },
+  { href: foundingPath, label: "Internship" },
   { href: "/privacy", label: "Privacy Policy" },
   { href: "/legal-notice", label: "Legal Notice" },
 ];

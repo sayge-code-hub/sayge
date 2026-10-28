@@ -70,7 +70,7 @@ export default function FoundingPage() {
       <JsonLd
         data={breadcrumbJsonLd([
           { name: "Home", path: "/" },
-          { name: "Founding batch", path: foundingPath },
+          { name: "Internship", path: foundingPath },
         ])}
       />
       <div className="founding-aurora" aria-hidden="true" />
@@ -81,7 +81,7 @@ export default function FoundingPage() {
       >
         Skip to content
       </a>
-      <header className="sticky top-0 z-50 border-b border-black/10 bg-[#f4efe6]/80 backdrop-blur-md">
+      <header className="founding-nav sticky top-0 z-50">
         <div className="mx-auto flex h-[80px] max-w-[1180px] items-center justify-between gap-4 px-5 sm:px-6">
           <Link href="/" aria-label="Sayge home" className="min-w-0">
             <Logo />
