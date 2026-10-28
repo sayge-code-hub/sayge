@@ -92,13 +92,19 @@ export default function FoundingPage() {
             <p className="text-[12px] tracking-[0.18em] text-muted uppercase">
               Founding internship
             </p>
-            <h1 id="founding-heading" className="page-display mt-4 max-w-[14ch] text-balance">
+            <h1 id="founding-heading" className="page-display mt-4 max-w-[16ch] text-balance">
               A new vertical at Sayge.
             </h1>
-            <p className="mt-6 max-w-[46ch] text-[17px] leading-8 text-foreground/80 md:text-lg">
-              The batch starts on 15 December and runs for five months. Eight people join as
-              founding members and build the work from scratch.
-            </p>
+            <div className="mt-6 max-w-[58ch] space-y-5 text-[17px] leading-8 text-foreground/80 md:text-lg">
+              <p>
+                Sayge is opening a new vertical. This internship is how it starts. There is no
+                existing team to join and no product already underway. The people who come in are
+                its founding members, and the work is built from scratch.
+              </p>
+              <p>
+                The batch starts on 15 December and runs for five months. The team is eight.
+              </p>
+            </div>
           </header>
 
           <dl className="mt-12 border-t border-black/10 sm:mt-14">
@@ -117,7 +123,12 @@ export default function FoundingPage() {
             <h2 id="roles-heading" className="text-[13px] tracking-[0.16em] text-muted uppercase">
               Roles
             </h2>
-            <ul className="mt-5 grid gap-3 sm:grid-cols-2">
+            <p className="mt-5 max-w-[58ch] text-[17px] leading-8 text-foreground/80">
+              The batch is for developers, designers, product enthusiasts, and content. Content
+              is part of the work itself: campaigns, and other creative work that has to move
+              with the products.
+            </p>
+            <ul className="mt-8 grid gap-3 sm:grid-cols-2">
               {roles.map((role) => (
                 <li
                   key={role}
@@ -141,27 +152,35 @@ export default function FoundingPage() {
                 Sustainability
               </h3>
             </div>
-            <p className="mt-6 max-w-[48ch] text-[17px] leading-8 text-foreground/80">
-              The team will work on a fintech product and a sustainability product. This is a new
-              vertical under Sayge. More details after you join.
-            </p>
+            <div className="mt-6 max-w-[58ch] space-y-5 text-[17px] leading-8 text-foreground/80">
+              <p>
+                The team will work on two products. One is fintech. One is sustainability. Both
+                belong to this new vertical under Sayge, and both start from scratch. More
+                details after you join.
+              </p>
+            </div>
           </section>
 
           <section id="write" aria-labelledby="write-heading" className="mt-16 scroll-mt-24 md:mt-20">
             <h2 id="write-heading" className="text-[13px] tracking-[0.16em] text-muted uppercase">
               How to write
             </h2>
-            <p className="mt-5 max-w-[48ch] border-t border-black/10 pt-5 text-[17px] leading-8 text-foreground/80">
-              Email{" "}
-              <a
-                href={foundingMailto}
-                className="text-foreground underline decoration-black/30 underline-offset-4 transition hover:decoration-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-brand"
-              >
-                {siteEmail}
-              </a>
-              . Include something you have built, a portfolio, or a campaign or other idea you
-              have in mind.
-            </p>
+            <div className="mt-5 max-w-[58ch] space-y-5 border-t border-black/10 pt-5 text-[17px] leading-8 text-foreground/80">
+              <p>
+                Email{" "}
+                <a
+                  href={foundingMailto}
+                  className="text-foreground underline decoration-black/30 underline-offset-4 transition hover:decoration-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-brand"
+                >
+                  {siteEmail}
+                </a>
+                . Use the subject below so the note is easy to find.
+              </p>
+              <p>
+                Include something you have built, a portfolio, or a campaign or other idea you
+                have in mind. That is what we need to see.
+              </p>
+            </div>
             <p className="mt-8 text-[13px] tracking-[0.04em] text-muted">Suggested subject</p>
             <p className="mt-2 max-w-[24ch] font-display text-[clamp(1.6rem,3vw,2.1rem)] leading-tight tracking-[-0.03em] text-balance break-words sm:max-w-none">
               {foundingSubject}
