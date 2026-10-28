@@ -995,27 +995,12 @@ textarea.page-control {
   color: #1c1b19;
 }
 
-.founding-aurora,
 .founding-grain {
   position: fixed;
   inset: 0;
-  pointer-events: none;
-}
-
-.founding-aurora {
-  z-index: 0;
-  background:
-    radial-gradient(ellipse 62% 48% at 8% 0%, rgba(242, 196, 170, 0.95), transparent 64%),
-    radial-gradient(ellipse 54% 46% at 96% 12%, rgba(168, 207, 198, 0.82), transparent 62%),
-    radial-gradient(ellipse 50% 42% at 78% 92%, rgba(196, 214, 184, 0.78), transparent 66%),
-    radial-gradient(ellipse 46% 40% at 18% 86%, rgba(236, 214, 190, 0.85), transparent 64%),
-    radial-gradient(ellipse 36% 32% at 48% 42%, rgba(255, 250, 244, 0.55), transparent 70%),
-    #f4efe6;
-}
-
-.founding-grain {
   z-index: 1;
-  opacity: 0.28;
+  pointer-events: none;
+  opacity: 0.18;
   mix-blend-mode: multiply;
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
   background-size: 180px 180px;
@@ -1032,17 +1017,51 @@ textarea.page-control {
   z-index: 2;
 }
 
-.founding-title {
+.founding-poster {
   font-family: var(--font-display), Georgia, serif;
-  font-size: clamp(2.7rem, 6.4vw, 5.15rem);
-  line-height: 0.94;
-  letter-spacing: -0.04em;
+  font-size: clamp(3.35rem, 13.2vw, 10.4rem);
+  line-height: 0.84;
+  letter-spacing: -0.05em;
   font-weight: 520;
 }
 
-.founding-panel {
-  background: rgba(255, 252, 247, 0.62);
-  border: 1px solid rgba(28, 27, 25, 0.08);
-  border-radius: 1.25rem;
-  backdrop-filter: blur(10px);
+.founding-scribble {
+  display: block;
+  width: min(16rem, 70%);
+  height: auto;
+  margin-top: 0.35rem;
+  color: var(--brand);
+}
+
+.founding-sticker {
+  display: inline-flex;
+  max-width: 100%;
+  align-items: center;
+  gap: 0.45rem;
+  border: 2px solid #111;
+  border-radius: 999px;
+  background: #fff;
+  padding: 0.7rem 1rem;
+  font-size: 1.05rem;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+}
+
+.founding-sticker > span {
+  color: var(--brand);
+}
+
+@media (min-width: 768px) {
+  .founding-sticker:nth-child(2) {
+    transform: rotate(-1.5deg);
+  }
+
+  .founding-sticker:nth-child(3) {
+    transform: rotate(1.4deg);
+  }
+
+  .founding-sticker:nth-child(4) {
+    transform: rotate(-0.6deg);
+  }
 }
