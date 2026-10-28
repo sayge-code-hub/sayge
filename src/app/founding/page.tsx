@@ -16,24 +16,16 @@ import {
   webPageJsonLd,
 } from "@/lib/site";
 
-const foundingMailto = `mailto:${siteEmail}?subject=${encodeURIComponent(foundingSubject)}&body=${encodeURIComponent("Hi Sayge,\n\nSomething I built, or a portfolio:\n\nA campaign or other idea:\n")}`;
+const foundingMailto = `mailto:${siteEmail}?subject=${encodeURIComponent(foundingSubject)}&body=${encodeURIComponent("Hello,\n\nSomething I have built, or a portfolio:\n\nA campaign or other idea:\n")}`;
 
 const facts = [
-  { label: "Starts", value: "15", unit: "December" },
-  { label: "Duration", value: "5", unit: "months" },
-  { label: "Team", value: "8", unit: "people" },
-  { label: "Products", value: "2", unit: "Fintech and sustainability" },
+  { label: "Starts", value: "15 December" },
+  { label: "Duration", value: "5 months" },
+  { label: "Team", value: "8 people" },
+  { label: "Products", value: "Fintech and sustainability" },
 ];
 
-const roles: { name: string; note?: string }[] = [
-  { name: "Developers" },
-  { name: "Designers" },
-  { name: "Product enthusiasts" },
-  {
-    name: "Content",
-    note: "Campaigns and the other creative work.",
-  },
-];
+const roles = ["Developers", "Designers", "Product enthusiasts", "Content"];
 
 export const metadata: Metadata = {
   title: foundingTitle,
@@ -59,7 +51,7 @@ export const metadata: Metadata = {
 
 export default function FoundingPage() {
   return (
-    <>
+    <div className="founding-shell">
       <JsonLd
         data={webPageJsonLd({
           name: foundingTitle,
@@ -73,170 +65,114 @@ export default function FoundingPage() {
           { name: "Founding batch", path: foundingPath },
         ])}
       />
+      <div className="founding-aurora" aria-hidden="true" />
+      <div className="founding-grain" aria-hidden="true" />
       <a
         href="#founding-main"
         className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[60] focus:rounded-full focus:bg-ink focus:px-4 focus:py-2 focus:text-sm focus:text-white focus:outline focus:outline-2 focus:outline-offset-3 focus:outline-brand"
       >
         Skip to content
       </a>
-      <header className="sticky top-0 z-50 border-b border-line bg-background">
-        <div className="mx-auto flex h-[80px] max-w-[1180px] items-center justify-between gap-4 px-5 sm:px-6">
+      <header className="sticky top-0 z-50 border-b border-black/10 bg-[#f7f3ec]/80 backdrop-blur-md">
+        <div className="mx-auto flex h-[80px] max-w-[820px] items-center justify-between gap-4 px-5 sm:px-6">
           <Link href="/" aria-label="Sayge home" className="min-w-0">
             <Logo />
           </Link>
-          <a href={foundingMailto} className="hero-cta-primary shrink-0">
-            Email us
-            <span className="sr-only"> at {siteEmail}</span>
+          <a
+            href={foundingMailto}
+            className="shrink-0 text-[14px] text-foreground underline decoration-black/25 underline-offset-4 transition hover:decoration-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-brand"
+          >
+            {siteEmail}
           </a>
         </div>
       </header>
-      <main id="founding-main" className="overflow-x-clip">
-        <section aria-labelledby="founding-heading" className="founding-hero text-white">
-          <div className="relative mx-auto max-w-[1180px] px-5 pt-14 pb-16 sm:px-6 md:pt-20 md:pb-24">
-            <p
-              aria-hidden="true"
-              className="pointer-events-none absolute -top-6 right-0 font-display text-[clamp(7rem,28vw,16rem)] leading-none tracking-[-0.06em] text-white/[0.06] select-none"
-            >
-              08
+      <main id="founding-main" aria-labelledby="founding-heading" className="overflow-x-clip">
+        <article className="mx-auto max-w-[820px] px-5 pt-14 pb-20 sm:px-6 md:pt-20 md:pb-28">
+          <header>
+            <p className="text-[12px] tracking-[0.18em] text-muted uppercase">
+              Founding internship
             </p>
-            <div className="relative grid items-end gap-12 lg:grid-cols-[minmax(0,1.25fr)_minmax(17rem,0.75fr)] lg:gap-16">
-              <div>
-                <p className="founding-rise text-[12px] tracking-[0.22em] text-white/75 uppercase">
-                  Founding batch
-                </p>
-                <h1 id="founding-heading" className="founding-display founding-rise mt-5">
-                  <span className="block">The first</span>
-                  <span className="block">eight.</span>
-                </h1>
-                <p
-                  className="founding-rise mt-6 max-w-[36ch] text-[17px] leading-7 text-white/80 md:text-lg md:leading-8"
-                  style={{ animationDelay: "0.08s" }}
-                >
-                  An internship for a new vertical at Sayge. Five months, starting 15 December.
-                  You come in as a founding member and build it from scratch.
-                </p>
-                <div className="founding-rise mt-8" style={{ animationDelay: "0.16s" }}>
-                  <a href={foundingMailto} className="hero-cta-primary hero-cta-on-ink">
-                    Email {siteEmail}
-                  </a>
-                </div>
+            <h1 id="founding-heading" className="page-display mt-4 max-w-[14ch] text-balance">
+              A new vertical at Sayge.
+            </h1>
+            <p className="mt-6 max-w-[46ch] text-[17px] leading-8 text-foreground/80 md:text-lg">
+              The batch starts on 15 December and runs for five months. Eight people join as
+              founding members and build the work from scratch.
+            </p>
+          </header>
+
+          <dl className="mt-12 border-t border-black/10 sm:mt-14">
+            {facts.map((fact) => (
+              <div
+                key={fact.label}
+                className="grid grid-cols-1 gap-1 border-b border-black/10 py-4 sm:grid-cols-[9.5rem_minmax(0,1fr)] sm:items-baseline sm:gap-6 sm:py-5"
+              >
+                <dt className="text-[13px] tracking-[0.04em] text-muted">{fact.label}</dt>
+                <dd className="min-w-0 text-[17px] leading-6">{fact.value}</dd>
               </div>
+            ))}
+          </dl>
 
-              <dl className="founding-rise grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/15 bg-white/15" style={{ animationDelay: "0.12s" }}>
-                {facts.map((fact) => (
-                  <div key={fact.label} className="min-w-0 bg-[#111111] px-4 py-5 sm:px-5 sm:py-6">
-                    <dt className="text-[11px] tracking-[0.18em] text-white/65 uppercase">
-                      {fact.label}
-                    </dt>
-                    <dd className="mt-3">
-                      <span className="block font-display text-[clamp(2.4rem,6vw,3.4rem)] leading-none tracking-[-0.04em]">
-                        {fact.value}
-                      </span>
-                      <span className="mt-2 block text-[14px] leading-5 text-white/75">
-                        {fact.unit}
-                      </span>
-                    </dd>
-                  </div>
-                ))}
-              </dl>
-            </div>
-          </div>
-        </section>
-
-        <section aria-labelledby="seats-heading" className="border-b border-line">
-          <div className="mx-auto max-w-[1180px] px-5 py-16 sm:px-6 md:py-24">
-            <div className="max-w-[40rem]">
-              <p className="text-[12px] tracking-[0.22em] text-muted uppercase">The seats</p>
-              <h2 id="seats-heading" className="section-title mt-4">
-                <span className="block">Four kinds of people.</span>
-                <span className="block">One team.</span>
-              </h2>
-              <p className="mt-5 max-w-[42ch] text-[17px] leading-7 text-muted">
-                Developers, designers, product enthusiasts, and creative callouts such as content.
-              </p>
-            </div>
-            <ul className="mt-12 grid gap-x-10 sm:grid-cols-2">
-              {roles.map((role, index) => (
-                <li key={role.name} className="min-w-0 border-t border-line py-6 md:py-8">
-                  <p className="text-[12px] tracking-[0.16em] text-muted tabular-nums">
-                    0{index + 1}
-                  </p>
-                  <p className="mt-3 font-display text-[clamp(1.8rem,3vw,2.6rem)] leading-none tracking-[-0.03em]">
-                    {role.name}
-                  </p>
-                  {role.note ? (
-                    <p className="mt-3 max-w-[28ch] text-[15px] leading-6 text-muted">{role.note}</p>
-                  ) : null}
+          <section aria-labelledby="roles-heading" className="mt-16 md:mt-20">
+            <h2 id="roles-heading" className="text-[13px] tracking-[0.16em] text-muted uppercase">
+              Roles
+            </h2>
+            <ul className="mt-5 grid gap-3 sm:grid-cols-2">
+              {roles.map((role) => (
+                <li
+                  key={role}
+                  className="min-w-0 border-t border-black/10 pt-3 text-[18px] leading-7 tracking-[-0.02em]"
+                >
+                  {role}
                 </li>
               ))}
             </ul>
-          </div>
-        </section>
+          </section>
 
-        <section aria-labelledby="work-heading" className="border-b border-line">
-          <div className="mx-auto grid max-w-[1180px] gap-12 px-5 py-16 sm:px-6 md:py-24 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-20">
-            <div>
-              <p className="text-[12px] tracking-[0.22em] text-muted uppercase">The work</p>
-              <h2 id="work-heading" className="section-title mt-4">
-                Two products. From zero.
-              </h2>
+          <section aria-labelledby="products-heading" className="mt-16 md:mt-20">
+            <h2 id="products-heading" className="text-[13px] tracking-[0.16em] text-muted uppercase">
+              Products
+            </h2>
+            <div className="mt-5 grid gap-6 border-t border-black/10 pt-5 sm:grid-cols-2">
+              <h3 className="font-display text-[1.65rem] leading-none tracking-[-0.03em]">
+                Fintech
+              </h3>
+              <h3 className="font-display text-[1.65rem] leading-none tracking-[-0.03em]">
+                Sustainability
+              </h3>
             </div>
-            <div className="min-w-0">
-              <div className="grid gap-8 sm:grid-cols-2">
-                <article className="min-w-0 border-t border-line pt-5">
-                  <h3 className="font-display text-[clamp(1.8rem,3vw,2.5rem)] leading-none tracking-[-0.03em]">
-                    Fintech
-                  </h3>
-                </article>
-                <article className="min-w-0 border-t border-line pt-5">
-                  <h3 className="font-display text-[clamp(1.8rem,3vw,2.5rem)] leading-none tracking-[-0.03em]">
-                    Sustainability
-                  </h3>
-                </article>
-              </div>
-              <p className="mt-10 max-w-[46ch] text-[17px] leading-7 text-foreground">
-                You will work on a fintech product and a sustainability product. More details
-                after you join. This is a new vertical under Sayge, and the people in it are
-                its founding members. It grows from scratch.
-              </p>
-            </div>
-          </div>
-        </section>
+            <p className="mt-6 max-w-[48ch] text-[17px] leading-8 text-foreground/80">
+              The team will work on a fintech product and a sustainability product. This is a new
+              vertical under Sayge. More details after you join.
+            </p>
+          </section>
 
-        <section id="write" aria-labelledby="write-heading" className="founding-close scroll-mt-24 text-white">
-          <div className="mx-auto grid max-w-[1180px] gap-10 px-5 py-16 sm:px-6 md:py-24 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)] lg:items-end lg:gap-20">
-            <div className="min-w-0">
-              <p className="text-[12px] tracking-[0.22em] text-white/65 uppercase">The note</p>
-              <h2 id="write-heading" className="section-title mt-4 text-white">
-                Tell us what you made.
-              </h2>
-              <p className="mt-5 max-w-[40ch] text-[17px] leading-7 text-white/80">
-                Email{" "}
-                <a
-                  href={foundingMailto}
-                  className="underline decoration-white/40 underline-offset-4 transition hover:decoration-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-brand"
-                >
-                  {siteEmail}
-                </a>
-                . Use the subject line. Include something you have built, a portfolio, or a
-                campaign or other crazy idea you have in mind.
-              </p>
-            </div>
-            <div className="min-w-0 rounded-2xl border border-white/15 bg-white/[0.04] p-6 sm:p-8">
-              <p className="text-[11px] tracking-[0.18em] text-white/65 uppercase">
-                Suggested subject
-              </p>
-              <p className="mt-3 font-display text-[clamp(1.7rem,4vw,2.4rem)] leading-tight tracking-[-0.03em] text-balance break-words">
-                {foundingSubject}
-              </p>
-              <a href={foundingMailto} className="hero-cta-primary hero-cta-on-ink mt-8">
-                Email {siteEmail}
+          <section id="write" aria-labelledby="write-heading" className="mt-16 scroll-mt-24 md:mt-20">
+            <h2 id="write-heading" className="text-[13px] tracking-[0.16em] text-muted uppercase">
+              How to write
+            </h2>
+            <p className="mt-5 max-w-[48ch] border-t border-black/10 pt-5 text-[17px] leading-8 text-foreground/80">
+              Email{" "}
+              <a
+                href={foundingMailto}
+                className="text-foreground underline decoration-black/30 underline-offset-4 transition hover:decoration-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-brand"
+              >
+                {siteEmail}
               </a>
-            </div>
-          </div>
-        </section>
+              . Include something you have built, a portfolio, or a campaign or other idea you
+              have in mind.
+            </p>
+            <p className="mt-8 text-[13px] tracking-[0.04em] text-muted">Suggested subject</p>
+            <p className="mt-2 max-w-[24ch] font-display text-[clamp(1.6rem,3vw,2.1rem)] leading-tight tracking-[-0.03em] text-balance break-words sm:max-w-none">
+              {foundingSubject}
+            </p>
+            <a href={foundingMailto} className="hero-cta-primary mt-8">
+              Email {siteEmail}
+            </a>
+          </section>
+        </article>
       </main>
       <Footer />
-    </>
+    </div>
   );
 }
