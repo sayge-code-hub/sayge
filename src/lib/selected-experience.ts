@@ -41,5 +41,7 @@ export const selectedExperienceLogos = [
     alt: "Saasify",
     width: 599,
     height: 180,
+    href: "https://app.sayge.in/",
+    external: true,
   },
 ] as const;
