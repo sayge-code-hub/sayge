@@ -38,10 +38,9 @@ export const selectedExperienceLogos = [
   },
   {
     src: "/saasify.png",
-    alt: "Saasify",
+    alt: "SaaSify",
     width: 599,
     height: 180,
-    href: "https://app.sayge.in/",
-    external: true,
+    href: "/saasify",
   },
 ] as const;

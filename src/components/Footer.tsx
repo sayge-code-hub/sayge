@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import Link from "next/link";
 import { Logo } from "@/components/Logo";
 import { SiteVersion } from "@/components/SiteVersion";
+import { saasifyPath } from "@/lib/saasify";
 import {
   foundingPath,
   portalUrl,
@@ -13,6 +14,8 @@ import {
 const services = [
   { href: "/services/custom-software-development", label: "Custom software" },
 ];
+
+const products = [{ href: saasifyPath.overview, label: "SaaSify" }];
 
 const company = [
   { href: "/about", label: "About" },
@@ -63,13 +66,25 @@ export function Footer() {
             </p>
           </div>
 
-          <div className="grid gap-10 sm:grid-cols-3 sm:gap-8">
+          <div className="grid gap-10 sm:grid-cols-2 sm:gap-8 lg:grid-cols-4">
             <div>
               <p className="text-[11px] tracking-[0.18em] text-muted uppercase">
                 Services
               </p>
               <ul className="mt-5 space-y-3">
                 {services.map((link) => (
+                  <li key={link.href}>
+                    <FooterLink href={link.href}>{link.label}</FooterLink>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <p className="text-[11px] tracking-[0.18em] text-muted uppercase">
+                Products
+              </p>
+              <ul className="mt-5 space-y-3">
+                {products.map((link) => (
                   <li key={link.href}>
                     <FooterLink href={link.href}>{link.label}</FooterLink>
                   </li>

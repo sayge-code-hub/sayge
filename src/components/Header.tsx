@@ -4,10 +4,12 @@ import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Logo } from "@/components/Logo";
+import { saasifyPath } from "@/lib/saasify";
 
 const nav = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
+  { href: saasifyPath.overview, label: "SaaSify" },
   { href: "/blog", label: "Blog" },
 ];
 
@@ -18,6 +20,9 @@ export function Header() {
   const isActive = (href: string) => {
     if (href === "/blog") return pathname === "/blog" || pathname.startsWith("/blog/");
     if (href === "/about") return pathname === "/about";
+    if (href === saasifyPath.overview) {
+      return pathname === saasifyPath.overview || pathname.startsWith(`${saasifyPath.overview}/`);
+    }
     if (href === "/") return pathname === "/";
     return false;
   };

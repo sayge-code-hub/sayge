@@ -1094,3 +1094,1996 @@ textarea.page-control {
   border-radius: 1.5rem;
   backdrop-filter: blur(10px);
 }
+
+.saasify {
+  --sf-ink: #111827;
+  --sf-muted: #6b7280;
+  --sf-line: #e8ebe9;
+  --sf-accent: #22c55e;
+  --sf-accent-dark: #16a34a;
+  background: #fff;
+  color: var(--sf-ink);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+}
+
+.saasify ::selection {
+  background: rgba(34, 197, 94, 0.28);
+  color: #14532d;
+}
+
+.saasify .sf-hero {
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+}
+
+.saasify .sf-hero::before {
+  content: none;
+}
+
+.saasify .sf-hero > * {
+  position: relative;
+}
+
+.saasify .sf-display {
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-weight: 650;
+  letter-spacing: -0.045em;
+  line-height: 1.05;
+  font-size: clamp(2.65rem, 4.8vw, 4rem);
+}
+
+.saasify .sf-h2 {
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-weight: 650;
+  letter-spacing: -0.04em;
+  line-height: 1.12;
+  font-size: clamp(1.85rem, 3vw, 2.6rem);
+}
+
+.saasify .sf-mark {
+  color: #16a34a;
+}
+
+.saasify .nav-link::after {
+  background: var(--sf-accent);
+}
+
+.saasify .sf-hero-home {
+  background:
+    radial-gradient(720px 320px at 8% 0%, rgba(34, 197, 94, 0.09), transparent 64%),
+    linear-gradient(180deg, #ffffff 0%, #f6fbf8 100%);
+}
+
+.saasify .sf-hero-home::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, rgba(17, 24, 39, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(17, 24, 39, 0.04) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(ellipse 78% 80% at 18% 42%, black 12%, transparent 74%);
+}
+
+.saasify .sf-hero-home::after {
+  content: "";
+  position: absolute;
+  top: 16%;
+  right: 7%;
+  width: min(380px, 42%);
+  height: 168px;
+  border: 1px solid rgba(22, 163, 74, 0.08);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow:
+    12px 14px 0 rgba(244, 251, 246, 0.95),
+    12px 14px 0 1px rgba(22, 163, 74, 0.08),
+    24px 28px 0 rgba(255, 255, 255, 0.8),
+    24px 28px 0 1px rgba(22, 163, 74, 0.05);
+  transform: rotate(7deg);
+  pointer-events: none;
+  animation: sf-hero-stack 7s ease-in-out infinite;
+}
+
+@keyframes sf-hero-stack {
+  50% {
+    transform: rotate(5.5deg) translateY(-6px);
+  }
+}
+
+.saasify .sf-hero-copy {
+  position: relative;
+  z-index: 1;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 3.5rem 1.5rem 3.25rem;
+}
+
+@media (max-width: 800px) {
+  .saasify .sf-hero-home::after {
+    display: none;
+  }
+}
+
+@media (min-width: 960px) {
+  .saasify .sf-hero-copy {
+    padding: 4.75rem 1.75rem 4.25rem;
+  }
+}
+
+.saasify .sf-hero-script {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: #1c1917;
+  font-family: var(--font-saasify-script), cursive;
+  font-size: clamp(2.35rem, 4.4vw, 3.45rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+.saasify .sf-hero-highlight {
+  position: relative;
+  display: inline-block;
+  z-index: 0;
+}
+
+.saasify .sf-hero-highlight::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: -0.06em;
+  right: -0.08em;
+  top: 0.42em;
+  bottom: 0.08em;
+  border-radius: 3px;
+  background: #ffe15a;
+  transform: rotate(-1.4deg);
+}
+
+.saasify .sf-hero-script-sub {
+  position: relative;
+  display: inline-block;
+  max-width: 22ch;
+  margin-top: 0.35rem;
+  color: #292524;
+  font-family: var(--font-saasify-script), cursive;
+  font-size: clamp(1.7rem, 2.8vw, 2.15rem);
+  font-weight: 550;
+  line-height: 1.15;
+}
+
+.saasify .sf-hero-script-sub::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.12em;
+  height: 0.28em;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 14' preserveAspectRatio='none'%3E%3Cpath d='M2 9C28 4 52 12 84 7s58 6 92-1 48 6 62 2' fill='none' stroke='%233b82f6' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E")
+    center / 100% 100% no-repeat;
+}
+
+.saasify .sf-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.7rem 0.75rem;
+  margin-top: 1.7rem;
+}
+
+.saasify .sf-hero-cta,
+.saasify .sf-hero-cta-quiet {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 0 0.95rem;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.saasify .sf-hero-cta {
+  background: #16a34a;
+  color: #fff;
+}
+
+.saasify .sf-hero-cta:hover {
+  background: #15803d;
+}
+
+.saasify .sf-hero-cta-quiet {
+  border: 1px solid #d6d3d1;
+  background: #fff;
+  color: #292524;
+}
+
+.saasify .sf-hero-cta-quiet:hover {
+  border-color: #a8a29e;
+}
+
+.saasify .sf-hero-note {
+  display: flex;
+  align-items: center;
+  gap: 0.15rem;
+  margin: 0;
+  color: #6b5344;
+  font-family: var(--font-saasify-script), cursive;
+  font-size: 1.35rem;
+  font-weight: 600;
+  line-height: 1.05;
+  transform: rotate(-6deg);
+}
+
+.saasify .sf-hero-note svg {
+  width: 54px;
+  height: 32px;
+  flex: none;
+  fill: none;
+  stroke: #6b5344;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.saasify .hero-window-dots i:first-child,
+.saasify .hero-seats span:first-child {
+  background: #22c55e;
+}
+
+.saasify .hero-cta-primary:focus-visible,
+.saasify .hero-cta-secondary:focus-visible {
+  outline-color: #16a34a;
+}
+
+.saasify .sf-hero .sf-btn {
+  background: #111;
+  color: #fff;
+}
+
+.saasify .sf-hero .sf-btn:hover {
+  background: #000;
+}
+
+.saasify .sf-hero .sf-btn-ghost {
+  border-color: #d4d4d8;
+  background: #fff;
+  color: #111;
+}
+
+.saasify .sf-stage-pad {
+  border-radius: 28px;
+  background-color: #f4fbf6;
+  background-image:
+    radial-gradient(#c9ddd0 1.1px, transparent 1.1px),
+    linear-gradient(160deg, #ffffff 0%, #e7f8ee 100%);
+  background-size: 18px 18px, auto;
+  padding: 1.25rem;
+}
+
+.saasify .sf-green {
+  border-radius: 28px;
+  background: linear-gradient(145deg, #4ade80 0%, #16a34a 48%, #15803d 100%);
+}
+
+.saasify .sf-green-inner {
+  padding: 2.75rem 2.25rem 2.5rem;
+}
+
+.saasify .sf-green-lede {
+  max-width: 38rem;
+  margin-top: 1.15rem;
+  font-size: 16.5px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.saasify .sf-help {
+  display: grid;
+  gap: 1.35rem 2.5rem;
+  margin-top: 2.5rem;
+}
+
+.saasify .sf-help li {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr);
+  gap: 0.85rem;
+  align-items: start;
+}
+
+.saasify .sf-help-icon {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border-radius: 13px;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.saasify .sf-help-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.saasify .sf-help li strong {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-size: 1.05rem;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+}
+
+.saasify .sf-help li span span {
+  display: block;
+  max-width: 36ch;
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+@media (min-width: 768px) {
+  .saasify .sf-green-inner {
+    padding: 4rem 4.25rem 3.5rem;
+  }
+
+  .saasify .sf-help {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.saasify .sf-btn,
+.saasify .sf-btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 46px;
+  border-radius: 999px;
+  padding: 0 1.15rem;
+  font-size: 14.5px;
+  font-weight: 560;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.saasify .sf-btn {
+  background: linear-gradient(180deg, #34d399 0%, #16a34a 100%);
+  color: #fff;
+}
+
+.saasify .sf-btn-start {
+  min-height: 32px;
+  padding: 0 0.7rem;
+  border-radius: 6px;
+  font-size: 13px;
+}
+
+.saasify .sf-btn:hover {
+  background: linear-gradient(180deg, #22c55e 0%, #15803d 100%);
+  transform: translateY(-2px);
+}
+
+.saasify .sf-btn:active,
+.saasify .sf-btn-ghost:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.saasify .sf-btn-ghost {
+  border: 1px solid #d9d3cb;
+  background: #fff;
+  color: var(--sf-ink);
+}
+
+.saasify .sf-btn-ghost:hover {
+  border-color: var(--sf-ink);
+}
+
+.saasify .sf-btn-on-dark {
+  background: #fff;
+  color: var(--sf-ink);
+}
+
+.saasify .sf-btn-on-dark:hover {
+  background: #ecfdf3;
+}
+
+.saasify .sf-btn-ghost-on-dark {
+  border-color: rgba(255, 255, 255, 0.28);
+  background: transparent;
+  color: #fff;
+}
+
+.saasify .sf-btn-ghost-on-dark:hover {
+  border-color: #fff;
+  background: #fff;
+  color: var(--sf-ink);
+}
+
+.saasify .sf-btn:focus-visible,
+.saasify .sf-btn-ghost:focus-visible,
+.saasify a:focus-visible,
+.saasify button:focus-visible,
+.saasify summary:focus-visible {
+  outline: 2px solid var(--sf-accent);
+  outline-offset: 3px;
+}
+
+.saasify .sf-stage {
+  position: relative;
+}
+
+.saasify .sf-card {
+  border: 1px solid var(--sf-line);
+  border-radius: 22px;
+  background: #fff;
+  box-shadow: 0 18px 40px -28px rgba(17, 24, 39, 0.35);
+}
+
+.saasify .sf-modules {
+  position: relative;
+  background:
+    radial-gradient(720px 360px at 0% 0%, rgba(74, 222, 128, 0.28), transparent 62%),
+    radial-gradient(640px 340px at 100% 100%, rgba(52, 211, 153, 0.2), transparent 58%),
+    radial-gradient(420px 240px at 72% 8%, rgba(251, 191, 136, 0.16), transparent 60%),
+    linear-gradient(180deg, #f4fbf7 0%, #f8faf8 100%);
+}
+
+.saasify .sf-modules::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, rgba(17, 24, 39, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(17, 24, 39, 0.045) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(ellipse 90% 80% at 50% 42%, black 30%, transparent 82%);
+}
+
+.saasify .sf-modules > * {
+  position: relative;
+}
+
+.saasify .sf-module-card {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  padding: 1.5rem;
+}
+
+.saasify .sf-module-title {
+  min-height: 2.6em;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+.saasify .sf-module-copy {
+  margin-top: 0.75rem;
+  margin-bottom: 1.5rem;
+  min-height: 4.5em;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #6b7280;
+}
+
+.saasify .sf-module-cta {
+  width: 100%;
+  justify-content: center;
+  margin-top: auto;
+}
+
+.saasify .sf-offer {
+  background: #f4fbf6;
+}
+
+.saasify .sf-offer-panel {
+  display: grid;
+  gap: 2rem;
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 1.25rem;
+}
+
+@media (min-width: 860px) {
+  .saasify .sf-offer-panel {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    align-items: stretch;
+    gap: 0;
+    padding: 3.5rem 1.5rem;
+  }
+}
+
+.saasify .sf-offer-copy,
+.saasify .sf-offer-act {
+  border-radius: 28px;
+  background: #fff;
+  padding: 1.75rem 1.5rem 1.6rem;
+}
+
+@media (min-width: 860px) {
+  .saasify .sf-offer-copy {
+    border-radius: 28px 0 0 28px;
+    padding: 2.5rem 2.25rem;
+  }
+
+  .saasify .sf-offer-act {
+    border-radius: 0 28px 28px 0;
+    border-left: 1px solid #e7f3eb;
+    padding: 2.5rem 2.25rem;
+    background:
+      radial-gradient(420px 180px at 100% 0%, rgba(74, 222, 128, 0.18), transparent 70%),
+      #fff;
+  }
+}
+
+.saasify .sf-offer-kicker {
+  font-size: 12px;
+  font-weight: 650;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #16a34a;
+}
+
+.saasify .sf-offer-copy .sf-h2 {
+  margin-top: 0.55rem;
+}
+
+.saasify .sf-offer-lede {
+  max-width: 36ch;
+  margin-top: 0.7rem;
+  color: #4b5563;
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+.saasify .sf-offer-prices {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-top: 1.4rem;
+}
+
+.saasify .sf-offer-prices p {
+  margin: 0;
+  border-radius: 18px;
+  background: #f4fbf6;
+  padding: 0.9rem 1rem 0.85rem;
+}
+
+.saasify .sf-offer-prices strong {
+  display: block;
+  color: #111827;
+  font-size: clamp(2rem, 4vw, 2.6rem);
+  font-weight: 650;
+  letter-spacing: -0.045em;
+  line-height: 1;
+}
+
+.saasify .sf-offer-prices span {
+  display: block;
+  margin-top: 0.3rem;
+  color: #6b7280;
+  font-size: 13px;
+  font-weight: 550;
+}
+
+.saasify .sf-offer-points {
+  display: grid;
+  gap: 0.55rem;
+  margin: 1.15rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.saasify .sf-offer-points li {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: #1f2937;
+  font-size: 14.5px;
+  line-height: 1.4;
+}
+
+.saasify .sf-offer-points li::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  flex: none;
+  border-radius: 999px;
+  background: #22c55e;
+}
+
+.saasify .sf-offer-act h3 {
+  font-size: 1.35rem;
+  font-weight: 650;
+  letter-spacing: -0.03em;
+}
+
+.saasify .sf-offer-act > p {
+  margin-top: 0.4rem;
+  max-width: 32ch;
+  color: #6b7280;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.saasify .sf-offer-act .sf-reach {
+  margin-top: 1.15rem;
+}
+
+.saasify .sf-reach {
+  margin: 1.6rem auto 0;
+}
+
+.saasify .sf-reach-field {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  border: 1px solid #e4e7e5;
+  border-radius: 999px;
+  background: #fff;
+  padding: 5px 5px 5px 1.1rem;
+  box-shadow: 0 16px 40px -28px rgba(17, 24, 39, 0.45);
+}
+
+.saasify .sf-reach-field input {
+  width: 100%;
+  min-width: 0;
+  min-height: 40px;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  font-size: 15px;
+  color: #111827;
+  text-align: left;
+}
+
+.saasify .sf-reach-field input:focus-visible {
+  outline: none;
+}
+
+.saasify .sf-reach-field:focus-within {
+  border-color: #22c55e;
+  box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.14);
+}
+
+.saasify .sf-reach-field .sf-btn {
+  width: auto;
+  min-height: 40px;
+  padding: 0 1.05rem;
+  flex: none;
+}
+
+@media (max-width: 420px) {
+  .saasify .sf-reach-field {
+    flex-direction: column;
+    align-items: stretch;
+    border-radius: 22px;
+    padding: 0.55rem;
+  }
+
+  .saasify .sf-reach-field input {
+    min-height: 40px;
+    padding: 0 0.7rem;
+  }
+
+  .saasify .sf-reach-field .sf-btn {
+    width: 100%;
+  }
+}
+
+.saasify .sf-reach-alt,
+.saasify .sf-reach-note {
+  margin-top: 0.85rem;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #6b7280;
+}
+
+.saasify .sf-reach-alt a {
+  font-weight: 600;
+  color: #111827;
+}
+
+.saasify .sf-reach-alt a:hover {
+  color: #16a34a;
+}
+
+.saasify .sf-steps {
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .saasify .sf-steps {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 1024px) {
+  .saasify .sf-stage {
+    min-height: 560px;
+  }
+
+  .saasify .sf-stage-front {
+    position: relative;
+    z-index: 2;
+    width: 86%;
+    transform: rotate(-2.5deg);
+  }
+
+  .saasify .sf-stage-back {
+    position: absolute;
+    top: 16%;
+    right: 0;
+    z-index: 1;
+    width: 74%;
+    transform: rotate(3.5deg);
+  }
+}
+
+.saasify .sf-rise {
+  animation: sf-rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.saasify .sf-float {
+  animation: sf-float 7s ease-in-out infinite;
+}
+
+.saasify .sf-float-late {
+  animation: sf-float 8.5s ease-in-out 0.6s infinite;
+}
+
+.saasify .sf-lift {
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.45s ease;
+}
+
+.saasify .sf-lift:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 30px 60px -32px rgba(16, 22, 18, 0.45);
+}
+
+.saasify .sf-btn [aria-hidden],
+.saasify .sf-btn-ghost [aria-hidden] {
+  display: inline-block;
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.saasify .sf-btn:hover [aria-hidden],
+.saasify .sf-btn-ghost:hover [aria-hidden] {
+  transform: translateX(3px);
+}
+
+.saasify .sf-marquee {
+  overflow: hidden;
+  border-block: 1px solid var(--sf-line);
+  background: #f7fbf8;
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+.saasify .sf-marquee-track {
+  display: flex;
+  width: max-content;
+  gap: 2.5rem;
+  padding: 0.95rem 0;
+  animation: sf-marquee 32s linear infinite;
+}
+
+.saasify .sf-marquee-track span {
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #3d4a42;
+  white-space: nowrap;
+}
+
+.saasify .sf-marquee-track i {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-right: 0.7rem;
+  border-radius: 999px;
+  background: var(--sf-accent);
+  vertical-align: 1px;
+}
+
+.saasify .sf-cycle {
+  position: relative;
+  display: inline-block;
+  width: 5.6rem;
+  height: 1.15em;
+  vertical-align: bottom;
+}
+
+.saasify .sf-cycle b {
+  position: absolute;
+  left: 0;
+  font-weight: 560;
+  opacity: 0;
+  animation: sf-cycle 6.6s infinite;
+}
+
+.saasify .sf-cycle b:nth-child(2) {
+  animation-delay: 2.2s;
+}
+
+.saasify .sf-cycle b:nth-child(3) {
+  animation-delay: 4.4s;
+}
+
+.saasify .sf-walk {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.saasify .sf-walk-visual {
+  display: none;
+}
+
+.saasify .sf-walk-inline {
+  margin-bottom: 1.25rem;
+}
+
+.saasify .sf-preview-swap {
+  animation: sf-rise 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (min-width: 1024px) {
+  .saasify .sf-walk {
+    grid-template-columns: minmax(0, 0.92fr) minmax(0, 1fr);
+    gap: 4.5rem;
+    align-items: start;
+  }
+
+  .saasify .sf-walk-flip {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.92fr);
+  }
+
+  .saasify .sf-walk-flip .sf-walk-visual {
+    order: 2;
+  }
+
+  .saasify .sf-walk-visual {
+    display: block;
+    position: sticky;
+    top: 104px;
+  }
+
+  .saasify .sf-walk-inline {
+    display: none;
+  }
+
+  .saasify .sf-walk-step {
+    min-height: 70vh;
+    padding: 1.5rem 0 2rem 1.25rem;
+    border-left: 2px solid transparent;
+  }
+
+  .saasify .sf-walk-step.is-active {
+    border-left-color: var(--sf-accent);
+  }
+}
+
+@keyframes sf-card-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px) rotate(-16deg);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(-8deg);
+  }
+}
+
+@keyframes sf-phone-in {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes sf-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.saasify .sf-nav a:hover img {
+  transform: scale(1.04);
+}
+
+.saasify .sf-nav img {
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes sf-rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes sf-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes sf-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes sf-cycle {
+  0%,
+  26% {
+    opacity: 1;
+  }
+  34%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .saasify .sf-stage-front.sf-float {
+    animation-name: sf-float-front;
+  }
+
+  .saasify .sf-stage-back.sf-float-late {
+    animation-name: sf-float-back;
+  }
+}
+
+@keyframes sf-float-front {
+  0%,
+  100% {
+    transform: rotate(-2.5deg) translateY(0);
+  }
+  50% {
+    transform: rotate(-2.5deg) translateY(-10px);
+  }
+}
+
+@keyframes sf-float-back {
+  0%,
+  100% {
+    transform: rotate(3.5deg) translateY(0);
+  }
+  50% {
+    transform: rotate(3.5deg) translateY(8px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .saasify .sf-rise,
+  .saasify .sf-float,
+  .saasify .sf-float-late,
+  .saasify .sf-marquee-track,
+  .saasify .sf-cycle b,
+  .saasify .sf-preview-swap,
+  .saasify .sf-hero-float,
+  .saasify .sf-hero-phone,
+  .saasify .sf-hero-arrow path,
+  .saasify .sf-hero-home::after {
+    animation: none;
+  }
+
+  .saasify .sf-hero-arrow path {
+    stroke-dashoffset: 0;
+  }
+
+  .saasify .sf-hero-float {
+    transform: rotate(-8deg);
+  }
+
+  .saasify .sf-walk-step {
+    min-height: 0;
+  }
+
+  .saasify .sf-cycle b:first-child {
+    opacity: 1;
+  }
+
+  .saasify .sf-lift,
+  .saasify .sf-btn [aria-hidden],
+  .saasify .sf-btn-ghost [aria-hidden] {
+    transition: none;
+  }
+}
+
+.saasify .sf-faq-grid .saasify-faq {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 1.75rem;
+}
+
+.saasify .sf-faq-grid .saasify-faq > * + * {
+  margin-top: 0;
+}
+
+@media (min-width: 900px) {
+  .saasify .sf-faq-grid .saasify-faq {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+}
+
+.saasify-faq summary {
+  list-style: none;
+}
+
+.saasify-faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.saasify .sf-pos {
+  background: #fff;
+  color: #111;
+}
+
+.saasify .sf-pos-hero,
+.saasify .sf-pos-close {
+  padding: 4.5rem 1.5rem 0;
+  text-align: center;
+}
+
+.saasify .sf-pos-close {
+  padding-bottom: 5.5rem;
+}
+
+.saasify .sf-pos-kicker {
+  color: #8a8a8a;
+  font-size: 13px;
+  font-weight: 550;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.saasify .sf-pos-title {
+  margin: 1rem auto 0;
+  max-width: 14ch;
+  color: #111;
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-size: clamp(2.75rem, 5.2vw, 4.35rem);
+  font-weight: 460;
+  letter-spacing: -0.03em;
+  line-height: 1.02;
+}
+
+.saasify .sf-pos-lede {
+  margin: 1.15rem auto 0;
+  max-width: 42ch;
+  color: #5c5c5c;
+  font-size: 17px;
+  line-height: 1.55;
+}
+
+.saasify .sf-pos-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 1.75rem;
+}
+
+.saasify .sf-pos-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 1.35rem;
+  border: 1.5px solid #16a34a;
+  border-radius: 999px;
+  background: #fff;
+  color: #15803d;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.saasify .sf-pos-btn:hover {
+  background: #f0fdf4;
+}
+
+.saasify .sf-pos-btn-solid {
+  border-color: #16a34a;
+  background: #16a34a;
+  color: #fff;
+}
+
+.saasify .sf-pos-btn-solid:hover {
+  background: #15803d;
+}
+
+.saasify .sf-pos-btn:focus-visible,
+.saasify .sf-pos-tab:focus-visible,
+.saasify .sf-pos-faq summary:focus-visible {
+  outline: 2px solid #16a34a;
+  outline-offset: 3px;
+}
+
+.saasify .sf-pos-note {
+  margin: 1rem auto 0;
+  max-width: 42ch;
+  color: #8a8a8a;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.saasify .sf-pos-note a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.saasify .sf-pos-stage {
+  margin: 3.25rem auto 0;
+  max-width: 1120px;
+  padding: 0 1.5rem 1rem;
+}
+
+.saasify .sf-pos-stage-frame {
+  display: flex;
+  justify-content: center;
+  padding: 2.75rem 1.25rem;
+  border-radius: 28px;
+  background: #f3f3f1;
+}
+
+.saasify .sf-pos-stage-frame > * {
+  width: min(100%, 420px);
+}
+
+.saasify .sf-pos-section {
+  padding: 4.5rem 1.5rem;
+}
+
+.saasify .sf-pos-section-muted {
+  background: #f7f7f5;
+}
+
+.saasify .sf-pos-wrap {
+  margin: 0 auto;
+  max-width: 1080px;
+}
+
+.saasify .sf-pos-narrow {
+  max-width: 760px;
+}
+
+.saasify .sf-pos-h2 {
+  max-width: 16ch;
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-size: clamp(2.1rem, 4vw, 3.15rem);
+  font-weight: 460;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+}
+
+.saasify .sf-pos-intro {
+  margin-top: 1rem;
+  max-width: 46ch;
+  color: #5c5c5c;
+  font-size: 16.5px;
+  line-height: 1.6;
+}
+
+.saasify .sf-pos-tabs {
+  display: flex;
+  gap: 0.15rem;
+  margin-top: 2rem;
+  overflow-x: auto;
+  border-bottom: 1px solid #e6e6e4;
+  scrollbar-width: none;
+}
+
+.saasify .sf-pos-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.saasify .sf-pos-tab {
+  flex: none;
+  margin-bottom: -1px;
+  padding: 0.85rem 1rem;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  color: #444;
+  font-size: 15px;
+}
+
+.saasify .sf-pos-tab[aria-selected="true"] {
+  border-bottom-color: #111;
+  color: #111;
+  font-weight: 650;
+}
+
+.saasify .sf-pos-panel {
+  display: grid;
+  gap: 2rem;
+  align-items: center;
+  padding-top: 2.25rem;
+}
+
+.saasify .sf-pos-panel h3,
+.saasify .sf-pos-audience h3 {
+  font-size: clamp(1.6rem, 2.4vw, 2rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+
+.saasify .sf-pos-panel > div > p:not(.sf-pos-points-label),
+.saasify .sf-pos-audience p {
+  margin-top: 0.7rem;
+  max-width: 42ch;
+  color: #5c5c5c;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.saasify .sf-pos-points-label {
+  margin-top: 1.4rem;
+  color: #111;
+  font-size: 14px;
+  font-weight: 650;
+}
+
+.saasify .sf-pos-points {
+  margin-top: 0.55rem;
+  color: #333;
+  font-size: 15.5px;
+  line-height: 1.7;
+}
+
+.saasify .sf-pos-points li {
+  position: relative;
+  padding-left: 1rem;
+}
+
+.saasify .sf-pos-points li::before {
+  content: "";
+  position: absolute;
+  top: 0.65em;
+  left: 0;
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  background: #16a34a;
+}
+
+.saasify .sf-pos-story {
+  background: #f5f6f8;
+  padding: 4.75rem 1.5rem 5.25rem;
+}
+
+.saasify .sf-pos-story-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.saasify .sf-pos-story-sub {
+  max-width: 28ch;
+}
+
+.saasify .sf-pos-story-lead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 0.5rem 1.5rem;
+  margin-top: 0.15rem;
+}
+
+.saasify .sf-pos-story-note {
+  margin-bottom: 0.35rem;
+}
+
+.saasify .sf-pos-path {
+  display: grid;
+  gap: 2rem;
+  margin-top: 2.75rem;
+}
+
+.saasify .sf-pos-path > li {
+  position: relative;
+  max-width: 34ch;
+}
+
+.saasify .sf-pos-path h3 {
+  color: #1c1917;
+  font-family: var(--font-saasify-script), cursive;
+  font-size: clamp(1.7rem, 2.4vw, 2.05rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+.saasify .sf-pos-path > li:nth-child(2) h3 {
+  transform: rotate(0.8deg);
+}
+
+.saasify .sf-pos-path > li:nth-child(3) h3 {
+  transform: rotate(-0.7deg);
+}
+
+.saasify .sf-pos-path > li:nth-child(4) h3 {
+  transform: rotate(0.5deg);
+}
+
+.saasify .sf-pos-path > li > p {
+  margin-top: 0.45rem;
+  color: #57534e;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.saasify .sf-pos-sketch {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 132px;
+  margin-bottom: 0.85rem;
+  padding: 0.7rem 0.75rem;
+  border: 1px solid #eceae6;
+  border-radius: 16px;
+  background: #fff;
+}
+
+.saasify .sf-pos-sketch-kicker {
+  color: #8a8178;
+  font-size: 10px;
+  font-weight: 650;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.saasify .sf-pos-sketch-name {
+  margin-top: 0.15rem;
+  color: #1c1917;
+  font-size: 18px;
+  font-weight: 650;
+  letter-spacing: -0.03em;
+}
+
+.saasify .sf-pos-sketch ul {
+  margin-top: 0.45rem;
+}
+
+.saasify .sf-pos-sketch li {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.28rem 0;
+  border-top: 1px solid #f0eeea;
+  color: #44403c;
+  font-size: 12px;
+}
+
+.saasify .sf-pos-sketch-pills {
+  display: flex;
+  gap: 0.35rem;
+  margin-top: 0.45rem;
+}
+
+.saasify .sf-pos-sketch-pills span {
+  border: 1px solid #e7e5e0;
+  border-radius: 999px;
+  padding: 0.15rem 0.5rem;
+  color: #78716c;
+  font-size: 11px;
+  font-weight: 650;
+}
+
+.saasify .sf-pos-sketch-pills .is-on {
+  border-color: #16a34a;
+  background: #16a34a;
+  color: #fff;
+}
+
+.saasify .sf-pos-sketch-kitchen {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.35rem;
+  justify-content: stretch;
+}
+
+.saasify .sf-pos-sketch-kitchen div {
+  border-radius: 10px;
+  background: #f7f6f3;
+  padding: 0.4rem 0.35rem;
+}
+
+.saasify .sf-pos-sketch-kitchen .is-hot {
+  background: #f0fdf4;
+  outline: 1px solid #86efac;
+}
+
+.saasify .sf-pos-sketch-kitchen p {
+  margin: 0;
+  color: #78716c;
+  font-size: 9px;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.saasify .sf-pos-sketch-kitchen span {
+  display: block;
+  margin-top: 0.3rem;
+  color: #1c1917;
+  font-size: 11px;
+  font-weight: 650;
+  line-height: 1.3;
+}
+
+.saasify .sf-pos-path-arrow {
+  display: none;
+  fill: none;
+  stroke: #6b5344;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.saasify .sf-pos-specs {
+  display: grid;
+  gap: 0;
+  margin-top: 2.5rem;
+  border-top: 1px solid #e6e6e4;
+}
+
+.saasify .sf-pos-specs li {
+  display: grid;
+  gap: 0.35rem;
+  padding: 1.35rem 0;
+  border-bottom: 1px solid #e6e6e4;
+}
+
+.saasify .sf-pos-specs strong {
+  font-size: 16px;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+}
+
+.saasify .sf-pos-specs span {
+  color: #5c5c5c;
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.saasify .sf-pos-audience {
+  display: grid;
+  gap: 1rem;
+  margin-top: 2.25rem;
+}
+
+.saasify .sf-pos-audience li {
+  padding: 1.5rem;
+  border-radius: 24px;
+  background: #f7f7f5;
+}
+
+.saasify .sf-pos-faq {
+  margin-top: 1.5rem;
+  border-top: 1px solid #e6e6e4;
+}
+
+.saasify .sf-pos-faq details {
+  border-bottom: 1px solid #e6e6e4;
+}
+
+.saasify .sf-pos-faq summary {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1.15rem 0;
+  cursor: pointer;
+  list-style: none;
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.saasify .sf-pos-faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.saasify .sf-pos-faq summary span:last-child {
+  color: #666;
+  font-weight: 400;
+  transition: transform 0.2s ease;
+}
+
+.saasify .sf-pos-faq details[open] summary span:last-child {
+  transform: rotate(45deg);
+}
+
+.saasify .sf-pos-faq details p {
+  max-width: 62ch;
+  padding-bottom: 1.15rem;
+  color: #5c5c5c;
+  font-size: 15.5px;
+  line-height: 1.65;
+}
+
+.saasify .sf-pos-mock {
+  min-width: 0;
+}
+
+.saasify .sf-pos-phone,
+.saasify .sf-pos-day {
+  border: 1px solid #e7e5e0;
+  border-radius: 24px;
+  background: #fff;
+  box-shadow: 0 1px 0 rgba(17, 17, 17, 0.04);
+}
+
+.saasify .sf-pos-phone {
+  max-width: 280px;
+  margin: 0 auto;
+  padding: 1.25rem 1.15rem 0.4rem;
+}
+
+.saasify .sf-pos-phone ul,
+.saasify .sf-pos-day dl {
+  margin: 0.4rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.saasify .sf-pos-phone-name {
+  font-size: 15px;
+  font-weight: 650;
+}
+
+.saasify .sf-pos-phone-meta,
+.saasify .sf-pos-phone-tab {
+  color: #62605b;
+  font-size: 12px;
+}
+
+.saasify .sf-pos-phone-tab {
+  margin-top: 0.9rem;
+  padding-bottom: 0.45rem;
+  border-bottom: 1px solid #22c55e;
+  color: #111;
+}
+
+.saasify .sf-pos-phone li,
+.saasify .sf-pos-day dl div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid #e7e5e0;
+  font-size: 13px;
+}
+
+.saasify .sf-pos-phone li:last-child,
+.saasify .sf-pos-day dl div:last-child {
+  border-bottom: 0;
+}
+
+.saasify .sf-pos-day {
+  padding: 1.15rem 1.15rem 0.35rem;
+}
+
+.saasify .sf-pos-day-label {
+  color: #62605b;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.saasify .sf-pos-day dt {
+  color: #62605b;
+}
+
+.saasify .sf-pos-day dd {
+  font-weight: 650;
+}
+
+@media (min-width: 860px) {
+  .saasify .sf-pos-panel {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr);
+    gap: 3rem;
+  }
+
+  .saasify .sf-pos-path {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+
+  .saasify .sf-pos-path-arrow {
+    display: block;
+    position: absolute;
+    top: 3.5rem;
+    right: -1.2rem;
+    width: 28px;
+    height: 16px;
+  }
+
+  .saasify .sf-pos-specs {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 3rem;
+  }
+
+  .saasify .sf-pos-audience {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.saasify .sf-pos-demo-wrap {
+  padding: 0.5rem 1.5rem 4.5rem;
+  background: #fff;
+}
+
+.saasify .sf-pos-demo {
+  display: grid;
+  max-width: 1080px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 28px;
+  background: #fff;
+  box-shadow: 0 16px 40px rgba(17, 17, 17, 0.08);
+}
+
+.saasify .sf-pos-demo-aside {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.5rem 1.4rem 1.7rem;
+  background: #15803d;
+  color: #fff;
+}
+
+.saasify .sf-pos-demo-mock {
+  width: min(100%, 300px);
+  height: 228px;
+  margin-bottom: 1.15rem;
+  overflow: hidden;
+}
+
+.saasify .sf-pos-demo-mock > * {
+  width: 132%;
+  transform: scale(0.76);
+  transform-origin: top left;
+}
+
+.saasify .sf-pos-demo-aside h2 {
+  max-width: 16ch;
+  font-size: clamp(1.75rem, 3vw, 2.3rem);
+  font-weight: 650;
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+}
+
+.saasify .sf-pos-demo-aside p {
+  max-width: 34ch;
+  margin-top: 0.7rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.saasify .sf-pos-demo-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 1.75rem 1.4rem 2rem;
+}
+
+.saasify .sf-pos-demo-form label {
+  font-size: 14px;
+  font-weight: 650;
+}
+
+.saasify .sf-pos-demo-form input {
+  width: 100%;
+  height: 48px;
+  margin-top: 0.4rem;
+  padding: 0 0.9rem;
+  border: 1px solid #e4e4e7;
+  border-radius: 12px;
+  background: #fafafa;
+  font-size: 16px;
+}
+
+.saasify .sf-pos-demo-form input:focus-visible,
+.saasify .sf-pos-demo-form button:focus-visible {
+  outline: 2px solid #16a34a;
+  outline-offset: 2px;
+}
+
+.saasify .sf-pos-demo-form button {
+  align-self: flex-start;
+  margin-top: 1rem;
+  min-height: 44px;
+  padding: 0 1.2rem;
+  border: 0;
+  border-radius: 999px;
+  background: #111;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 650;
+}
+
+.saasify .sf-pos-demo-form button:hover {
+  background: #000;
+}
+
+.saasify .sf-pos-demo-or,
+.saasify .sf-pos-demo-note {
+  margin-top: 0.85rem;
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+.saasify .sf-pos-demo-or {
+  color: #52525b;
+}
+
+.saasify .sf-pos-demo-or a {
+  color: #15803d;
+  font-weight: 650;
+}
+
+.saasify .sf-pos-demo-note {
+  color: #3f6212;
+}
+
+@media (min-width: 860px) {
+  .saasify .sf-pos-demo {
+    grid-template-columns: minmax(0, 1.08fr) minmax(280px, 0.92fr);
+    min-height: 460px;
+  }
+
+  .saasify .sf-pos-demo-aside {
+    padding: 2rem 2rem 2.1rem;
+  }
+
+  .saasify .sf-pos-demo-form {
+    padding: 2.4rem 2.25rem 2rem;
+  }
+}
+
+.saasify .sf-pos-store {
+  padding: 1.1rem 1.1rem 0.9rem;
+  border: 1px solid #e7e5e0;
+  border-radius: 24px;
+  background: #fff;
+}
+
+.saasify .sf-pos-store-url {
+  margin-top: 0.3rem;
+  font-size: 14px;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+}
+
+.saasify .sf-pos-store-send {
+  margin-top: 0.2rem;
+  color: #15803d;
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.saasify .sf-pos-store ul {
+  margin-top: 0.75rem;
+}
+
+.saasify .sf-pos-store li {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.45rem 0;
+  border-top: 1px solid #f0eeea;
+  font-size: 13px;
+}
+
+.saasify .sf-pos-store-place {
+  display: inline-flex;
+  margin-top: 0.7rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  background: #16a34a;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.saasify .sf-pos-analytics-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+}
+
+.saasify .sf-pos-analytics-ranges {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.saasify .sf-pos-analytics-ranges button {
+  min-height: 36px;
+  padding: 0 0.85rem;
+  border: 1px solid #e4e4e7;
+  border-radius: 999px;
+  background: #fff;
+  font-size: 14px;
+  font-weight: 650;
+}
+
+.saasify .sf-pos-analytics-ranges button[aria-selected="true"] {
+  border-color: #111;
+  background: #111;
+  color: #fff;
+}
+
+.saasify .sf-pos-analytics-ranges button:focus-visible {
+  outline: 2px solid #16a34a;
+  outline-offset: 2px;
+}
+
+.saasify .sf-pos-analytics {
+  margin-top: 1.5rem;
+  padding: 1.15rem;
+  border: 1px solid #eceae6;
+  border-radius: 24px;
+  background: #fff;
+}
+
+.saasify .sf-pos-analytics-kpis {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.85rem 1rem;
+}
+
+.saasify .sf-pos-analytics-kpis dt {
+  color: #78716c;
+  font-size: 12px;
+}
+
+.saasify .sf-pos-analytics-kpis dd {
+  margin-top: 0.15rem;
+  font-size: 1.45rem;
+  font-weight: 650;
+  letter-spacing: -0.03em;
+}
+
+.saasify .sf-pos-analytics-chart {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  align-items: end;
+  height: 148px;
+  margin-top: 1.35rem;
+  gap: 0.4rem;
+}
+
+.saasify .sf-pos-analytics-chart div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.35rem;
+  height: 100%;
+}
+
+.saasify .sf-pos-analytics-chart span {
+  display: block;
+  width: min(100%, 28px);
+  border-radius: 7px 7px 2px 2px;
+  background: #16a34a;
+}
+
+.saasify .sf-pos-analytics-chart p {
+  margin: 0;
+  color: #78716c;
+  font-size: 11px;
+}
+
+.saasify .sf-pos-analytics-split {
+  display: grid;
+  gap: 1.5rem 2.75rem;
+  margin-top: 1.5rem;
+  padding-top: 1.15rem;
+  border-top: 1px solid #f0eeea;
+}
+
+.saasify .sf-pos-analytics-split .sf-pos-sketch-kicker {
+  margin-top: 0.9rem;
+}
+
+.saasify .sf-pos-analytics-split .sf-pos-sketch-kicker:first-child {
+  margin-top: 0;
+}
+
+.saasify .sf-pos-analytics-split li {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #f0eeea;
+  font-size: 14px;
+}
+
+.saasify .sf-pos-analytics-split small {
+  display: block;
+  color: #78716c;
+  font-size: 11px;
+  font-weight: 500;
+  text-align: right;
+}
+
+.saasify .sf-pos-mix {
+  height: 10px;
+  margin-top: 0.55rem;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #dcfce7;
+}
+
+.saasify .sf-pos-mix span {
+  display: block;
+  width: var(--cash);
+  height: 100%;
+  background: #166534;
+}
+
+.saasify .sf-pos-mix-key {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.4rem;
+  color: #57534e;
+  font-size: 12px;
+}
+
+.saasify .sf-pos-analytics-note {
+  margin-top: 0.75rem;
+  color: #8a8a8a;
+  font-size: 13px;
+}
+
+@media (min-width: 720px) {
+  .saasify .sf-pos-analytics-kpis,
+  .saasify .sf-pos-analytics-split {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .saasify .sf-pos-analytics-kpis {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .saasify .sf-pos-faq summary span:last-child {
+    transition: none;
+  }
+}

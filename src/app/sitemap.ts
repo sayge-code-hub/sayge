@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { getPosts } from "@/lib/blog";
+import { saasifyRoutes } from "@/lib/saasify";
 import { foundingPath, siteUrl } from "@/lib/site";
 import { caseStudyPath, getWorkDocuments, workPath } from "@/lib/work";
 
@@ -30,6 +31,12 @@ const routes: IndexedRoute[] = [
   { path: workPath, changeFrequency: "monthly", priority: 0.7 },
   { path: "/privacy", changeFrequency: "yearly", priority: 0.3 },
   { path: "/legal-notice", changeFrequency: "yearly", priority: 0.3 },
+  ...saasifyRoutes.map((path) => ({
+    path,
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+    lastModified: "2026-11-02",
+  })),
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
