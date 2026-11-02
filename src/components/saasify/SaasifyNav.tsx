@@ -4,14 +4,17 @@ import { useEffect, useState, type MouseEvent } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { SaasifyLogo } from "@/components/saasify/SaasifyLogo";
-import { saasifyNav, saasifyPath } from "@/lib/saasify";
-
-const links = saasifyNav;
+import { saasifyLogin, saasifyNav, saasifyPath, saasifyPosNav } from "@/lib/saasify";
 
 export function SaasifyNav() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [hash, setHash] = useState("");
+  const onPos = pathname === saasifyPath.pos || pathname.startsWith(`${saasifyPath.pos}/`);
+  const links = onPos ? saasifyPosNav : saasifyNav;
+  const cta = onPos
+    ? { href: `${saasifyPath.pos}#demo`, label: "Get started" }
+    : { href: `${saasifyPath.overview}#reach-out`, label: "Let’s start" };
 
   useEffect(() => {
     const read = () => setHash(window.location.hash);
@@ -21,6 +24,10 @@ export function SaasifyNav() {
   }, [pathname]);
 
   const active = (href: string) => {
+    if (onPos) {
+      if (href.includes("#")) return hash === href.slice(href.indexOf("#"));
+      return false;
+    }
     const onOverview = pathname === saasifyPath.overview;
     if (href.endsWith("#modules")) return onOverview && hash === "#modules";
     if (href.endsWith("#reach-out")) return onOverview && hash === "#reach-out";
@@ -33,13 +40,13 @@ export function SaasifyNav() {
 
   return (
     <header className="sf-nav sticky top-0 z-50 border-b border-[#e8ebe9] bg-white/90 backdrop-blur-md">
-      <div className="mx-auto flex h-[72px] max-w-[1120px] items-center justify-between px-6">
+      <div className="mx-auto flex h-16 max-w-[1120px] items-center justify-between px-5 sm:px-6">
         <Link href={saasifyPath.overview} className="inline-flex items-center" aria-label="SaaSify">
           <SaasifyLogo className="h-7 w-auto" />
         </Link>
 
         <nav aria-label="SaaSify" className="hidden items-center gap-6 md:flex">
-          <ul className="flex items-center gap-6 text-[14.5px] text-[#62605b]">
+          <ul className="flex items-center gap-5 text-[14px] text-[#62605b]">
             {links.map((item) => (
               <li key={item.label}>
                 <NavLink
@@ -51,8 +58,16 @@ export function SaasifyNav() {
               </li>
             ))}
           </ul>
-          <a href={`${saasifyPath.overview}#reach-out`} className="sf-btn sf-btn-start">
-            Let’s start
+          {onPos ? (
+            <a
+              href={saasifyLogin.href}
+              className="text-[14px] font-medium text-[#62605b] transition-colors hover:text-[#111]"
+            >
+              {saasifyLogin.label}
+            </a>
+          ) : null}
+          <a href={cta.href} className="sf-btn sf-btn-start">
+            {cta.label}
           </a>
         </nav>
 
@@ -90,13 +105,20 @@ export function SaasifyNav() {
                 />
               </li>
             ))}
+            {onPos ? (
+              <li>
+                <a
+                  href={saasifyLogin.href}
+                  className="font-medium text-[#62605b]"
+                  onClick={() => setOpen(false)}
+                >
+                  {saasifyLogin.label}
+                </a>
+              </li>
+            ) : null}
             <li>
-              <a
-                href={`${saasifyPath.overview}#reach-out`}
-                className="sf-btn sf-btn-start"
-                onClick={() => setOpen(false)}
-              >
-                Let’s start
+              <a href={cta.href} className="sf-btn sf-btn-start" onClick={() => setOpen(false)}>
+                {cta.label}
               </a>
             </li>
           </ul>
@@ -112,7 +134,7 @@ function NavLink({
   onNavigate,
   pathname,
 }: {
-  item: (typeof links)[number];
+  item: { href: string; label: string };
   active: boolean;
   onNavigate: () => void;
   pathname: string;

@@ -1168,48 +1168,64 @@ textarea.page-control {
 }
 
 .saasify .sf-hero-home::after {
-  content: "";
-  position: absolute;
-  top: 16%;
-  right: 7%;
-  width: min(380px, 42%);
-  height: 168px;
-  border: 1px solid rgba(22, 163, 74, 0.08);
-  border-radius: 22px;
-  background: rgba(255, 255, 255, 0.72);
-  box-shadow:
-    12px 14px 0 rgba(244, 251, 246, 0.95),
-    12px 14px 0 1px rgba(22, 163, 74, 0.08),
-    24px 28px 0 rgba(255, 255, 255, 0.8),
-    24px 28px 0 1px rgba(22, 163, 74, 0.05);
-  transform: rotate(7deg);
-  pointer-events: none;
-  animation: sf-hero-stack 7s ease-in-out infinite;
+  content: none;
 }
 
-@keyframes sf-hero-stack {
-  50% {
-    transform: rotate(5.5deg) translateY(-6px);
-  }
+.saasify .sf-hero-home-inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 1.75rem;
+  align-items: center;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 3.25rem 1.5rem 2.75rem;
 }
 
 .saasify .sf-hero-copy {
   position: relative;
   z-index: 1;
-  max-width: 1120px;
-  margin: 0 auto;
-  padding: 3.5rem 1.5rem 3.25rem;
+  min-width: 0;
 }
 
-@media (max-width: 800px) {
-  .saasify .sf-hero-home::after {
-    display: none;
+.saasify .sf-hero-visual {
+  position: relative;
+  min-width: 0;
+  justify-self: center;
+  width: min(100%, 560px);
+  animation: sf-hero-visual 7s ease-in-out infinite;
+}
+
+.saasify .sf-hero-visual img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 18px;
+}
+
+@keyframes sf-hero-visual {
+  50% {
+    transform: translateY(-6px);
   }
 }
 
 @media (min-width: 960px) {
-  .saasify .sf-hero-copy {
-    padding: 4.75rem 1.75rem 4.25rem;
+  .saasify .sf-hero-home-inner {
+    grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+    gap: 1.5rem 2rem;
+    padding: 4.5rem 1.75rem 4rem;
+  }
+
+  .saasify .sf-hero-visual {
+    width: 100%;
+    justify-self: end;
+  }
+}
+
+@media (max-width: 959px) {
+  .saasify .sf-hero-visual {
+    order: -1;
+    width: min(100%, 480px);
   }
 }
 
@@ -2091,7 +2107,7 @@ textarea.page-control {
   .saasify .sf-hero-float,
   .saasify .sf-hero-phone,
   .saasify .sf-hero-arrow path,
-  .saasify .sf-hero-home::after {
+  .saasify .sf-hero-visual {
     animation: none;
   }
 
@@ -2145,42 +2161,62 @@ textarea.page-control {
 
 .saasify .sf-pos {
   background: #fff;
-  color: #111;
+  color: #111827;
 }
 
-.saasify .sf-pos-hero,
-.saasify .sf-pos-close {
-  padding: 4.5rem 1.5rem 0;
-  text-align: center;
+.saasify .sf-pos-eyebrow {
+  margin: 0 0 0.65rem;
+  color: #16a34a;
+  font-size: 12px;
+  font-weight: 650;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }
 
-.saasify .sf-pos-close {
-  padding-bottom: 5.5rem;
+.saasify .sf-pos-hero {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(720px 320px at 8% 0%, rgba(34, 197, 94, 0.09), transparent 64%),
+    linear-gradient(180deg, #ffffff 0%, #f6fbf8 100%);
+}
+
+.saasify .sf-pos-hero-inner {
+  display: grid;
+  gap: 1.75rem;
+  align-items: center;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 3rem 1.25rem 2.5rem;
+}
+
+.saasify .sf-pos-hero-copy {
+  min-width: 0;
 }
 
 .saasify .sf-pos-kicker {
-  color: #8a8a8a;
-  font-size: 13px;
-  font-weight: 550;
-  letter-spacing: 0.18em;
+  color: #6b7280;
+  font-size: 12px;
+  font-weight: 650;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 
 .saasify .sf-pos-title {
-  margin: 1rem auto 0;
-  max-width: 14ch;
-  color: #111;
+  margin: 0.85rem 0 0;
+  max-width: 12ch;
+  color: #111827;
   font-family: var(--font-fraunces), Georgia, serif;
-  font-size: clamp(2.75rem, 5.2vw, 4.35rem);
+  font-size: clamp(2.55rem, 5vw, 3.85rem);
   font-weight: 460;
   letter-spacing: -0.03em;
   line-height: 1.02;
 }
 
 .saasify .sf-pos-lede {
-  margin: 1.15rem auto 0;
-  max-width: 42ch;
-  color: #5c5c5c;
+  margin: 1rem 0 0;
+  max-width: 38ch;
+  color: #4b5563;
   font-size: 17px;
   line-height: 1.55;
 }
@@ -2188,23 +2224,23 @@ textarea.page-control {
 .saasify .sf-pos-actions {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.75rem;
-  margin-top: 1.75rem;
+  gap: 0.7rem;
+  margin-top: 1.5rem;
 }
 
 .saasify .sf-pos-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 48px;
-  padding: 0 1.35rem;
+  min-height: 44px;
+  padding: 0 1.15rem;
   border: 1.5px solid #16a34a;
-  border-radius: 999px;
+  border-radius: 8px;
   background: #fff;
   color: #15803d;
-  font-size: 16px;
-  font-weight: 600;
+  font-size: 15px;
+  font-weight: 650;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
 }
 
 .saasify .sf-pos-btn:hover {
@@ -2223,49 +2259,68 @@ textarea.page-control {
 
 .saasify .sf-pos-btn:focus-visible,
 .saasify .sf-pos-tab:focus-visible,
-.saasify .sf-pos-faq summary:focus-visible {
+.saasify .sf-pos-faq summary:focus-visible,
+.saasify .sf-pos-analytics-ranges button:focus-visible,
+.saasify .sf-pos-demo-form input:focus-visible,
+.saasify .sf-pos-demo-form button:focus-visible {
   outline: 2px solid #16a34a;
-  outline-offset: 3px;
+  outline-offset: 2px;
 }
 
 .saasify .sf-pos-note {
-  margin: 1rem auto 0;
+  margin: 1rem 0 0;
   max-width: 42ch;
-  color: #8a8a8a;
-  font-size: 13px;
+  color: #6b7280;
+  font-size: 13.5px;
   line-height: 1.5;
 }
 
-.saasify .sf-pos-note a {
-  color: inherit;
-  text-decoration: underline;
-  text-underline-offset: 2px;
+.saasify .sf-pos-hero-visual {
+  min-width: 0;
+  justify-self: center;
+  width: min(100%, 560px);
+  animation: sf-pos-hero-float 7s ease-in-out infinite;
 }
 
-.saasify .sf-pos-stage {
-  margin: 3.25rem auto 0;
-  max-width: 1120px;
-  padding: 0 1.5rem 1rem;
+.saasify .sf-pos-hero-visual img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 18px;
 }
 
-.saasify .sf-pos-stage-frame {
-  display: flex;
-  justify-content: center;
-  padding: 2.75rem 1.25rem;
-  border-radius: 28px;
-  background: #f3f3f1;
+@keyframes sf-pos-hero-float {
+  50% {
+    transform: translateY(-6px);
+  }
 }
 
-.saasify .sf-pos-stage-frame > * {
-  width: min(100%, 420px);
+@media (min-width: 960px) {
+  .saasify .sf-pos-hero-inner {
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    gap: 1.5rem 2rem;
+    padding: 4.25rem 1.75rem 3.75rem;
+  }
+
+  .saasify .sf-pos-hero-visual {
+    width: 100%;
+    justify-self: end;
+  }
+}
+
+@media (max-width: 959px) {
+  .saasify .sf-pos-hero-visual {
+    order: -1;
+    width: min(100%, 480px);
+  }
 }
 
 .saasify .sf-pos-section {
-  padding: 4.5rem 1.5rem;
+  padding: 4.25rem 1.25rem;
 }
 
 .saasify .sf-pos-section-muted {
-  background: #f7f7f5;
+  background: #f7faf8;
 }
 
 .saasify .sf-pos-wrap {
@@ -2278,28 +2333,28 @@ textarea.page-control {
 }
 
 .saasify .sf-pos-h2 {
-  max-width: 16ch;
+  max-width: 18ch;
   font-family: var(--font-fraunces), Georgia, serif;
-  font-size: clamp(2.1rem, 4vw, 3.15rem);
+  font-size: clamp(2rem, 3.8vw, 2.85rem);
   font-weight: 460;
   letter-spacing: -0.03em;
   line-height: 1.08;
 }
 
 .saasify .sf-pos-intro {
-  margin-top: 1rem;
-  max-width: 46ch;
-  color: #5c5c5c;
-  font-size: 16.5px;
+  margin-top: 0.85rem;
+  max-width: 48ch;
+  color: #4b5563;
+  font-size: 16px;
   line-height: 1.6;
 }
 
 .saasify .sf-pos-tabs {
   display: flex;
   gap: 0.15rem;
-  margin-top: 2rem;
+  margin-top: 1.75rem;
   overflow-x: auto;
-  border-bottom: 1px solid #e6e6e4;
+  border-bottom: 1px solid #e5e7eb;
   scrollbar-width: none;
 }
 
@@ -2310,54 +2365,58 @@ textarea.page-control {
 .saasify .sf-pos-tab {
   flex: none;
   margin-bottom: -1px;
-  padding: 0.85rem 1rem;
+  padding: 0.8rem 0.95rem;
   border: 0;
   border-bottom: 2px solid transparent;
   background: transparent;
-  color: #444;
-  font-size: 15px;
+  color: #6b7280;
+  font-size: 14.5px;
+  font-weight: 550;
+  cursor: pointer;
 }
 
 .saasify .sf-pos-tab[aria-selected="true"] {
-  border-bottom-color: #111;
-  color: #111;
+  border-bottom-color: #16a34a;
+  color: #111827;
   font-weight: 650;
 }
 
 .saasify .sf-pos-panel {
   display: grid;
-  gap: 2rem;
+  gap: 1.75rem;
   align-items: center;
-  padding-top: 2.25rem;
+  padding-top: 1.85rem;
 }
 
 .saasify .sf-pos-panel h3,
-.saasify .sf-pos-audience h3 {
-  font-size: clamp(1.6rem, 2.4vw, 2rem);
-  font-weight: 600;
+.saasify .sf-pos-audience h3,
+.saasify .sf-pos-trust h3 {
+  font-size: clamp(1.45rem, 2.2vw, 1.85rem);
+  font-weight: 650;
   letter-spacing: -0.03em;
 }
 
 .saasify .sf-pos-panel > div > p:not(.sf-pos-points-label),
-.saasify .sf-pos-audience p {
-  margin-top: 0.7rem;
+.saasify .sf-pos-audience p,
+.saasify .sf-pos-trust p {
+  margin-top: 0.65rem;
   max-width: 42ch;
-  color: #5c5c5c;
-  font-size: 16px;
+  color: #4b5563;
+  font-size: 15.5px;
   line-height: 1.6;
 }
 
 .saasify .sf-pos-points-label {
-  margin-top: 1.4rem;
-  color: #111;
-  font-size: 14px;
+  margin-top: 1.25rem;
+  color: #111827;
+  font-size: 13.5px;
   font-weight: 650;
 }
 
 .saasify .sf-pos-points {
-  margin-top: 0.55rem;
-  color: #333;
-  font-size: 15.5px;
+  margin-top: 0.45rem;
+  color: #374151;
+  font-size: 15px;
   line-height: 1.7;
 }
 
@@ -2378,8 +2437,8 @@ textarea.page-control {
 }
 
 .saasify .sf-pos-story {
-  background: #f5f6f8;
-  padding: 4.75rem 1.5rem 5.25rem;
+  background: #f3f4f6;
+  padding: 4.25rem 1.25rem 4.5rem;
 }
 
 .saasify .sf-pos-story-inner {
@@ -2387,58 +2446,45 @@ textarea.page-control {
   margin: 0 auto;
 }
 
-.saasify .sf-pos-story-sub {
-  max-width: 28ch;
-}
-
-.saasify .sf-pos-story-lead {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-end;
-  gap: 0.5rem 1.5rem;
-  margin-top: 0.15rem;
-}
-
-.saasify .sf-pos-story-note {
-  margin-bottom: 0.35rem;
-}
-
 .saasify .sf-pos-path {
   display: grid;
-  gap: 2rem;
-  margin-top: 2.75rem;
+  gap: 1.35rem;
+  margin-top: 2.25rem;
 }
 
 .saasify .sf-pos-path > li {
   position: relative;
-  max-width: 34ch;
+  padding: 1.15rem 1.1rem 1.2rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 18px;
+  background: #fff;
+}
+
+.saasify .sf-pos-path-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.65rem;
+  height: 1.65rem;
+  margin-bottom: 0.65rem;
+  border-radius: 999px;
+  background: #dcfce7;
+  color: #166534;
+  font-size: 12px;
+  font-weight: 700;
 }
 
 .saasify .sf-pos-path h3 {
-  color: #1c1917;
-  font-family: var(--font-saasify-script), cursive;
-  font-size: clamp(1.7rem, 2.4vw, 2.05rem);
-  font-weight: 600;
+  color: #111827;
+  font-size: 1.15rem;
+  font-weight: 650;
   letter-spacing: -0.02em;
-  line-height: 1.05;
-}
-
-.saasify .sf-pos-path > li:nth-child(2) h3 {
-  transform: rotate(0.8deg);
-}
-
-.saasify .sf-pos-path > li:nth-child(3) h3 {
-  transform: rotate(-0.7deg);
-}
-
-.saasify .sf-pos-path > li:nth-child(4) h3 {
-  transform: rotate(0.5deg);
 }
 
 .saasify .sf-pos-path > li > p {
-  margin-top: 0.45rem;
-  color: #57534e;
-  font-size: 15px;
+  margin-top: 0.4rem;
+  color: #6b7280;
+  font-size: 14.5px;
   line-height: 1.5;
 }
 
@@ -2446,12 +2492,12 @@ textarea.page-control {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 132px;
-  margin-bottom: 0.85rem;
-  padding: 0.7rem 0.75rem;
+  height: 118px;
+  margin-bottom: 0.75rem;
+  padding: 0.65rem 0.7rem;
   border: 1px solid #eceae6;
-  border-radius: 16px;
-  background: #fff;
+  border-radius: 14px;
+  background: #fafafa;
 }
 
 .saasify .sf-pos-sketch-kicker {
@@ -2464,14 +2510,14 @@ textarea.page-control {
 
 .saasify .sf-pos-sketch-name {
   margin-top: 0.15rem;
-  color: #1c1917;
+  color: #111827;
   font-size: 18px;
   font-weight: 650;
   letter-spacing: -0.03em;
 }
 
 .saasify .sf-pos-sketch ul {
-  margin-top: 0.45rem;
+  margin-top: 0.4rem;
 }
 
 .saasify .sf-pos-sketch li {
@@ -2487,7 +2533,7 @@ textarea.page-control {
 .saasify .sf-pos-sketch-pills {
   display: flex;
   gap: 0.35rem;
-  margin-top: 0.45rem;
+  margin-top: 0.35rem;
 }
 
 .saasify .sf-pos-sketch-pills span {
@@ -2509,7 +2555,6 @@ textarea.page-control {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.35rem;
-  justify-content: stretch;
 }
 
 .saasify .sf-pos-sketch-kitchen div {
@@ -2535,78 +2580,163 @@ textarea.page-control {
 .saasify .sf-pos-sketch-kitchen span {
   display: block;
   margin-top: 0.3rem;
-  color: #1c1917;
+  color: #111827;
   font-size: 11px;
   font-weight: 650;
   line-height: 1.3;
 }
 
-.saasify .sf-pos-path-arrow {
-  display: none;
-  fill: none;
-  stroke: #6b5344;
-  stroke-width: 1.6;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.saasify .sf-pos-specs {
+.saasify .sf-pos-audience,
+.saasify .sf-pos-trust {
   display: grid;
-  gap: 0;
-  margin-top: 2.5rem;
-  border-top: 1px solid #e6e6e4;
+  gap: 1rem;
+  margin-top: 2rem;
 }
 
-.saasify .sf-pos-specs li {
+.saasify .sf-pos-audience li,
+.saasify .sf-pos-trust li {
+  padding: 1.35rem 1.25rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 18px;
+  background: #fff;
+}
+
+.saasify .sf-pos-outcomes {
   display: grid;
-  gap: 0.35rem;
-  padding: 1.35rem 0;
-  border-bottom: 1px solid #e6e6e4;
+  gap: 0.65rem;
+  margin-top: 1.5rem;
 }
 
-.saasify .sf-pos-specs strong {
-  font-size: 16px;
-  font-weight: 650;
+.saasify .sf-pos-outcomes li {
+  position: relative;
+  padding: 0.85rem 1rem 0.85rem 2rem;
+  border-radius: 12px;
+  background: #f0fdf4;
+  color: #166534;
+  font-size: 14.5px;
+  line-height: 1.45;
+}
+
+.saasify .sf-pos-outcomes li::before {
+  content: "";
+  position: absolute;
+  left: 0.85rem;
+  top: 1.15rem;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: #16a34a;
+}
+
+.saasify .sf-pos-pricing {
+  display: grid;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.saasify .sf-pos-price-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  padding: 1.5rem 1.35rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+  background: #fff;
+}
+
+.saasify .sf-pos-price-card.is-featured {
+  border-color: #86efac;
+  box-shadow: 0 0 0 1px rgba(22, 163, 74, 0.08);
+}
+
+.saasify .sf-pos-price-card h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
   letter-spacing: -0.02em;
 }
 
-.saasify .sf-pos-specs span {
-  color: #5c5c5c;
-  font-size: 15px;
-  line-height: 1.55;
+.saasify .sf-pos-price-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 0.5rem;
+  margin: 0;
 }
 
-.saasify .sf-pos-audience {
-  display: grid;
-  gap: 1rem;
-  margin-top: 2.25rem;
+.saasify .sf-pos-price-line strong {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.04em;
 }
 
-.saasify .sf-pos-audience li {
-  padding: 1.5rem;
-  border-radius: 24px;
-  background: #f7f7f5;
+.saasify .sf-pos-price-line span,
+.saasify .sf-pos-price-custom,
+.saasify .sf-pos-price-trial,
+.saasify .sf-pos-pricing-note {
+  color: #6b7280;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.saasify .sf-pos-price-custom {
+  margin: 0.35rem 0 0.25rem;
+  color: #111827;
+  font-size: 1.25rem;
+  font-weight: 650;
+}
+
+.saasify .sf-pos-price-card ul {
+  margin: 0.5rem 0 0.85rem;
+}
+
+.saasify .sf-pos-price-card li {
+  position: relative;
+  padding: 0.35rem 0 0.35rem 1rem;
+  color: #374151;
+  font-size: 14.5px;
+  line-height: 1.45;
+}
+
+.saasify .sf-pos-price-card li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.75em;
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  background: #16a34a;
+}
+
+.saasify .sf-pos-price-card .sf-pos-btn {
+  margin-top: auto;
+  align-self: flex-start;
+}
+
+.saasify .sf-pos-pricing-note {
+  margin-top: 1rem;
+  max-width: 62ch;
 }
 
 .saasify .sf-pos-faq {
-  margin-top: 1.5rem;
-  border-top: 1px solid #e6e6e4;
+  margin-top: 1.35rem;
+  border-top: 1px solid #e5e7eb;
 }
 
 .saasify .sf-pos-faq details {
-  border-bottom: 1px solid #e6e6e4;
+  border-bottom: 1px solid #e5e7eb;
 }
 
 .saasify .sf-pos-faq summary {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 1.5rem;
-  padding: 1.15rem 0;
+  gap: 1.25rem;
+  padding: 1.05rem 0;
   cursor: pointer;
   list-style: none;
-  font-size: 17px;
-  font-weight: 600;
+  font-size: 16px;
+  font-weight: 650;
   letter-spacing: -0.02em;
 }
 
@@ -2615,7 +2745,7 @@ textarea.page-control {
 }
 
 .saasify .sf-pos-faq summary span:last-child {
-  color: #666;
+  color: #6b7280;
   font-weight: 400;
   transition: transform 0.2s ease;
 }
@@ -2626,9 +2756,9 @@ textarea.page-control {
 
 .saasify .sf-pos-faq details p {
   max-width: 62ch;
-  padding-bottom: 1.15rem;
-  color: #5c5c5c;
-  font-size: 15.5px;
+  padding-bottom: 1.05rem;
+  color: #4b5563;
+  font-size: 15px;
   line-height: 1.65;
 }
 
@@ -2637,9 +2767,10 @@ textarea.page-control {
 }
 
 .saasify .sf-pos-phone,
-.saasify .sf-pos-day {
+.saasify .sf-pos-day,
+.saasify .sf-pos-store {
   border: 1px solid #e7e5e0;
-  border-radius: 24px;
+  border-radius: 22px;
   background: #fff;
   box-shadow: 0 1px 0 rgba(17, 17, 17, 0.04);
 }
@@ -2647,12 +2778,12 @@ textarea.page-control {
 .saasify .sf-pos-phone {
   max-width: 280px;
   margin: 0 auto;
-  padding: 1.25rem 1.15rem 0.4rem;
+  padding: 1.15rem 1.1rem 0.4rem;
 }
 
 .saasify .sf-pos-phone ul,
 .saasify .sf-pos-day dl {
-  margin: 0.4rem 0 0;
+  margin: 0.35rem 0 0;
   padding: 0;
   list-style: none;
 }
@@ -2668,9 +2799,24 @@ textarea.page-control {
   font-size: 12px;
 }
 
+.saasify .sf-pos-phone-progress {
+  height: 6px;
+  margin-top: 0.7rem;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #e5e7eb;
+}
+
+.saasify .sf-pos-phone-progress span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: #16a34a;
+}
+
 .saasify .sf-pos-phone-tab {
-  margin-top: 0.9rem;
-  padding-bottom: 0.45rem;
+  margin-top: 0.8rem;
+  padding-bottom: 0.4rem;
   border-bottom: 1px solid #22c55e;
   color: #111;
 }
@@ -2680,7 +2826,7 @@ textarea.page-control {
   display: flex;
   justify-content: space-between;
   gap: 1rem;
-  padding: 0.7rem 0;
+  padding: 0.65rem 0;
   border-bottom: 1px solid #e7e5e0;
   font-size: 13px;
 }
@@ -2690,8 +2836,13 @@ textarea.page-control {
   border-bottom: 0;
 }
 
+.saasify .sf-pos-phone li.is-done {
+  color: #15803d;
+  font-weight: 650;
+}
+
 .saasify .sf-pos-day {
-  padding: 1.15rem 1.15rem 0.35rem;
+  padding: 1.1rem 1.1rem 0.35rem;
 }
 
 .saasify .sf-pos-day-label {
@@ -2709,175 +2860,8 @@ textarea.page-control {
   font-weight: 650;
 }
 
-@media (min-width: 860px) {
-  .saasify .sf-pos-panel {
-    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr);
-    gap: 3rem;
-  }
-
-  .saasify .sf-pos-path {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 1.5rem;
-  }
-
-  .saasify .sf-pos-path-arrow {
-    display: block;
-    position: absolute;
-    top: 3.5rem;
-    right: -1.2rem;
-    width: 28px;
-    height: 16px;
-  }
-
-  .saasify .sf-pos-specs {
-    grid-template-columns: 1fr 1fr;
-    column-gap: 3rem;
-  }
-
-  .saasify .sf-pos-audience {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-
-.saasify .sf-pos-demo-wrap {
-  padding: 0.5rem 1.5rem 4.5rem;
-  background: #fff;
-}
-
-.saasify .sf-pos-demo {
-  display: grid;
-  max-width: 1080px;
-  margin: 0 auto;
-  overflow: hidden;
-  border-radius: 28px;
-  background: #fff;
-  box-shadow: 0 16px 40px rgba(17, 17, 17, 0.08);
-}
-
-.saasify .sf-pos-demo-aside {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 1.5rem 1.4rem 1.7rem;
-  background: #15803d;
-  color: #fff;
-}
-
-.saasify .sf-pos-demo-mock {
-  width: min(100%, 300px);
-  height: 228px;
-  margin-bottom: 1.15rem;
-  overflow: hidden;
-}
-
-.saasify .sf-pos-demo-mock > * {
-  width: 132%;
-  transform: scale(0.76);
-  transform-origin: top left;
-}
-
-.saasify .sf-pos-demo-aside h2 {
-  max-width: 16ch;
-  font-size: clamp(1.75rem, 3vw, 2.3rem);
-  font-weight: 650;
-  letter-spacing: -0.035em;
-  line-height: 1.08;
-}
-
-.saasify .sf-pos-demo-aside p {
-  max-width: 34ch;
-  margin-top: 0.7rem;
-  color: rgba(255, 255, 255, 0.9);
-  font-size: 16px;
-  line-height: 1.5;
-}
-
-.saasify .sf-pos-demo-form {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  padding: 1.75rem 1.4rem 2rem;
-}
-
-.saasify .sf-pos-demo-form label {
-  font-size: 14px;
-  font-weight: 650;
-}
-
-.saasify .sf-pos-demo-form input {
-  width: 100%;
-  height: 48px;
-  margin-top: 0.4rem;
-  padding: 0 0.9rem;
-  border: 1px solid #e4e4e7;
-  border-radius: 12px;
-  background: #fafafa;
-  font-size: 16px;
-}
-
-.saasify .sf-pos-demo-form input:focus-visible,
-.saasify .sf-pos-demo-form button:focus-visible {
-  outline: 2px solid #16a34a;
-  outline-offset: 2px;
-}
-
-.saasify .sf-pos-demo-form button {
-  align-self: flex-start;
-  margin-top: 1rem;
-  min-height: 44px;
-  padding: 0 1.2rem;
-  border: 0;
-  border-radius: 999px;
-  background: #111;
-  color: #fff;
-  font-size: 15px;
-  font-weight: 650;
-}
-
-.saasify .sf-pos-demo-form button:hover {
-  background: #000;
-}
-
-.saasify .sf-pos-demo-or,
-.saasify .sf-pos-demo-note {
-  margin-top: 0.85rem;
-  font-size: 15px;
-  line-height: 1.45;
-}
-
-.saasify .sf-pos-demo-or {
-  color: #52525b;
-}
-
-.saasify .sf-pos-demo-or a {
-  color: #15803d;
-  font-weight: 650;
-}
-
-.saasify .sf-pos-demo-note {
-  color: #3f6212;
-}
-
-@media (min-width: 860px) {
-  .saasify .sf-pos-demo {
-    grid-template-columns: minmax(0, 1.08fr) minmax(280px, 0.92fr);
-    min-height: 460px;
-  }
-
-  .saasify .sf-pos-demo-aside {
-    padding: 2rem 2rem 2.1rem;
-  }
-
-  .saasify .sf-pos-demo-form {
-    padding: 2.4rem 2.25rem 2rem;
-  }
-}
-
 .saasify .sf-pos-store {
-  padding: 1.1rem 1.1rem 0.9rem;
-  border: 1px solid #e7e5e0;
-  border-radius: 24px;
-  background: #fff;
+  padding: 1.05rem 1.05rem 0.85rem;
 }
 
 .saasify .sf-pos-store-url {
@@ -2895,21 +2879,21 @@ textarea.page-control {
 }
 
 .saasify .sf-pos-store ul {
-  margin-top: 0.75rem;
+  margin-top: 0.7rem;
 }
 
 .saasify .sf-pos-store li {
   display: flex;
   justify-content: space-between;
   gap: 0.75rem;
-  padding: 0.45rem 0;
+  padding: 0.4rem 0;
   border-top: 1px solid #f0eeea;
   font-size: 13px;
 }
 
 .saasify .sf-pos-store-place {
   display: inline-flex;
-  margin-top: 0.7rem;
+  margin-top: 0.65rem;
   padding: 0.35rem 0.75rem;
   border-radius: 999px;
   background: #16a34a;
@@ -2939,6 +2923,7 @@ textarea.page-control {
   background: #fff;
   font-size: 14px;
   font-weight: 650;
+  cursor: pointer;
 }
 
 .saasify .sf-pos-analytics-ranges button[aria-selected="true"] {
@@ -2947,16 +2932,11 @@ textarea.page-control {
   color: #fff;
 }
 
-.saasify .sf-pos-analytics-ranges button:focus-visible {
-  outline: 2px solid #16a34a;
-  outline-offset: 2px;
-}
-
 .saasify .sf-pos-analytics {
-  margin-top: 1.5rem;
+  margin-top: 1.35rem;
   padding: 1.15rem;
-  border: 1px solid #eceae6;
-  border-radius: 24px;
+  border: 1px solid #e5e7eb;
+  border-radius: 22px;
   background: #fff;
 }
 
@@ -2973,7 +2953,7 @@ textarea.page-control {
 
 .saasify .sf-pos-analytics-kpis dd {
   margin-top: 0.15rem;
-  font-size: 1.45rem;
+  font-size: 1.4rem;
   font-weight: 650;
   letter-spacing: -0.03em;
 }
@@ -2983,7 +2963,7 @@ textarea.page-control {
   grid-template-columns: repeat(7, minmax(0, 1fr));
   align-items: end;
   height: 148px;
-  margin-top: 1.35rem;
+  margin-top: 1.25rem;
   gap: 0.4rem;
 }
 
@@ -3000,7 +2980,8 @@ textarea.page-control {
   display: block;
   width: min(100%, 28px);
   border-radius: 7px 7px 2px 2px;
-  background: #16a34a;
+  background: linear-gradient(180deg, #22c55e 0%, #16a34a 100%);
+  transition: height 0.25s ease;
 }
 
 .saasify .sf-pos-analytics-chart p {
@@ -3011,14 +2992,14 @@ textarea.page-control {
 
 .saasify .sf-pos-analytics-split {
   display: grid;
-  gap: 1.5rem 2.75rem;
-  margin-top: 1.5rem;
-  padding-top: 1.15rem;
+  gap: 1.35rem 2.5rem;
+  margin-top: 1.35rem;
+  padding-top: 1.1rem;
   border-top: 1px solid #f0eeea;
 }
 
 .saasify .sf-pos-analytics-split .sf-pos-sketch-kicker {
-  margin-top: 0.9rem;
+  margin-top: 0.85rem;
 }
 
 .saasify .sf-pos-analytics-split .sf-pos-sketch-kicker:first-child {
@@ -3029,7 +3010,7 @@ textarea.page-control {
   display: flex;
   justify-content: space-between;
   gap: 0.75rem;
-  padding: 0.5rem 0;
+  padding: 0.45rem 0;
   border-bottom: 1px solid #f0eeea;
   font-size: 14px;
 }
@@ -3044,7 +3025,7 @@ textarea.page-control {
 
 .saasify .sf-pos-mix {
   height: 10px;
-  margin-top: 0.55rem;
+  margin-top: 0.5rem;
   overflow: hidden;
   border-radius: 999px;
   background: #dcfce7;
@@ -3060,29 +3041,189 @@ textarea.page-control {
 .saasify .sf-pos-mix-key {
   display: flex;
   justify-content: space-between;
-  margin-top: 0.4rem;
+  margin-top: 0.35rem;
   color: #57534e;
   font-size: 12px;
 }
 
 .saasify .sf-pos-analytics-note {
-  margin-top: 0.75rem;
+  margin-top: 0.7rem;
   color: #8a8a8a;
   font-size: 13px;
 }
 
+.saasify .sf-pos-demo-wrap {
+  padding: 0.5rem 1.25rem 4.25rem;
+  background: #fff;
+}
+
+.saasify .sf-pos-demo {
+  display: grid;
+  max-width: 1080px;
+  margin: 0 auto;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+  border-radius: 24px;
+  background: #fff;
+}
+
+.saasify .sf-pos-demo-aside {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.4rem 1.3rem 1.6rem;
+  background: #15803d;
+  color: #fff;
+}
+
+.saasify .sf-pos-demo-mock {
+  width: min(100%, 300px);
+  height: 210px;
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+
+.saasify .sf-pos-demo-mock > * {
+  width: 132%;
+  transform: scale(0.76);
+  transform-origin: top left;
+}
+
+.saasify .sf-pos-demo-aside h2 {
+  max-width: 16ch;
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-size: clamp(1.7rem, 3vw, 2.2rem);
+  font-weight: 460;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+}
+
+.saasify .sf-pos-demo-aside p {
+  max-width: 34ch;
+  margin-top: 0.65rem;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 15.5px;
+  line-height: 1.5;
+}
+
+.saasify .sf-pos-demo-form {
+  display: flex;
+  flex-direction: column;
+  padding: 1.6rem 1.3rem 1.85rem;
+}
+
+.saasify .sf-pos-demo-form label {
+  font-size: 14px;
+  font-weight: 650;
+}
+
+.saasify .sf-pos-demo-form input {
+  width: 100%;
+  height: 48px;
+  margin-top: 0.4rem;
+  padding: 0 0.9rem;
+  border: 1px solid #e4e4e7;
+  border-radius: 10px;
+  background: #fafafa;
+  font-size: 16px;
+}
+
+.saasify .sf-pos-demo-form button {
+  align-self: flex-start;
+  margin-top: 1rem;
+  min-height: 44px;
+  padding: 0 1.15rem;
+  border: 0;
+  border-radius: 8px;
+  background: #111;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.saasify .sf-pos-demo-form button:hover {
+  background: #000;
+}
+
+.saasify .sf-pos-demo-or,
+.saasify .sf-pos-demo-note,
+.saasify .sf-pos-demo-alt {
+  margin-top: 0.8rem;
+  font-size: 14.5px;
+  line-height: 1.45;
+}
+
+.saasify .sf-pos-demo-or,
+.saasify .sf-pos-demo-alt {
+  color: #52525b;
+}
+
+.saasify .sf-pos-demo-or a,
+.saasify .sf-pos-demo-alt a {
+  color: #15803d;
+  font-weight: 650;
+}
+
+.saasify .sf-pos-demo-note {
+  color: #3f6212;
+}
+
 @media (min-width: 720px) {
-  .saasify .sf-pos-analytics-kpis,
+  .saasify .sf-pos-analytics-kpis {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
   .saasify .sf-pos-analytics-split {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .saasify .sf-pos-analytics-kpis {
+  .saasify .sf-pos-pricing {
+    grid-template-columns: 1.15fr 0.85fr;
+  }
+}
+
+@media (min-width: 860px) {
+  .saasify .sf-pos-panel {
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    gap: 2.5rem;
+  }
+
+  .saasify .sf-pos-path {
     grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .saasify .sf-pos-audience,
+  .saasify .sf-pos-trust {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .saasify .sf-pos-outcomes {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .saasify .sf-pos-demo {
+    grid-template-columns: minmax(0, 1.08fr) minmax(280px, 0.92fr);
+    min-height: 440px;
+  }
+
+  .saasify .sf-pos-demo-aside {
+    padding: 1.85rem 1.85rem 2rem;
+  }
+
+  .saasify .sf-pos-demo-form {
+    padding: 2.1rem 2rem 2rem;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .saasify .sf-pos-hero-visual,
+  .saasify .sf-pos-analytics-chart span {
+    animation: none;
+    transition: none;
+  }
+
   .saasify .sf-pos-faq summary span:last-child {
     transition: none;
   }

@@ -47,6 +47,14 @@ export const saasifyNav = [
   { href: `${saasifyPath.overview}#reach-out`, label: "Get brochure" },
 ] as const;
 
+/** In-page nav used on the POS landing only. */
+export const saasifyPosNav = [
+  { href: `${saasifyPath.pos}#product`, label: "Product" },
+  { href: `${saasifyPath.pos}#features`, label: "Features" },
+  { href: `${saasifyPath.pos}#pricing`, label: "Pricing" },
+  { href: `${saasifyPath.pos}#questions`, label: "FAQ" },
+] as const;
+
 export type SaasifyLink = {
   href: string;
   label: string;
@@ -67,7 +75,6 @@ export type SaasifyStep = {
   copy: string;
 };
 
-const posEnquiry = `mailto:${siteEmail}?subject=${encodeURIComponent("SaaSify POS — get started")}`;
 const hrmsEnquiry = `mailto:${siteEmail}?subject=${encodeURIComponent("SaaSify HRMS — get started")}`;
 const dmsEnquiry = `mailto:${siteEmail}?subject=${encodeURIComponent("SaaSify DMS — get started")}`;
 const financesEnquiry = `mailto:${siteEmail}?subject=${encodeURIComponent("SaaSify Finances — get started")}`;
@@ -193,29 +200,60 @@ export const saasifyOverview = {
 
 export const saasifyPos = {
   meta: {
-    title: "SaaSify POS | Point of sale for cafés and home-grown brands",
+    title: "SaaSify POS | Point of sale for cafés and small businesses",
     description:
-      "SaaSify POS takes counter and kitchen orders, or a store link you send to clients. See detailed sales for the day, the week, and what actually sold. A product of Sayge.",
+      "A simple, affordable POS for cafés and small food businesses. Take orders, keep the kitchen in sync, manage your menu, and understand your sales. A product of Sayge.",
     path: saasifyPath.pos,
   },
-  eyebrow: "SaaSify point of sale",
-  title: "A POS ready for the floor you've got",
-  lede: "Run a café counter, or put a home-grown brand’s menu and products on a link clients can order from. One point of sale from Sayge.",
-  primary: { href: posEnquiry, label: "Get started" },
-  secondary: { href: "#ways", label: "See it work" },
+  eyebrow: "SaaSify POS · for cafés & small businesses",
+  title: "Your café, running smoother.",
+  lede: "Take orders, keep the kitchen in sync, manage your menu and understand your sales—all in one simple POS.",
+  priceNote: "Plans from ₹49/month in India · $9/month internationally",
+  primary: { href: "#demo", label: "Request a demo" },
+  secondary: { href: "#product", label: "Explore the POS" },
   problems: {
-    heading: "A busy counter should not depend on memory.",
-    lede: "SaaSify POS is for the stretch between the order and the end of the day.",
+    heading: "Built for the floor you already run.",
+    lede: "Independent cafés and small food businesses need a POS that stays out of the way—and still keeps the day straight.",
     items: [
-      "Orders taken at the counter and tickets the kitchen can actually follow.",
-      "Dine-in and takeaway kept distinct, with tables numbered for the floor.",
-      "A bill that shows tax, a coupon if you use one, and whether it was cash or UPI/card.",
-      "A daily snapshot of paid orders, instead of reconstructing the shift afterwards.",
+      "Easier day-to-day order management at the counter.",
+      "Better visibility into what sold and how people paid.",
+      "A smoother counter-to-kitchen workflow.",
+      "A manageable setup without enterprise complexity.",
     ],
   },
+  featureGroups: [
+    {
+      id: "counter",
+      title: "Counter sales",
+      benefit: "Take dine-in or takeaway orders, pick from your menu, and record the bill without juggling notebooks.",
+      points: ["Order taking", "Menu and product selection", "Billing and settlement recording"],
+      preview: 1,
+    },
+    {
+      id: "kitchen",
+      title: "Kitchen operations",
+      benefit: "Tickets move from new to preparing to ready, so the floor and the kitchen stay on the same order.",
+      points: ["Kitchen order workflow", "Order status and preparation tracking"],
+      preview: 2,
+    },
+    {
+      id: "digital",
+      title: "Digital ordering",
+      benefit: "Share a QR guest menu for the table, or send a store link so clients can order without a custom website.",
+      points: ["QR-based guest menu", "Shareable ordering links"],
+      preview: null,
+    },
+    {
+      id: "insights",
+      title: "Business insights",
+      benefit: "Open sales by day, week, or month—gross, average order, top items, and payment mix.",
+      points: ["Sales reports", "Product performance", "Payment breakdowns"],
+      preview: null,
+    },
+  ] as const,
   features: {
     heading: "What the POS does today.",
-    lede: "The counter, the kitchen, a store link you can send, and the numbers behind what sold. The previews on this page are illustrative.",
+    lede: "The counter, the kitchen, a store link you can send, and the numbers behind what sold. Previews on this page are illustrative.",
     items: [
       {
         title: "Menu and product options",
@@ -253,74 +291,154 @@ export const saasifyPos = {
   },
   how: {
     heading: "How a sale moves through.",
-    lede: "From the menu or the product list to the end-of-day snapshot.",
+    lede: "Four steps from the counter to a closed bill—illustrative of the live workflow.",
     steps: [
       {
-        title: "Set the café up",
-        copy: "Name it, build the menu and categories, set tax, coupons, branding for the guest menu, and the number of tables.",
-      },
-      {
         title: "Take the order",
-        copy: "At the terminal, choose dine-in or takeaway, add items, and send the ticket on.",
+        copy: "Choose dine-in or takeaway, add items from the menu, and attach a table when you need one.",
       },
       {
-        title: "The kitchen works it",
-        copy: "Prep status moves from new to preparing to ready, then completed.",
+        title: "Send it to the kitchen",
+        copy: "The ticket lands on the kitchen board so prep can start without a second conversation.",
       },
       {
-        title: "Close the bill",
-        copy: "Record cash or UPI/card, share the PDF receipt, and read the day in Reports.",
+        title: "Track preparation",
+        copy: "Move status from new to preparing to ready, then completed, so the floor knows where each order stands.",
+      },
+      {
+        title: "Complete the bill",
+        copy: "Record cash or UPI/card settlement, apply a coupon if needed, and share a PDF receipt.",
       },
     ] satisfies SaasifyStep[],
   },
   audience: {
-    heading: "A counter, a kitchen, or a brand you run yourself.",
-    lede: "Cafés use the floor and the kitchen. A home-grown brand uses the same menu tools, then sends a link instead of waiting on a website.",
+    heading: "Built for small businesses",
+    lede: "Lead with independent cafés. The same tools also fit restaurants and home-grown food brands that sell from a link.",
     items: [
       {
-        title: "Cafés",
-        copy: "A short menu, tables, and a counter that has to stay in step with whoever is making the drinks.",
+        title: "Independent cafés",
+        copy: "A short menu, numbered tables, and a counter that has to stay in step with whoever is making the drinks.",
       },
       {
-        title: "Restaurants",
+        title: "Small restaurants",
         copy: "Dine-in and takeaway, kitchen tickets, and a guest menu guests can open from a QR code.",
       },
       {
         title: "Home-grown brands",
-        copy: "Build product options, share one link, and take orders from clients. Your store is live in the time it takes to send the link.",
+        copy: "Build product options, share one link, and take orders from clients without waiting on a custom website.",
       },
     ] satisfies SaasifyFeature[],
   },
+  pricing: {
+    heading: "Simple pricing",
+    lede: "Starter covers the POS for a single business. Need something more specialised? Ask for a custom quote.",
+    note: "Taxes, billing cadence, and what counts as one business are confirmed when access is arranged. Prices shown match current SaaSify plans.",
+    starter: {
+      name: "Starter",
+      india: "₹49",
+      indiaSuffix: "/month in India",
+      intl: "$9",
+      intlSuffix: "/month internationally",
+      trial: "A 14-day trial can be arranged with the team—there is no self-serve signup on this site.",
+      includes: [
+        "Counter and kitchen workflow",
+        "Menu and product options",
+        "Guest menu QR and store link",
+        "Bill, coupon, and settlement recording",
+        "Day, week, and month sales views",
+        "Admin, cashier, and kitchen roles",
+      ],
+      cta: { href: "#demo", label: "Request a demo" },
+    },
+    custom: {
+      name: "Custom",
+      price: "Based on your requirements",
+      includes: [
+        "Specialised workflows where supported",
+        "Custom onboarding with the Sayge team",
+        "Integrations discussed case by case",
+      ],
+      cta: {
+        href: `mailto:${siteEmail}?subject=${encodeURIComponent("SaaSify POS — custom quote")}`,
+        label: "Get a custom quote",
+      },
+    },
+  },
+  trust: {
+    heading: "Practical questions, straight answers",
+    lede: "Only claims we can stand behind from how the product works today.",
+    items: [
+      {
+        title: "Devices",
+        copy: "SaaSify POS is a web app. Use it from a browser on the devices you already have. Dedicated printer, scanner, or other hardware support is not part of the product described here.",
+      },
+      {
+        title: "Payments",
+        copy: "Record settlement as cash or UPI/card. SaaSify does not charge cards or UPI through a payment gateway.",
+      },
+      {
+        title: "Connectivity",
+        copy: "The current POS runs online. Offline mode is not available.",
+      },
+      {
+        title: "Receipts and tax",
+        copy: "Show tax on the bill and generate a PDF receipt. Local tax rules and compliance remain your responsibility.",
+      },
+      {
+        title: "Inventory",
+        copy: "Sells from a menu or product list. It does not track stock or synchronise inventory.",
+      },
+      {
+        title: "Setup and support",
+        copy: "Access is arranged by the Sayge team. Call 8788681499 or email humans@sayge.in for a demo and onboarding help.",
+      },
+    ],
+  },
   faqs: [
     {
-      question: "Is this a retail or inventory system?",
+      question: "What is SaaSify POS?",
       answer:
-        "No. It sells from a menu or a product list: at a counter, in a kitchen, or from a link you send. It does not track stock or synchronise inventory.",
+        "A web point of sale for cafés and small food businesses. Take counter orders, send kitchen tickets, share a guest menu or store link, close the bill, and review sales for the day, week, or month.",
     },
     {
-      question: "Does it connect to a payment gateway?",
+      question: "Is it suitable for a small café?",
       answer:
-        "It records how the bill was settled — cash, or UPI/card as a single digital tender. It does not charge a card or UPI through a payment gateway.",
+        "Yes. It is built for short menus, dine-in and takeaway, numbered tables, and a counter that has to stay in step with the kitchen—without enterprise complexity.",
     },
     {
-      question: "Does it work offline, or with receipt printers and other hardware?",
+      question: "How does the free trial work?",
       answer:
-        "The current POS runs online. The receipt is a PDF. Dedicated printer, scanner, or other hardware support is not part of the product described here.",
+        "You get 14 days to explore SaaSify. There is no self-serve signup on this page—request a demo or call 8788681499 and access is arranged for you. Need more time or setup help? Reach out; the team can discuss an extended trial when there is a genuine need.",
     },
     {
-      question: "What does the daily report include?",
+      question: "What is included in the Starter plan?",
       answer:
-        "Pick a day, a week, or a month. You get paid orders, gross sales, the average order, item-wise sales, the payment mix, and how many orders came from the counter versus the link.",
+        "Starter covers the POS for a single business: counter and kitchen workflow, menu and products, guest menu QR and store link, billing with coupons and settlement recording, sales views, and admin, cashier, and kitchen roles. Plans start at ₹49/month in India or $9/month internationally.",
     },
     {
-      question: "How do we get access?",
+      question: "Does SaaSify support printers and kitchen workflows?",
       answer:
-        "Leave your email on Request a demo, or call 8788681499. Access is arranged for you. If you already have an account, use the SaaSify login.",
+        "Kitchen workflows yes—tickets move through new, preparing, ready, and completed. Dedicated receipt printers and scanners are not supported today. Receipts are PDF.",
+    },
+    {
+      question: "How does payment recording work?",
+      answer:
+        "You record how the bill was settled—cash, or UPI/card as digital tender. SaaSify does not process the payment through a gateway.",
+    },
+    {
+      question: "Can I use SaaSify across multiple outlets?",
+      answer:
+        "Starter is scoped to a single business. If you need specialised workflows or a broader setup, request a custom quote and we will confirm what is supported.",
+    },
+    {
+      question: "How can I get setup support?",
+      answer:
+        "Request a demo on this page, email humans@sayge.in, or call 8788681499. If you already have an account, use the SaaSify login.",
     },
   ] satisfies SaasifyFaq[],
   closing: {
-    heading: "Tell us about the counter.",
-    lede: "Say what you serve and how the floor works. We’ll reply about SaaSify POS and whether it fits.",
+    heading: "Ready to make daily operations simpler?",
+    lede: "Explore SaaSify POS and see whether it fits the way your business works.",
   },
 };
 

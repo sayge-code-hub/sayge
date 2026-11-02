@@ -2,7 +2,7 @@
 
 import { useState, type FormEvent, type KeyboardEvent } from "react";
 import { PosTerminalMock, ProductPreview } from "@/components/saasify/SaasifyMocks";
-import { saasifyPos } from "@/lib/saasify";
+import { saasifyLogin, saasifyPos } from "@/lib/saasify";
 import { siteEmail, sitePhoneHref } from "@/lib/site";
 
 const modes = [
@@ -35,7 +35,7 @@ const modes = [
     label: "Store link",
     preview: null,
     title: "Your store link",
-    copy: "A home-grown brand adds menu or product options, creates a link, and sends it. Clients place the order. The store is live as soon as the link goes out.",
+    copy: "Add menu or product options, create a link, and send it. Clients place the order. The store is live as soon as the link goes out.",
     points: ["Menu and product options", "One link to send", "Orders arrive with the rest"],
   },
   {
@@ -61,7 +61,10 @@ function MenuPreview() {
     <figure className="sf-pos-mock">
       <div className="sf-pos-phone" aria-hidden="true">
         <p className="sf-pos-phone-name">North Window</p>
-        <p className="sf-pos-phone-meta">Table 4</p>
+        <p className="sf-pos-phone-meta">Table 4 · Guest menu</p>
+        <div className="sf-pos-phone-progress" aria-hidden="true">
+          <span style={{ width: "75%" }} />
+        </div>
         <p className="sf-pos-phone-tab">Coffee</p>
         <ul>
           <li>
@@ -71,6 +74,10 @@ function MenuPreview() {
           <li>
             <span>Cold brew</span>
             <span>₹220</span>
+          </li>
+          <li className="is-done">
+            <span>Order sent</span>
+            <span>✓</span>
           </li>
         </ul>
       </div>
@@ -142,24 +149,6 @@ function FlowSketch({ step }: { step: number }) {
   if (step === 0) {
     return (
       <div className="sf-pos-sketch" aria-hidden="true">
-        <p className="sf-pos-sketch-kicker">Café</p>
-        <p className="sf-pos-sketch-name">North Window</p>
-        <ul>
-          <li>
-            <span>Tables</span>
-            <span>8</span>
-          </li>
-          <li>
-            <span>Menu</span>
-            <span>Coffee, tea</span>
-          </li>
-        </ul>
-      </div>
-    );
-  }
-  if (step === 1) {
-    return (
-      <div className="sf-pos-sketch" aria-hidden="true">
         <div className="sf-pos-sketch-pills">
           <span className="is-on">Dine-in</span>
           <span>Takeaway</span>
@@ -174,6 +163,24 @@ function FlowSketch({ step }: { step: number }) {
             <span>4</span>
           </li>
         </ul>
+      </div>
+    );
+  }
+  if (step === 1) {
+    return (
+      <div className="sf-pos-sketch sf-pos-sketch-kitchen" aria-hidden="true">
+        <div className="is-hot">
+          <p>New</p>
+          <span>Coffee × 2</span>
+        </div>
+        <div>
+          <p>Prep</p>
+          <span>—</span>
+        </div>
+        <div>
+          <p>Ready</p>
+          <span>—</span>
+        </div>
       </div>
     );
   }
@@ -282,7 +289,7 @@ function AnalyticsBoard({ range }: { range: AnalyticsKey }) {
           <dd>{view.link}</dd>
         </div>
       </dl>
-      <div className="sf-pos-analytics-chart">
+      <div className="sf-pos-analytics-chart" role="img" aria-label={`Sales over ${view.label}`}>
         {view.bars.map((height, index) => (
           <div key={view.marks[index]}>
             <span style={{ height: `${height}%` }} />
@@ -292,7 +299,7 @@ function AnalyticsBoard({ range }: { range: AnalyticsKey }) {
       </div>
       <div className="sf-pos-analytics-split">
         <div>
-          <p className="sf-pos-sketch-kicker">Top items</p>
+          <p className="sf-pos-sketch-kicker">Best-selling products</p>
           <ul>
             {view.top.map(([name, amount, count]) => (
               <li key={name}>
@@ -338,13 +345,21 @@ function ModeVisual({ id, preview }: { id: string; preview: number | null }) {
   return <ProductPreview kind="pos" state={preview ?? 0} />;
 }
 
+function FeatureVisual({ id, preview }: { id: string; preview: number | null }) {
+  if (id === "digital") return <MenuPreview />;
+  if (id === "insights") return <DayPreview />;
+  return <ProductPreview kind="pos" state={preview ?? 1} />;
+}
+
 export function SaasifyPosLanding() {
   const page = saasifyPos;
   const [active, setActive] = useState(0);
   const [demoEmail, setDemoEmail] = useState("");
   const [demoOpened, setDemoOpened] = useState(false);
   const [range, setRange] = useState<AnalyticsKey>("week");
+  const [featureTab, setFeatureTab] = useState(0);
   const mode = modes[active];
+  const feature = page.featureGroups[featureTab];
 
   function requestDemo(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -367,35 +382,56 @@ export function SaasifyPosLanding() {
     document.getElementById(`pos-mode-${modes[next].id}`)?.focus();
   }
 
+  function moveFeature(event: KeyboardEvent<HTMLButtonElement>, index: number) {
+    if (event.key !== "ArrowRight" && event.key !== "ArrowLeft") return;
+    event.preventDefault();
+    const next =
+      event.key === "ArrowRight"
+        ? (index + 1) % page.featureGroups.length
+        : (index - 1 + page.featureGroups.length) % page.featureGroups.length;
+    setFeatureTab(next);
+    document.getElementById(`pos-feature-${page.featureGroups[next].id}`)?.focus();
+  }
+
   return (
     <article className="sf-pos">
       <header className="sf-pos-hero">
-        <p className="sf-pos-kicker">{page.eyebrow}</p>
-        <h1 className="sf-pos-title">{page.title}</h1>
-        <p className="sf-pos-lede">{page.lede}</p>
-        <div className="sf-pos-actions">
-          <a className="sf-pos-btn" href={page.secondary.href}>
-            {page.secondary.label}
-          </a>
-          <a className="sf-pos-btn sf-pos-btn-solid" href="#demo">
-            Request a demo
-          </a>
+        <div className="sf-pos-hero-inner">
+          <div className="sf-pos-hero-copy">
+            <p className="sf-pos-kicker">{page.eyebrow}</p>
+            <h1 className="sf-pos-title">{page.title}</h1>
+            <p className="sf-pos-lede">{page.lede}</p>
+            <div className="sf-pos-actions">
+              <a className="sf-pos-btn sf-pos-btn-solid" href={page.primary.href}>
+                {page.primary.label}
+              </a>
+              <a className="sf-pos-btn" href={page.secondary.href}>
+                {page.secondary.label}
+              </a>
+            </div>
+            <p className="sf-pos-note">{page.priceNote}</p>
+          </div>
+          <div className="sf-pos-hero-visual">
+            <img
+              src="/saasify-hero-devices.png"
+              alt="SaaSify POS on laptop analytics, tablet terminal, and phone operations"
+              width={1024}
+              height={436}
+              decoding="async"
+              fetchPriority="high"
+            />
+          </div>
         </div>
-        <p className="sf-pos-note">
-          Leave your email, or call{" "}
-          <a href={sitePhoneHref}>8788681499</a>.
-        </p>
       </header>
 
-      <div className="sf-pos-stage">
-        <div className="sf-pos-stage-frame">
-          <PosTerminalMock captionVisible={false} />
-        </div>
-      </div>
-
-      <section id="ways" className="sf-pos-section">
+      <section id="product" className="sf-pos-section">
         <div className="sf-pos-wrap">
-          <h2 className="sf-pos-h2">See how it works on the floor</h2>
+          <p className="sf-pos-eyebrow">Product preview</p>
+          <h2 className="sf-pos-h2">What using SaaSify feels like</h2>
+          <p className="sf-pos-intro">
+            Switch through the floor workflows below. These are illustrative product screens—not a live café
+            account.
+          </p>
           <div className="sf-pos-tabs" role="tablist" aria-label="Point of sale workflows">
             {modes.map((item, index) => {
               const selected = index === active;
@@ -438,58 +474,75 @@ export function SaasifyPosLanding() {
         </div>
       </section>
 
-      <section className="sf-pos-story" aria-labelledby="pos-story-heading">
+      <section id="how" className="sf-pos-story" aria-labelledby="pos-story-heading">
         <div className="sf-pos-story-inner">
-          <h2 id="pos-story-heading" className="sf-hero-script">
-            <span>How a sale</span>
-            <span>
-              moves <span className="sf-hero-highlight">through.</span>
-            </span>
+          <p className="sf-pos-eyebrow">How it works</p>
+          <h2 id="pos-story-heading" className="sf-pos-h2">
+            {page.how.heading}
           </h2>
-          <div className="sf-pos-story-lead">
-            <p className="sf-hero-script-sub sf-pos-story-sub">{page.how.lede}</p>
-            <p className="sf-hero-note sf-pos-story-note">
-              <svg viewBox="0 0 74 42" aria-hidden="true">
-                <path d="M68 8C46 6 28 16 14 32" />
-                <path d="M22 24l-10 10 12 1" />
-              </svg>
-              <span>
-                Same ticket,
-                <br />
-                the whole way
-              </span>
-            </p>
-          </div>
+          <p className="sf-pos-intro">{page.how.lede}</p>
           <ol className="sf-pos-path">
             {page.how.steps.map((step, index) => (
               <li key={step.title}>
+                <span className="sf-pos-path-num" aria-hidden="true">
+                  {index + 1}
+                </span>
                 <FlowSketch step={index} />
                 <h3>{step.title}</h3>
                 <p>{step.copy}</p>
-                {index < page.how.steps.length - 1 ? (
-                  <svg className="sf-pos-path-arrow" viewBox="0 0 74 42" aria-hidden="true">
-                    <path d="M6 22C24 18 40 16 64 20" />
-                    <path d="M54 12l12 8-12 9" />
-                  </svg>
-                ) : null}
               </li>
             ))}
           </ol>
         </div>
       </section>
 
-      <section id="capabilities" className="sf-pos-section">
+      <section id="features" className="sf-pos-section">
         <div className="sf-pos-wrap">
-          <h2 className="sf-pos-h2">{page.features.heading}</h2>
-          <p className="sf-pos-intro">{page.features.lede}</p>
-          <ul className="sf-pos-specs">
-            {page.features.items.map((item) => (
-              <li key={item.title}>
-                <strong>{item.title}</strong>
-                <span>{item.copy}</span>
-              </li>
-            ))}
-          </ul>
+          <p className="sf-pos-eyebrow">Features</p>
+          <h2 className="sf-pos-h2">Organised for how a café actually runs</h2>
+          <p className="sf-pos-intro">
+            Four groups—counter, kitchen, digital ordering, and insights. Only capabilities that exist in the
+            product today.
+          </p>
+          <div className="sf-pos-tabs" role="tablist" aria-label="Feature groups">
+            {page.featureGroups.map((item, index) => {
+              const selected = index === featureTab;
+              return (
+                <button
+                  key={item.id}
+                  id={`pos-feature-${item.id}`}
+                  type="button"
+                  role="tab"
+                  className="sf-pos-tab"
+                  aria-selected={selected}
+                  aria-controls="pos-feature-panel"
+                  tabIndex={selected ? 0 : -1}
+                  onClick={() => setFeatureTab(index)}
+                  onKeyDown={(event) => moveFeature(event, index)}
+                >
+                  {item.title}
+                </button>
+              );
+            })}
+          </div>
+          <div
+            id="pos-feature-panel"
+            role="tabpanel"
+            aria-labelledby={`pos-feature-${feature.id}`}
+            className="sf-pos-panel"
+          >
+            <div>
+              <h3>{feature.title}</h3>
+              <p>{feature.benefit}</p>
+              <p className="sf-pos-points-label">Includes</p>
+              <ul className="sf-pos-points">
+                {feature.points.map((point) => (
+                  <li key={point}>{point}</li>
+                ))}
+              </ul>
+            </div>
+            <FeatureVisual id={feature.id} preview={feature.preview} />
+          </div>
         </div>
       </section>
 
@@ -497,9 +550,10 @@ export function SaasifyPosLanding() {
         <div className="sf-pos-wrap">
           <div className="sf-pos-analytics-head">
             <div>
-              <h2 className="sf-pos-h2">Detailed analytics.</h2>
+              <p className="sf-pos-eyebrow">Analytics</p>
+              <h2 className="sf-pos-h2">See the day clearly</h2>
               <p className="sf-pos-intro">
-                Gross sales, orders, what sold, how people paid, and whether it came from the counter or the link.
+                Gross sales, orders, average order value, best sellers, and payment mix—by day, week, or month.
               </p>
             </div>
             <div className="sf-pos-analytics-ranges" role="tablist" aria-label="Analytics period">
@@ -517,12 +571,15 @@ export function SaasifyPosLanding() {
             </div>
           </div>
           <AnalyticsBoard range={range} />
-          <p className="sf-pos-analytics-note">Sample figures for a fictional café. Not a live account.</p>
+          <p className="sf-pos-analytics-note">
+            Sample figures for a fictional café. Illustrative only—not a live account.
+          </p>
         </div>
       </section>
 
-      <section className="sf-pos-section">
+      <section id="audience" className="sf-pos-section">
         <div className="sf-pos-wrap">
+          <p className="sf-pos-eyebrow">Who it’s for</p>
           <h2 className="sf-pos-h2">{page.audience.heading}</h2>
           <p className="sf-pos-intro">{page.audience.lede}</p>
           <ul className="sf-pos-audience">
@@ -533,12 +590,77 @@ export function SaasifyPosLanding() {
               </li>
             ))}
           </ul>
+          <ul className="sf-pos-outcomes">
+            {page.problems.items.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
         </div>
       </section>
 
-      <section id="questions" className="sf-pos-section">
+      <section id="pricing" className="sf-pos-section sf-pos-section-muted">
+        <div className="sf-pos-wrap">
+          <p className="sf-pos-eyebrow">Pricing</p>
+          <h2 className="sf-pos-h2">{page.pricing.heading}</h2>
+          <p className="sf-pos-intro">{page.pricing.lede}</p>
+          <div className="sf-pos-pricing">
+            <article className="sf-pos-price-card is-featured">
+              <h3>{page.pricing.starter.name}</h3>
+              <p className="sf-pos-price-line">
+                <strong>{page.pricing.starter.india}</strong>
+                <span>{page.pricing.starter.indiaSuffix}</span>
+              </p>
+              <p className="sf-pos-price-line">
+                <strong>{page.pricing.starter.intl}</strong>
+                <span>{page.pricing.starter.intlSuffix}</span>
+              </p>
+              <p className="sf-pos-price-trial">{page.pricing.starter.trial}</p>
+              <ul>
+                {page.pricing.starter.includes.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+              <a className="sf-pos-btn sf-pos-btn-solid" href={page.pricing.starter.cta.href}>
+                {page.pricing.starter.cta.label}
+              </a>
+            </article>
+            <article className="sf-pos-price-card">
+              <h3>{page.pricing.custom.name}</h3>
+              <p className="sf-pos-price-custom">{page.pricing.custom.price}</p>
+              <ul>
+                {page.pricing.custom.includes.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+              <a className="sf-pos-btn" href={page.pricing.custom.cta.href}>
+                {page.pricing.custom.cta.label}
+              </a>
+            </article>
+          </div>
+          <p className="sf-pos-pricing-note">{page.pricing.note}</p>
+        </div>
+      </section>
+
+      <section id="trust" className="sf-pos-section">
+        <div className="sf-pos-wrap">
+          <p className="sf-pos-eyebrow">Trust</p>
+          <h2 className="sf-pos-h2">{page.trust.heading}</h2>
+          <p className="sf-pos-intro">{page.trust.lede}</p>
+          <ul className="sf-pos-trust">
+            {page.trust.items.map((item) => (
+              <li key={item.title}>
+                <h3>{item.title}</h3>
+                <p>{item.copy}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section id="questions" className="sf-pos-section sf-pos-section-muted">
         <div className="sf-pos-wrap sf-pos-narrow">
-          <h2 className="sf-pos-h2">FAQ</h2>
+          <p className="sf-pos-eyebrow">FAQ</p>
+          <h2 className="sf-pos-h2">Questions before you start</h2>
           <div className="sf-pos-faq">
             {page.faqs.map((item) => (
               <details key={item.question}>
@@ -559,11 +681,11 @@ export function SaasifyPosLanding() {
             <div className="sf-pos-demo-mock">
               <PosTerminalMock captionVisible={false} />
             </div>
-            <h2>Request a free demo of SaaSify POS</h2>
-            <p>Leave an email, or call. We’ll walk the counter, the kitchen, and the bill with you.</p>
+            <h2>{page.closing.heading}</h2>
+            <p>{page.closing.lede}</p>
           </div>
           <form className="sf-pos-demo-form" onSubmit={requestDemo}>
-            <label htmlFor="pos-demo-email">Email</label>
+            <label htmlFor="pos-demo-email">Work email</label>
             <input
               id="pos-demo-email"
               name="email"
@@ -578,12 +700,22 @@ export function SaasifyPosLanding() {
                 setDemoOpened(false);
               }}
             />
-            <button type="submit">Request demo</button>
+            <button type="submit">Request a demo</button>
             <p className="sf-pos-demo-or">
               or call <a href={sitePhoneHref}>8788681499</a>
+              {" · "}
+              <a href={saasifyLogin.href}>{saasifyLogin.label}</a>
+            </p>
+            <p className="sf-pos-demo-alt">
+              Prefer to talk first?{" "}
+              <a href={`mailto:${siteEmail}?subject=${encodeURIComponent("SaaSify POS — talk to us")}`}>
+                Talk to us
+              </a>
             </p>
             {demoOpened ? (
-              <p className="sf-pos-demo-note">Send the email that opened. We’ll use it to set up the demo.</p>
+              <p className="sf-pos-demo-note">
+                Send the email that opened. We’ll use it to arrange your demo and, if it fits, a 14-day trial.
+              </p>
             ) : null}
           </form>
         </div>
