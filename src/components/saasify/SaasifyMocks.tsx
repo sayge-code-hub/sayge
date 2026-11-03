@@ -80,34 +80,40 @@ export function PosTerminalMock({
         <span className="pb-2">Food</span>
       </div>
       <ul className="mt-3 divide-y divide-line text-[13px]">
-        <li className="flex justify-between py-2.5">
+        <li className="flex items-center justify-between gap-3 py-2.5">
           <span>Filter coffee</span>
-          <span className="text-[#62605b]">₹180</span>
+          <span className="flex items-center gap-2 text-[#62605b]">
+            <span className="rounded-md border border-[#e7e5e0] px-1.5 py-0.5 text-[11px]">× 2</span>
+            ₹360
+          </span>
         </li>
-        <li className="flex justify-between py-2.5">
+        <li className="flex items-center justify-between gap-3 py-2.5">
           <span>Masala chai</span>
-          <span className="text-[#62605b]">₹120</span>
+          <span className="flex items-center gap-2 text-[#62605b]">
+            <span className="rounded-md border border-[#e7e5e0] px-1.5 py-0.5 text-[11px]">× 1</span>
+            ₹120
+          </span>
         </li>
       </ul>
       <div className="mt-4 rounded-2xl border border-[#e7e5e0] bg-[#f3faf5] p-3">
         <p className="flex items-center justify-between text-[11px] tracking-[0.14em] text-[#62605b] uppercase">
-          <span>Table 4</span>
-          <span className="normal-case tracking-tight text-[#22c55e]">Preparing</span>
+          <span>Table 4 · Order</span>
+          <span className="normal-case tracking-tight text-[#22c55e]">Open</span>
         </p>
         <div className="mt-2 flex justify-between text-[13px]">
-          <span>Filter coffee × 2</span>
-          <span>₹360</span>
+          <span>3 items</span>
+          <span className="font-medium">₹480</span>
         </div>
         <div className="mt-1 flex justify-between text-[12px] text-[#62605b]">
           <span>GST</span>
           <span>On the bill</span>
         </div>
-        <div className="mt-3 flex gap-2">
-          <span className="rounded-full border border-[#e7e5e0] px-3 py-1 text-[12px]">
-            Cash
-          </span>
+        <div className="mt-3 flex items-center justify-between gap-2">
           <span className="rounded-full bg-[#22c55e] px-3 py-1 text-[12px] text-white">
-            UPI/Card
+            Send to kitchen
+          </span>
+          <span className="rounded-full border border-[#e7e5e0] px-3 py-1 text-[12px] text-[#62605b]">
+            Checkout
           </span>
         </div>
       </div>
@@ -205,7 +211,11 @@ function SetupPreview() {
   );
 }
 
-function KitchenBoard() {
+export function KitchenBoard({
+  captionVisible = true,
+}: {
+  captionVisible?: boolean;
+} = {}) {
   const columns = [
     { label: "New", items: ["Masala chai · Takeaway"] },
     { label: "Preparing", items: ["Filter coffee × 2 · Table 4"], hot: true },
@@ -216,9 +226,18 @@ function KitchenBoard() {
       path="SaaSify / POS / Kitchen"
       title="Kitchen"
       accent="brand"
+      captionVisible={captionVisible}
       caption="Illustrative kitchen board. Sample tickets, not a live service."
     >
-      <div className="mt-4 grid grid-cols-3 gap-2">
+      <div className="mt-4 rounded-2xl border border-[#22c55e] bg-[#f3faf5] p-3">
+        <p className="flex items-center justify-between text-[11px] tracking-[0.12em] text-[#62605b] uppercase">
+          <span>Ticket · Table 4</span>
+          <span className="normal-case tracking-tight text-[#22c55e]">Preparing</span>
+        </p>
+        <p className="mt-2 text-[13px] font-medium">Filter coffee × 2</p>
+        <p className="mt-1 text-[12px] text-[#62605b]">Dine-in · No extras</p>
+      </div>
+      <div className="mt-3 grid grid-cols-3 gap-2">
         {columns.map((column) => (
           <div
             key={column.label}
@@ -239,26 +258,36 @@ function KitchenBoard() {
   );
 }
 
-function BillPreview() {
+export function BillPreview({
+  captionVisible = true,
+}: {
+  captionVisible?: boolean;
+} = {}) {
   return (
     <Window
       path="SaaSify / POS / Bill"
       title="Bill"
       accent="brand"
+      captionVisible={captionVisible}
       caption="Illustrative bill. Tax and tender are recorded. This is not a payment gateway."
     >
-      <ul className="mt-4 space-y-2 text-[13px]">
+      <p className="mt-3 text-[12px] text-[#62605b]">Table 4 · Dine-in</p>
+      <ul className="mt-3 space-y-2 text-[13px]">
         <li className="flex justify-between">
           <span>Filter coffee × 2</span>
           <span>₹360</span>
+        </li>
+        <li className="flex justify-between">
+          <span>Masala chai × 1</span>
+          <span>₹120</span>
         </li>
         <li className="flex justify-between text-[#62605b]">
           <span>GST</span>
           <span>Shown on the bill</span>
         </li>
-        <li className="flex justify-between border-t border-[#e7e5e0] pt-2">
-          <span>Table 4</span>
-          <span>Dine-in</span>
+        <li className="flex justify-between border-t border-[#e7e5e0] pt-2 font-medium">
+          <span>Total</span>
+          <span>₹480</span>
         </li>
       </ul>
       <div className="mt-4 flex gap-2 text-[12px]">
@@ -267,7 +296,57 @@ function BillPreview() {
           UPI/Card
         </span>
       </div>
-      <p className="mt-3 text-[12px] text-[#62605b]">PDF receipt</p>
+      <p className="mt-3 text-[12px] text-[#62605b]">PDF receipt · Settlement recorded</p>
+    </Window>
+  );
+}
+
+export function CatalogueManagePreview({
+  captionVisible = true,
+}: {
+  captionVisible?: boolean;
+} = {}) {
+  return (
+    <Window
+      path="SaaSify / POS / Catalogue"
+      title="Products & categories"
+      accent="brand"
+      captionVisible={captionVisible}
+      caption="Illustrative catalogue management. Sample products, not a live shop."
+    >
+      <div className="mt-4 flex gap-2 text-[11px]">
+        <span className="rounded-full bg-[#22c55e] px-2.5 py-1 text-white">Coffee</span>
+        <span className="rounded-full border border-[#e7e5e0] px-2.5 py-1 text-[#62605b]">
+          Pastry
+        </span>
+        <span className="rounded-full border border-[#e7e5e0] px-2.5 py-1 text-[#62605b]">
+          Merch
+        </span>
+      </div>
+      <ul className="mt-3 divide-y divide-[#e7e5e0] text-[13px]">
+        <li className="flex justify-between py-2.5">
+          <span>
+            Filter coffee
+            <span className="mt-0.5 block text-[11px] text-[#62605b]">Options · Oat milk</span>
+          </span>
+          <span className="text-[#62605b]">₹180</span>
+        </li>
+        <li className="flex justify-between py-2.5">
+          <span>
+            Cold brew
+            <span className="mt-0.5 block text-[11px] text-[#62605b]">Category · Coffee</span>
+          </span>
+          <span className="text-[#62605b]">₹220</span>
+        </li>
+        <li className="flex justify-between py-2.5">
+          <span>
+            Croissant
+            <span className="mt-0.5 block text-[11px] text-[#62605b]">Category · Pastry</span>
+          </span>
+          <span className="text-[#62605b]">₹120</span>
+        </li>
+      </ul>
+      <p className="mt-3 text-[12px] text-[#15803d] font-medium">Add product · Manage categories</p>
     </Window>
   );
 }

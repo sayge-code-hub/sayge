@@ -13,6 +13,7 @@ export function SaasifyLogo({
       width={599}
       height={180}
       className={className}
+      decoding="async"
     />
   );
 }

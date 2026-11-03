@@ -200,54 +200,75 @@ export const saasifyOverview = {
 
 export const saasifyPos = {
   meta: {
-    title: "SaaSify POS | Point of sale for cafés and small businesses",
+    title: "SaaSify POS | Sell in-store and online",
     description:
-      "A simple, affordable POS for cafés and small food businesses. Take orders, keep the kitchen in sync, manage your menu, and understand your sales. A product of Sayge.",
+      "One simple system to sell at the counter and share products online. Manage orders and billing in-store, or organise a digital catalogue with a shareable link and QR code. A product of Sayge.",
     path: saasifyPath.pos,
   },
-  eyebrow: "SaaSify POS · for cafés & small businesses",
-  title: "Your café, running smoother.",
-  lede: "Take orders, keep the kitchen in sync, manage your menu and understand your sales—all in one simple POS.",
+  eyebrow: "SaaSify POS · for cafés, retailers & small brands",
+  title: "Sell in-store. Sell online. One simple system.",
+  lede: "Run counter sales day to day, and share your products through a digital catalogue, link or QR code—wherever your customers already are.",
   priceNote: "Plans from ₹49/month in India · $9/month internationally",
   primary: { href: "#demo", label: "Request a demo" },
-  secondary: { href: "#product", label: "Explore the POS" },
-  problems: {
-    heading: "Built for the floor you already run.",
-    lede: "Independent cafés and small food businesses need a POS that stays out of the way—and still keeps the day straight.",
+  secondary: { href: "#pricing", label: "See pricing" },
+  dualPaths: {
+    heading: "Two ways to sell. One POS.",
+    lede: "Whether you take orders at the counter or share a catalogue online, you work from the same product list and the same system.",
     items: [
-      "Easier day-to-day order management at the counter.",
-      "Better visibility into what sold and how people paid.",
-      "A smoother counter-to-kitchen workflow.",
-      "A manageable setup without enterprise complexity.",
+      {
+        id: "in-person",
+        title: "Sell in person",
+        copy: "Take dine-in or takeaway orders, send tickets to the kitchen, close the bill, and keep the shift straight.",
+        points: ["Counter orders", "Kitchen workflow", "Billing & settlement"],
+      },
+      {
+        id: "online",
+        title: "Sell online",
+        copy: "Organise products into categories, share a catalogue link or QR, and let customers order—from social, messaging, print, or your existing site.",
+        points: ["Product categories", "Shareable link & QR", "Orders into the same day"],
+      },
+    ],
+  },
+  problems: {
+    heading: "Built for how small businesses actually sell.",
+    lede: "Cafés need the floor to stay in step. Retailers and home-grown brands need a catalogue they can share without building a custom website.",
+    items: [
+      "Counter sales and kitchen tickets when you sell in person.",
+      "A digital catalogue, link and QR when you sell online.",
+      "Share that link from social, messaging, print or your existing website.",
+      "One place to see what sold—counter or link.",
     ],
   },
   featureGroups: [
     {
       id: "counter",
-      title: "Counter sales",
-      benefit: "Take dine-in or takeaway orders, pick from your menu, and record the bill without juggling notebooks.",
-      points: ["Order taking", "Menu and product selection", "Billing and settlement recording"],
+      title: "Counter POS",
+      benefit:
+        "Take dine-in or takeaway orders, move kitchen tickets, and record the bill—without juggling notebooks.",
+      points: [
+        "Order taking and menu selection",
+        "Kitchen status workflow",
+        "Billing, coupons and settlement recording",
+      ],
       preview: 1,
     },
     {
-      id: "kitchen",
-      title: "Kitchen operations",
-      benefit: "Tickets move from new to preparing to ready, so the floor and the kitchen stay on the same order.",
-      points: ["Kitchen order workflow", "Order status and preparation tracking"],
-      preview: 2,
-    },
-    {
-      id: "digital",
-      title: "Digital ordering",
-      benefit: "Share a QR guest menu for the table, or send a store link so clients can order without a custom website.",
-      points: ["QR-based guest menu", "Shareable ordering links"],
+      id: "online",
+      title: "Online Catalogue & Ordering",
+      benefit:
+        "Group products into categories, share a guest menu or store link with a QR, and take orders without SaaSify building you a custom website.",
+      points: [
+        "Categories and product cards",
+        "Shareable ordering link and QR",
+        "Share via social, messaging, print or your existing site",
+      ],
       preview: null,
     },
     {
       id: "insights",
-      title: "Business insights",
+      title: "Business Insights",
       benefit: "Open sales by day, week, or month—gross, average order, top items, and payment mix.",
-      points: ["Sales reports", "Product performance", "Payment breakdowns"],
+      points: ["Sales reports", "Product performance", "Payment and channel breakdown"],
       preview: null,
     },
   ] as const,
@@ -313,25 +334,25 @@ export const saasifyPos = {
   },
   audience: {
     heading: "Built for small businesses",
-    lede: "Lead with independent cafés. The same tools also fit restaurants and home-grown food brands that sell from a link.",
+    lede: "A café owner sees the counter. A retailer or home-grown brand sees the catalogue. Same system either way.",
     items: [
       {
         title: "Independent cafés",
-        copy: "A short menu, numbered tables, and a counter that has to stay in step with whoever is making the drinks.",
+        copy: "Sell at the counter, keep the kitchen in sync, and share a QR guest menu when you want guests to browse.",
       },
       {
         title: "Small restaurants",
         copy: "Dine-in and takeaway, kitchen tickets, and a guest menu guests can open from a QR code.",
       },
       {
-        title: "Home-grown brands",
-        copy: "Build product options, share one link, and take orders from clients without waiting on a custom website.",
+        title: "Retailers & home-grown brands",
+        copy: "Organise products, share one catalogue link or QR, and take orders—without waiting on a custom website build.",
       },
     ] satisfies SaasifyFeature[],
   },
   pricing: {
     heading: "Simple pricing",
-    lede: "Starter covers the POS for a single business. Need something more specialised? Ask for a custom quote.",
+    lede: "One Starter plan covers in-store and online selling for a single business. Need something more specialised? Ask for a custom quote.",
     note: "Taxes, billing cadence, and what counts as one business are confirmed when access is arranged. Prices shown match current SaaSify plans.",
     starter: {
       name: "Starter",
@@ -342,8 +363,7 @@ export const saasifyPos = {
       trial: "A 14-day trial can be arranged with the team—there is no self-serve signup on this site.",
       includes: [
         "Counter and kitchen workflow",
-        "Menu and product options",
-        "Guest menu QR and store link",
+        "Online catalogue, link and QR",
         "Bill, coupon, and settlement recording",
         "Day, week, and month sales views",
         "Admin, cashier, and kitchen roles",
@@ -398,12 +418,17 @@ export const saasifyPos = {
     {
       question: "What is SaaSify POS?",
       answer:
-        "A web point of sale for cafés and small food businesses. Take counter orders, send kitchen tickets, share a guest menu or store link, close the bill, and review sales for the day, week, or month.",
+        "A web point of sale for cafés, small food businesses, retailers and home-grown brands. Sell in person at the counter, or share an online catalogue with a link and QR. Close the bill, and review sales for the day, week, or month—whether orders came from the floor or the link.",
     },
     {
       question: "Is it suitable for a small café?",
       answer:
-        "Yes. It is built for short menus, dine-in and takeaway, numbered tables, and a counter that has to stay in step with the kitchen—without enterprise complexity.",
+        "Yes. It is built for short menus, dine-in and takeaway, numbered tables, and a counter that has to stay in step with the kitchen—without enterprise complexity. You can also share a QR guest menu when you want.",
+    },
+    {
+      question: "Can I sell online without a custom website?",
+      answer:
+        "Yes. Organise products into categories, generate a shareable catalogue or ordering link, and create a QR code. Share that link or QR from social media, messaging apps, printed materials or your existing website. SaaSify does not build a fully custom website for you.",
     },
     {
       question: "How does the free trial work?",
@@ -413,7 +438,7 @@ export const saasifyPos = {
     {
       question: "What is included in the Starter plan?",
       answer:
-        "Starter covers the POS for a single business: counter and kitchen workflow, menu and products, guest menu QR and store link, billing with coupons and settlement recording, sales views, and admin, cashier, and kitchen roles. Plans start at ₹49/month in India or $9/month internationally.",
+        "Starter covers in-store and online selling for a single business: counter and kitchen workflow, online catalogue with link and QR, billing with coupons and settlement recording, sales views, and admin, cashier, and kitchen roles. Plans start at ₹49/month in India or $9/month internationally.",
     },
     {
       question: "Does SaaSify support printers and kitchen workflows?",
@@ -437,8 +462,14 @@ export const saasifyPos = {
     },
   ] satisfies SaasifyFaq[],
   closing: {
-    heading: "Ready to make daily operations simpler?",
-    lede: "Explore SaaSify POS and see whether it fits the way your business works.",
+    heading: "Ready to sell in-store and online?",
+    lede: "Leave one email—we’ll arrange a walkthrough of the counter and the catalogue, and a 14-day trial when it fits.",
+  },
+  midCta: {
+    heading: "See it on your kind of business.",
+    lede: "A short demo shows the counter, the catalogue link, and what a day of sales looks like.",
+    primary: { href: "#demo", label: "Request a demo" },
+    secondary: { href: "#pricing", label: "See pricing" },
   },
 };
 

@@ -13,7 +13,7 @@ export function SaasifyNav() {
   const onPos = pathname === saasifyPath.pos || pathname.startsWith(`${saasifyPath.pos}/`);
   const links = onPos ? saasifyPosNav : saasifyNav;
   const cta = onPos
-    ? { href: `${saasifyPath.pos}#demo`, label: "Get started" }
+    ? { href: `${saasifyPath.pos}#demo`, label: "Request a demo" }
     : { href: `${saasifyPath.overview}#reach-out`, label: "Let’s start" };
 
   useEffect(() => {
@@ -71,25 +71,30 @@ export function SaasifyNav() {
           </a>
         </nav>
 
-        <button
-          type="button"
-          className="flex h-11 w-11 items-center justify-center md:hidden"
-          aria-label={open ? "Close menu" : "Open menu"}
-          aria-expanded={open}
-          onClick={() => setOpen((value) => !value)}
-        >
-          <span className="relative block h-3.5 w-5">
-            <span
-              className={`absolute left-0 h-px w-5 bg-[#101612] transition ${open ? "top-1.5 rotate-45" : "top-0"}`}
-            />
-            <span
-              className={`absolute left-0 top-1.5 h-px w-5 bg-[#101612] transition ${open ? "opacity-0" : ""}`}
-            />
-            <span
-              className={`absolute left-0 h-px w-5 bg-[#101612] transition ${open ? "top-1.5 -rotate-45" : "top-3"}`}
-            />
-          </span>
-        </button>
+        <div className="flex items-center gap-2 md:hidden">
+          <a href={cta.href} className="sf-btn sf-btn-start" onClick={() => setOpen(false)}>
+            {onPos ? "Demo" : cta.label}
+          </a>
+          <button
+            type="button"
+            className="flex h-11 w-11 shrink-0 items-center justify-center"
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            onClick={() => setOpen((value) => !value)}
+          >
+            <span className="relative block h-3.5 w-5">
+              <span
+                className={`absolute left-0 h-px w-5 bg-[#101612] transition ${open ? "top-1.5 rotate-45" : "top-0"}`}
+              />
+              <span
+                className={`absolute left-0 top-1.5 h-px w-5 bg-[#101612] transition ${open ? "opacity-0" : ""}`}
+              />
+              <span
+                className={`absolute left-0 h-px w-5 bg-[#101612] transition ${open ? "top-1.5 -rotate-45" : "top-3"}`}
+              />
+            </span>
+          </button>
+        </div>
       </div>
 
       {open ? (

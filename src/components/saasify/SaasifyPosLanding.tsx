@@ -2,113 +2,51 @@
 
 import { useState, type FormEvent, type KeyboardEvent } from "react";
 import { PosTerminalMock, ProductPreview } from "@/components/saasify/SaasifyMocks";
+import { FaqList } from "@/components/saasify/SaasifyPages";
+import { SaasifyPosShowcase } from "@/components/saasify/SaasifyPosShowcase";
 import { saasifyLogin, saasifyPos } from "@/lib/saasify";
-import { siteEmail, sitePhoneHref } from "@/lib/site";
+import { siteEmail, sitePhoneDisplay, sitePhoneHref } from "@/lib/site";
 
-const modes = [
-  {
-    id: "counter",
-    label: "Counter",
-    preview: 1,
-    title: "Counter",
-    copy: "Take a dine-in or takeaway order, attach it to a table, and send the ticket on.",
-    points: ["Dine-in and takeaway", "Numbered tables", "Menu grouped by category"],
-  },
-  {
-    id: "kitchen",
-    label: "Kitchen",
-    preview: 2,
-    title: "Kitchen",
-    copy: "The ticket the counter sent shows up for the kitchen, and moves until it is done.",
-    points: ["New, preparing, and ready", "Then completed", "Scoped to that café"],
-  },
-  {
-    id: "menu",
-    label: "Guest menu",
-    preview: null,
-    title: "Guest menu",
-    copy: "Share a QR menu for the café. A table number can be included. Guests get categories, options, and item detail.",
-    points: ["QR for the café", "Optional table number", "Options on each item"],
-  },
-  {
-    id: "store",
-    label: "Store link",
-    preview: null,
-    title: "Your store link",
-    copy: "Add menu or product options, create a link, and send it. Clients place the order. The store is live as soon as the link goes out.",
-    points: ["Menu and product options", "One link to send", "Orders arrive with the rest"],
-  },
-  {
-    id: "bill",
-    label: "The bill",
-    preview: 3,
-    title: "The bill",
-    copy: "Apply a coupon, show tax, and record how it was settled. The receipt is a PDF.",
-    points: ["Percent or fixed coupon", "Tax on the bill", "Cash or UPI/card", "PDF receipt"],
-  },
-  {
-    id: "day",
-    label: "The day",
-    preview: null,
-    title: "The day",
-    copy: "Open a daily snapshot instead of reconstructing the shift afterwards.",
-    points: ["Paid orders", "Gross sales", "Payment mix", "Item-wise sales"],
-  },
-] as const;
-
-function MenuPreview() {
+function OnlineCataloguePreview() {
   return (
-    <figure className="sf-pos-mock">
+    <figure className="sf-pos-mock sf-pos-online-mock tone-cafe">
       <div className="sf-pos-phone" aria-hidden="true">
         <p className="sf-pos-phone-name">North Window</p>
-        <p className="sf-pos-phone-meta">Table 4 · Guest menu</p>
-        <div className="sf-pos-phone-progress" aria-hidden="true">
-          <span style={{ width: "75%" }} />
+        <p className="sf-pos-phone-meta">Online catalogue</p>
+        <div className="sf-pos-phone-cats">
+          <span className="is-on">Coffee</span>
+          <span>Pastry</span>
+          <span>Merch</span>
         </div>
-        <p className="sf-pos-phone-tab">Coffee</p>
-        <ul>
+        <ul className="sf-pos-phone-cards">
           <li>
-            <span>Filter coffee</span>
+            <i className="sf-pos-swatch sf-pos-swatch-cafe-1" />
+            <span>
+              <b>Filter coffee</b>
+              <small>250 ml</small>
+            </span>
             <span>₹180</span>
           </li>
           <li>
-            <span>Cold brew</span>
-            <span>₹220</span>
-          </li>
-          <li className="is-done">
-            <span>Order sent</span>
-            <span>✓</span>
+            <i className="sf-pos-swatch sf-pos-swatch-cafe-2" />
+            <span>
+              <b>Croissant</b>
+              <small>Butter</small>
+            </span>
+            <span>₹120</span>
           </li>
         </ul>
       </div>
-      <figcaption className="sr-only">
-        Illustrative guest menu. Sample café and prices, not a live account.
-      </figcaption>
-    </figure>
-  );
-}
-
-function StoreLinkPreview() {
-  return (
-    <figure className="sf-pos-mock">
-      <div className="sf-pos-store" aria-hidden="true">
-        <p className="sf-pos-sketch-kicker">Link ready</p>
-        <p className="sf-pos-store-url">sayge.in/order/north-window</p>
-        <p className="sf-pos-store-send">Send to client</p>
-        <ul>
-          <li>
-            <span>Cold brew</span>
-            <span>₹220</span>
-          </li>
-          <li>
-            <span>Oat milk</span>
-            <span>Option</span>
-          </li>
-        </ul>
-        <p className="sf-pos-store-place">Place order</p>
+      <div className="sf-pos-share" aria-hidden="true">
+        <div className="sf-pos-qr" />
+        <div>
+          <p className="sf-pos-sketch-kicker">Share</p>
+          <p className="sf-pos-store-url">sayge.in/order/north-window</p>
+          <p className="sf-pos-store-send">Link · QR · social · messaging</p>
+        </div>
       </div>
       <figcaption className="sr-only">
-        Illustrative store link. A sample brand and prices, not a live shop.
+        Illustrative online catalogue with share link and QR concept. Sample brand, not a live shop.
       </figcaption>
     </figure>
   );
@@ -338,27 +276,18 @@ function AnalyticsBoard({ range }: { range: AnalyticsKey }) {
   );
 }
 
-function ModeVisual({ id, preview }: { id: string; preview: number | null }) {
-  if (id === "menu") return <MenuPreview />;
-  if (id === "store") return <StoreLinkPreview />;
-  if (id === "day") return <DayPreview />;
-  return <ProductPreview kind="pos" state={preview ?? 0} />;
-}
-
 function FeatureVisual({ id, preview }: { id: string; preview: number | null }) {
-  if (id === "digital") return <MenuPreview />;
+  if (id === "online") return <OnlineCataloguePreview />;
   if (id === "insights") return <DayPreview />;
   return <ProductPreview kind="pos" state={preview ?? 1} />;
 }
 
 export function SaasifyPosLanding() {
   const page = saasifyPos;
-  const [active, setActive] = useState(0);
   const [demoEmail, setDemoEmail] = useState("");
   const [demoOpened, setDemoOpened] = useState(false);
   const [range, setRange] = useState<AnalyticsKey>("week");
   const [featureTab, setFeatureTab] = useState(0);
-  const mode = modes[active];
   const feature = page.featureGroups[featureTab];
 
   function requestDemo(event: FormEvent<HTMLFormElement>) {
@@ -369,17 +298,6 @@ export function SaasifyPosLanding() {
     const body = `Please show me a demo of SaaSify POS.\n\nMy email: ${address}\n`;
     window.location.href = `mailto:${siteEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     setDemoOpened(true);
-  }
-
-  function move(event: KeyboardEvent<HTMLButtonElement>, index: number) {
-    if (event.key !== "ArrowRight" && event.key !== "ArrowLeft") return;
-    event.preventDefault();
-    const next =
-      event.key === "ArrowRight"
-        ? (index + 1) % modes.length
-        : (index - 1 + modes.length) % modes.length;
-    setActive(next);
-    document.getElementById(`pos-mode-${modes[next].id}`)?.focus();
   }
 
   function moveFeature(event: KeyboardEvent<HTMLButtonElement>, index: number) {
@@ -414,7 +332,7 @@ export function SaasifyPosLanding() {
           <div className="sf-pos-hero-visual">
             <img
               src="/saasify-hero-devices.png"
-              alt="SaaSify POS on laptop analytics, tablet terminal, and phone operations"
+              alt="SaaSify POS on laptop analytics, tablet terminal, and phone catalogue"
               width={1024}
               height={436}
               decoding="async"
@@ -424,52 +342,51 @@ export function SaasifyPosLanding() {
         </div>
       </header>
 
-      <section id="product" className="sf-pos-section">
+      <section id="paths" className="sf-pos-section sf-pos-paths-section">
         <div className="sf-pos-wrap">
-          <p className="sf-pos-eyebrow">Product preview</p>
-          <h2 className="sf-pos-h2">What using SaaSify feels like</h2>
-          <p className="sf-pos-intro">
-            Switch through the floor workflows below. These are illustrative product screens—not a live café
-            account.
-          </p>
-          <div className="sf-pos-tabs" role="tablist" aria-label="Point of sale workflows">
-            {modes.map((item, index) => {
-              const selected = index === active;
-              return (
-                <button
-                  key={item.id}
-                  id={`pos-mode-${item.id}`}
-                  type="button"
-                  role="tab"
-                  className="sf-pos-tab"
-                  aria-selected={selected}
-                  aria-controls="pos-mode-panel"
-                  tabIndex={selected ? 0 : -1}
-                  onClick={() => setActive(index)}
-                  onKeyDown={(event) => move(event, index)}
-                >
-                  {item.label}
-                </button>
-              );
-            })}
+          <p className="sf-pos-eyebrow">In-store & online</p>
+          <h2 className="sf-pos-h2">{page.dualPaths.heading}</h2>
+          <p className="sf-pos-intro">{page.dualPaths.lede}</p>
+          <div className="sf-pos-paths">
+            {page.dualPaths.items.map((item) => (
+              <article key={item.id} className="sf-pos-path-card" id={`path-${item.id}`}>
+                <div className="sf-pos-path-copy">
+                  <h3>{item.title}</h3>
+                  <p>{item.copy}</p>
+                  <ul className="sf-pos-points">
+                    {item.points.map((point) => (
+                      <li key={point}>{point}</li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="sf-pos-path-visual">
+                  {item.id === "in-person" ? (
+                    <PosTerminalMock captionVisible={false} />
+                  ) : (
+                    <OnlineCataloguePreview />
+                  )}
+                </div>
+              </article>
+            ))}
           </div>
-          <div
-            id="pos-mode-panel"
-            role="tabpanel"
-            aria-labelledby={`pos-mode-${mode.id}`}
-            className="sf-pos-panel"
-          >
-            <div>
-              <h3>{mode.title}</h3>
-              <p>{mode.copy}</p>
-              <p className="sf-pos-points-label">On this workflow</p>
-              <ul className="sf-pos-points">
-                {mode.points.map((point) => (
-                  <li key={point}>{point}</li>
-                ))}
-              </ul>
-            </div>
-            <ModeVisual id={mode.id} preview={mode.preview} />
+        </div>
+      </section>
+
+      <SaasifyPosShowcase />
+
+      <section className="sf-pos-mid-cta" aria-label="Request a demo">
+        <div className="sf-pos-mid-cta-inner">
+          <div>
+            <h2 className="sf-pos-h2">{page.midCta.heading}</h2>
+            <p className="sf-pos-intro">{page.midCta.lede}</p>
+          </div>
+          <div className="sf-pos-actions">
+            <a className="sf-pos-btn sf-pos-btn-solid" href={page.midCta.primary.href}>
+              {page.midCta.primary.label}
+            </a>
+            <a className="sf-pos-btn" href={page.midCta.secondary.href}>
+              {page.midCta.secondary.label}
+            </a>
           </div>
         </div>
       </section>
@@ -499,10 +416,10 @@ export function SaasifyPosLanding() {
       <section id="features" className="sf-pos-section">
         <div className="sf-pos-wrap">
           <p className="sf-pos-eyebrow">Features</p>
-          <h2 className="sf-pos-h2">Organised for how a café actually runs</h2>
+          <h2 className="sf-pos-h2">Three simple groups</h2>
           <p className="sf-pos-intro">
-            Four groups—counter, kitchen, digital ordering, and insights. Only capabilities that exist in the
-            product today.
+            Counter POS, online catalogue & ordering, and business insights—only what the product supports
+            today.
           </p>
           <div className="sf-pos-tabs" role="tablist" aria-label="Feature groups">
             {page.featureGroups.map((item, index) => {
@@ -595,6 +512,14 @@ export function SaasifyPosLanding() {
               <li key={item}>{item}</li>
             ))}
           </ul>
+          <div className="sf-pos-actions sf-pos-actions-follow">
+            <a className="sf-pos-btn sf-pos-btn-solid" href="#demo">
+              Request a demo
+            </a>
+            <a className="sf-pos-btn" href="#pricing">
+              See pricing
+            </a>
+          </div>
         </div>
       </section>
 
@@ -657,67 +582,94 @@ export function SaasifyPosLanding() {
         </div>
       </section>
 
-      <section id="questions" className="sf-pos-section sf-pos-section-muted">
-        <div className="sf-pos-wrap sf-pos-narrow">
-          <p className="sf-pos-eyebrow">FAQ</p>
-          <h2 className="sf-pos-h2">Questions before you start</h2>
-          <div className="sf-pos-faq">
-            {page.faqs.map((item) => (
-              <details key={item.question}>
-                <summary>
-                  <span>{item.question}</span>
-                  <span aria-hidden="true">+</span>
-                </summary>
-                <p>{item.answer}</p>
-              </details>
-            ))}
+      <section id="demo" className="sf-offer sf-pos-offer">
+        <div className="sf-offer-panel">
+          <div className="sf-offer-copy">
+            <p className="sf-offer-kicker">Start here</p>
+            <h2 className="sf-h2">{page.closing.heading}</h2>
+            <p className="sf-offer-lede">{page.closing.lede}</p>
+            <div className="sf-offer-prices">
+              <p>
+                <strong>₹49</strong>
+                <span>per month in India</span>
+              </p>
+              <p>
+                <strong>$9</strong>
+                <span>per month internationally</span>
+              </p>
+            </div>
+            <ul className="sf-offer-points">
+              <li>In-store counter and online catalogue</li>
+              <li>14-day trial arranged with the team</li>
+              <li>A reply in under 59 minutes</li>
+            </ul>
+          </div>
+          <div className="sf-offer-act">
+            <h3>Request a demo</h3>
+            <p>One email is enough. We’ll reply with a walkthrough time—usually under 59 minutes.</p>
+            <form onSubmit={requestDemo} className="sf-reach">
+              <div className="sf-reach-field">
+                <label className="sr-only" htmlFor="pos-demo-email">
+                  Work email
+                </label>
+                <input
+                  id="pos-demo-email"
+                  name="email"
+                  type="email"
+                  required
+                  autoComplete="email"
+                  inputMode="email"
+                  placeholder="you@cafe.com"
+                  value={demoEmail}
+                  onChange={(event) => {
+                    setDemoEmail(event.target.value);
+                    setDemoOpened(false);
+                  }}
+                />
+                <button type="submit" className="sf-btn">
+                  Request a demo
+                </button>
+              </div>
+              <p className="sf-reach-alt">
+                or call <a href={sitePhoneHref}>{sitePhoneDisplay}</a>
+                {" · "}
+                <a href={saasifyLogin.href}>{saasifyLogin.label}</a>
+              </p>
+              <p className="sf-reach-alt">
+                Prefer to talk first?{" "}
+                <a href={`mailto:${siteEmail}?subject=${encodeURIComponent("SaaSify POS — talk to us")}`}>
+                  Talk to us
+                </a>
+              </p>
+              {demoOpened ? (
+                <p className="sf-reach-note">
+                  Send the email that opened. We’ll use it to arrange your demo and, if it fits, a 14-day
+                  trial.
+                </p>
+              ) : null}
+            </form>
           </div>
         </div>
       </section>
 
-      <section id="demo" className="sf-pos-demo-wrap">
-        <div className="sf-pos-demo">
-          <div className="sf-pos-demo-aside">
-            <div className="sf-pos-demo-mock">
-              <PosTerminalMock captionVisible={false} />
-            </div>
-            <h2>{page.closing.heading}</h2>
-            <p>{page.closing.lede}</p>
-          </div>
-          <form className="sf-pos-demo-form" onSubmit={requestDemo}>
-            <label htmlFor="pos-demo-email">Work email</label>
-            <input
-              id="pos-demo-email"
-              name="email"
-              type="email"
-              required
-              autoComplete="email"
-              inputMode="email"
-              placeholder="you@cafe.com"
-              value={demoEmail}
-              onChange={(event) => {
-                setDemoEmail(event.target.value);
-                setDemoOpened(false);
-              }}
-            />
-            <button type="submit">Request a demo</button>
-            <p className="sf-pos-demo-or">
-              or call <a href={sitePhoneHref}>8788681499</a>
-              {" · "}
-              <a href={saasifyLogin.href}>{saasifyLogin.label}</a>
-            </p>
-            <p className="sf-pos-demo-alt">
-              Prefer to talk first?{" "}
-              <a href={`mailto:${siteEmail}?subject=${encodeURIComponent("SaaSify POS — talk to us")}`}>
-                Talk to us
-              </a>
-            </p>
-            {demoOpened ? (
-              <p className="sf-pos-demo-note">
-                Send the email that opened. We’ll use it to arrange your demo and, if it fits, a 14-day trial.
+      <section id="questions">
+        <div className="mx-auto max-w-[1120px] px-6 py-16 md:py-24">
+          <div className="sf-faq-grid">
+            <div>
+              <p className="sf-pos-eyebrow">FAQ</p>
+              <h2 className="sf-h2 max-w-[14ch]">Questions before you start</h2>
+              <p className="sf-pos-intro">
+                Straight answers on trials, pricing, printers, payments and selling online—without a custom
+                website.
               </p>
-            ) : null}
-          </form>
+            </div>
+            <FaqList items={page.faqs} />
+          </div>
+          <div className="sf-pos-actions sf-pos-actions-follow">
+            <a className="sf-pos-btn sf-pos-btn-solid" href="#demo">
+              Still unsure? Request a demo
+            </a>
+          </div>
         </div>
       </section>
     </article>
