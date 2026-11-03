@@ -161,8 +161,8 @@ export const showcaseAudiences: ShowcaseAudience[] = [
         id: "catalogue",
         label: "Online catalogue",
         title: "Online catalogue",
-        copy: "Let customers browse your products online and share the catalogue from social, messaging or your existing site.",
-        points: ["Customer-facing product grid", "Shareable link & QR", "Not a custom website builder"],
+        copy: "Share a link or QR. Customers browse, submit an order into SaaSify, and you fulfil—no custom website or payment gateway.",
+        points: ["Browse categories & products", "Orders land in SaaSify", "Not a checkout gateway"],
         visual: "catalogue",
       },
       {
@@ -180,8 +180,8 @@ export const showcaseAudiences: ShowcaseAudience[] = [
     label: "Clothing or fashion brand",
     brand: "Atelier Lane",
     slug: "atelier-lane",
-    headline: "From your collection to your customer's cart.",
-    lede: "Showcase your clothing collections online, organise products and share your catalogue wherever your customers discover you.",
+    headline: "From your collection to a shareable catalogue.",
+    lede: "Showcase clothing collections, organise products, and share a link or QR so customers can browse and send orders into SaaSify.",
     tone: "fashion",
     categories: ["New Arrivals", "Tops", "Bottoms"],
     products: [
@@ -225,8 +225,8 @@ export const showcaseAudiences: ShowcaseAudience[] = [
         id: "catalogue",
         label: "Online catalogue",
         title: "Online catalogue",
-        copy: "Share a mobile catalogue and QR so customers find your pieces from Instagram, WhatsApp or your existing site.",
-        points: ["Mobile fashion storefront", "Shareable link & QR", "No custom website required"],
+        copy: "Share a mobile catalogue and QR. Customers browse pieces and submit orders into SaaSify—you fulfil and record payment.",
+        points: ["Browse & submit order", "Orders land in SaaSify", "No payment gateway / custom site"],
         visual: "catalogue",
       },
       {
@@ -289,8 +289,8 @@ export const showcaseAudiences: ShowcaseAudience[] = [
         id: "store",
         label: "Store link",
         title: "Store link",
-        copy: "Share one catalogue link or QR—ideal for markets, DMs and an existing website button.",
-        points: ["Shareable URL & QR", "Social and messaging ready", "Not a full custom e-commerce build"],
+        copy: "Share one catalogue link or QR. Customers browse and submit orders into SaaSify—ideal for markets, DMs and an existing site button.",
+        points: ["Browse & submit order", "Orders land in SaaSify", "Not a payment gateway / custom site"],
         visual: "store",
       },
       {

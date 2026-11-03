@@ -49,7 +49,7 @@ export const saasifyNav = [
 
 /** In-page nav used on the POS landing only. */
 export const saasifyPosNav = [
-  { href: `${saasifyPath.pos}#product`, label: "Product" },
+  { href: `${saasifyPath.pos}#product`, label: "How it fits" },
   { href: `${saasifyPath.pos}#features`, label: "Features" },
   { href: `${saasifyPath.pos}#pricing`, label: "Pricing" },
   { href: `${saasifyPath.pos}#questions`, label: "FAQ" },
@@ -207,38 +207,14 @@ export const saasifyPos = {
   },
   eyebrow: "SaaSify POS · for cafés, retailers & small brands",
   title: "Sell in-store. Sell online. One simple system.",
-  lede: "Run counter sales day to day, and share your products through a digital catalogue, link or QR code—wherever your customers already are.",
-  priceNote: "Plans from ₹49/month in India · $9/month internationally",
-  primary: { href: "#demo", label: "Request a demo" },
+  lede: "A web POS for counter sales, kitchen tickets, and a shareable catalogue link or QR—so customers can browse and send orders into the same system. Not a custom website builder.",
+  accessNote: "Request access · Guided setup · Try SaaSify for 14 days",
+  priceNote: "Starter from ₹49/month in India · $9/month internationally · billed monthly per business",
+  primary: { href: "#access", label: "Request access" },
   secondary: { href: "#pricing", label: "See pricing" },
-  dualPaths: {
-    heading: "Two ways to sell. One POS.",
-    lede: "Whether you take orders at the counter or share a catalogue online, you work from the same product list and the same system.",
-    items: [
-      {
-        id: "in-person",
-        title: "Sell in person",
-        copy: "Take dine-in or takeaway orders, send tickets to the kitchen, close the bill, and keep the shift straight.",
-        points: ["Counter orders", "Kitchen workflow", "Billing & settlement"],
-      },
-      {
-        id: "online",
-        title: "Sell online",
-        copy: "Organise products into categories, share a catalogue link or QR, and let customers order—from social, messaging, print, or your existing site.",
-        points: ["Product categories", "Shareable link & QR", "Orders into the same day"],
-      },
-    ],
-  },
-  problems: {
-    heading: "Built for how small businesses actually sell.",
-    lede: "Cafés need the floor to stay in step. Retailers and home-grown brands need a catalogue they can share without building a custom website.",
-    items: [
-      "Counter sales and kitchen tickets when you sell in person.",
-      "A digital catalogue, link and QR when you sell online.",
-      "Share that link from social, messaging, print or your existing website.",
-      "One place to see what sold—counter or link.",
-    ],
-  },
+  featureHeading: "What you get",
+  featureLede:
+    "Three areas the live product covers today—counter work, the shared catalogue, and sales views. Screens on this page are illustrative.",
   featureGroups: [
     {
       id: "counter",
@@ -254,113 +230,51 @@ export const saasifyPos = {
     },
     {
       id: "online",
-      title: "Online Catalogue & Ordering",
+      title: "Online catalogue",
       benefit:
-        "Group products into categories, share a guest menu or store link with a QR, and take orders without SaaSify building you a custom website.",
+        "Share a catalogue link or QR. Customers browse and submit orders into SaaSify. You fulfil and record payment—SaaSify does not run card/UPI checkout or build a custom website.",
       points: [
         "Categories and product cards",
-        "Shareable ordering link and QR",
-        "Share via social, messaging, print or your existing site",
+        "Shareable link and QR",
+        "Orders land in SaaSify for you to fulfil",
       ],
       preview: null,
     },
     {
       id: "insights",
-      title: "Business Insights",
+      title: "Sales insights",
       benefit: "Open sales by day, week, or month—gross, average order, top items, and payment mix.",
-      points: ["Sales reports", "Product performance", "Payment and channel breakdown"],
+      points: ["Sales by period", "Product performance", "Payment and channel breakdown"],
       preview: null,
     },
   ] as const,
-  features: {
-    heading: "What the POS does today.",
-    lede: "The counter, the kitchen, a store link you can send, and the numbers behind what sold. Previews on this page are illustrative.",
-    items: [
-      {
-        title: "Menu and product options",
-        copy: "Add items and prices for a café menu or a brand’s products, with options, grouped into categories.",
-      },
-      {
-        title: "Counter",
-        copy: "Take a dine-in or takeaway order. Set how many tables the floor uses, and attach an order to a table.",
-      },
-      {
-        title: "Kitchen",
-        copy: "Send a ticket to the kitchen and move it through new, preparing, and ready.",
-      },
-      {
-        title: "Guest menu",
-        copy: "Share a QR menu for the café. A table number can be included. Guests get categories, options, and item detail.",
-      },
-      {
-        title: "Your store link",
-        copy: "Create a link and send it to clients. They open it and place an order. The store is live as soon as the link goes out.",
-      },
-      {
-        title: "Bill, coupon, and tender",
-        copy: "Apply a percent or fixed coupon, with a minimum order and a use limit. Show tax on the bill, including an optional split into two halves. Record the settlement as cash or UPI/card, and generate a PDF receipt.",
-      },
-      {
-        title: "Orders and the day",
-        copy: "Look back through orders from the counter and from the link. Open sales by day, week, or month.",
-      },
-      {
-        title: "Roles",
-        copy: "Admin, cashier, and kitchen each see the work that role is meant to do, scoped to that business.",
-      },
-    ] satisfies SaasifyFeature[],
-  },
-  how: {
-    heading: "How a sale moves through.",
-    lede: "Four steps from the counter to a closed bill—illustrative of the live workflow.",
+  onlineJourney: {
+    heading: "What customers do with your link or QR",
     steps: [
+      { title: "Open or scan", copy: "They open your store link or scan the QR." },
+      { title: "Browse", copy: "They move through categories and product cards." },
+      { title: "Submit an order", copy: "They send the order into SaaSify—not a separate site you build." },
       {
-        title: "Take the order",
-        copy: "Choose dine-in or takeaway, add items from the menu, and attach a table when you need one.",
+        title: "You fulfil & record pay",
+        copy: "You prepare the order and record cash or UPI/card as tender. No payment gateway in SaaSify today.",
       },
-      {
-        title: "Send it to the kitchen",
-        copy: "The ticket lands on the kitchen board so prep can start without a second conversation.",
-      },
-      {
-        title: "Track preparation",
-        copy: "Move status from new to preparing to ready, then completed, so the floor knows where each order stands.",
-      },
-      {
-        title: "Complete the bill",
-        copy: "Record cash or UPI/card settlement, apply a coupon if needed, and share a PDF receipt.",
-      },
-    ] satisfies SaasifyStep[],
-  },
-  audience: {
-    heading: "Built for small businesses",
-    lede: "A café owner sees the counter. A retailer or home-grown brand sees the catalogue. Same system either way.",
-    items: [
-      {
-        title: "Independent cafés",
-        copy: "Sell at the counter, keep the kitchen in sync, and share a QR guest menu when you want guests to browse.",
-      },
-      {
-        title: "Small restaurants",
-        copy: "Dine-in and takeaway, kitchen tickets, and a guest menu guests can open from a QR code.",
-      },
-      {
-        title: "Retailers & home-grown brands",
-        copy: "Organise products, share one catalogue link or QR, and take orders—without waiting on a custom website build.",
-      },
-    ] satisfies SaasifyFeature[],
+    ],
   },
   pricing: {
     heading: "Simple pricing",
-    lede: "One Starter plan covers in-store and online selling for a single business. Need something more specialised? Ask for a custom quote.",
-    note: "Taxes, billing cadence, and what counts as one business are confirmed when access is arranged. Prices shown match current SaaSify plans.",
+    lede: "One Starter plan for a single business. Need something more specialised? Ask for a custom quote.",
     starter: {
       name: "Starter",
       india: "₹49",
       indiaSuffix: "/month in India",
       intl: "$9",
       intlSuffix: "/month internationally",
-      trial: "A 14-day trial can be arranged with the team—there is no self-serve signup on this site.",
+      terms: [
+        { label: "Billing", value: "Monthly" },
+        { label: "Coverage", value: "One business (not per outlet)" },
+        { label: "Trial", value: "14 days, arranged by our team" },
+        { label: "After trial", value: "Continue on Starter, or stop—billing is set up with us" },
+      ],
       includes: [
         "Counter and kitchen workflow",
         "Online catalogue, link and QR",
@@ -368,7 +282,9 @@ export const saasifyPos = {
         "Day, week, and month sales views",
         "Admin, cashier, and kitchen roles",
       ],
-      cta: { href: "#demo", label: "Request a demo" },
+      accessNote:
+        "There is no self-serve signup on this site. Request access and we arrange guided setup plus the 14-day trial.",
+      cta: { href: "#access", label: "Request access" },
     },
     custom: {
       name: "Custom",
@@ -383,93 +299,57 @@ export const saasifyPos = {
         label: "Get a custom quote",
       },
     },
-  },
-  trust: {
-    heading: "Practical questions, straight answers",
-    lede: "Only claims we can stand behind from how the product works today.",
-    items: [
-      {
-        title: "Devices",
-        copy: "SaaSify POS is a web app. Use it from a browser on the devices you already have. Dedicated printer, scanner, or other hardware support is not part of the product described here.",
-      },
-      {
-        title: "Payments",
-        copy: "Record settlement as cash or UPI/card. SaaSify does not charge cards or UPI through a payment gateway.",
-      },
-      {
-        title: "Connectivity",
-        copy: "The current POS runs online. Offline mode is not available.",
-      },
-      {
-        title: "Receipts and tax",
-        copy: "Show tax on the bill and generate a PDF receipt. Local tax rules and compliance remain your responsibility.",
-      },
-      {
-        title: "Inventory",
-        copy: "Sells from a menu or product list. It does not track stock or synchronise inventory.",
-      },
-      {
-        title: "Setup and support",
-        copy: "Access is arranged by the Sayge team. Call 8788681499 or email humans@sayge.in for a demo and onboarding help.",
-      },
-    ],
+    note: "Listed prices match current Starter plans. Applicable taxes are confirmed when billing is arranged.",
   },
   faqs: [
     {
       question: "What is SaaSify POS?",
       answer:
-        "A web point of sale for cafés, small food businesses, retailers and home-grown brands. Sell in person at the counter, or share an online catalogue with a link and QR. Close the bill, and review sales for the day, week, or month—whether orders came from the floor or the link.",
+        "A web point of sale for cafés, small food businesses, retailers and home-grown brands. Sell at the counter, share a catalogue link or QR so customers can browse and submit orders, close the bill, and review sales by day, week, or month.",
     },
     {
-      question: "Is it suitable for a small café?",
+      question: "How do I get started?",
       answer:
-        "Yes. It is built for short menus, dine-in and takeaway, numbered tables, and a counter that has to stay in step with the kitchen—without enterprise complexity. You can also share a QR guest menu when you want.",
+        "There is no self-serve signup yet. Request access on this page (or call 8788681499 / email humans@sayge.in). We arrange a guided setup and a 14-day trial. Existing accounts use Log in.",
     },
     {
-      question: "Can I sell online without a custom website?",
+      question: "What happens when a customer opens my link or QR?",
       answer:
-        "Yes. Organise products into categories, generate a shareable catalogue or ordering link, and create a QR code. Share that link or QR from social media, messaging apps, printed materials or your existing website. SaaSify does not build a fully custom website for you.",
+        "They browse categories and products, then submit an order into SaaSify. You fulfil it and record how they paid. SaaSify does not process card or UPI through a payment gateway, and it does not build you a custom website or full online checkout.",
     },
     {
-      question: "How does the free trial work?",
+      question: "How does the 14-day trial work?",
       answer:
-        "You get 14 days to explore SaaSify. There is no self-serve signup on this page—request a demo or call 8788681499 and access is arranged for you. Need more time or setup help? Reach out; the team can discuss an extended trial when there is a genuine need.",
+        "Access is arranged manually by the Sayge team. You get 14 days to try the product. After that you can continue on Starter or stop—billing is set up with us, not by entering a card on this page.",
     },
     {
-      question: "What is included in the Starter plan?",
+      question: "What does Starter cost and cover?",
       answer:
-        "Starter covers in-store and online selling for a single business: counter and kitchen workflow, online catalogue with link and QR, billing with coupons and settlement recording, sales views, and admin, cashier, and kitchen roles. Plans start at ₹49/month in India or $9/month internationally.",
+        "₹49/month in India or $9/month internationally, billed monthly for one business. It includes counter and kitchen workflow, online catalogue with link and QR, billing with coupons and settlement recording, sales views, and admin, cashier, and kitchen roles.",
     },
     {
-      question: "Does SaaSify support printers and kitchen workflows?",
+      question: "Does showing tax on a bill mean I am tax-compliant?",
+      answer:
+        "No. SaaSify can show tax on a bill and generate a PDF receipt. Local tax rules, GST filings, and compliance remain your responsibility.",
+    },
+    {
+      question: "Does SaaSify support printers?",
       answer:
         "Kitchen workflows yes—tickets move through new, preparing, ready, and completed. Dedicated receipt printers and scanners are not supported today. Receipts are PDF.",
     },
     {
-      question: "How does payment recording work?",
-      answer:
-        "You record how the bill was settled—cash, or UPI/card as digital tender. SaaSify does not process the payment through a gateway.",
-    },
-    {
       question: "Can I use SaaSify across multiple outlets?",
       answer:
-        "Starter is scoped to a single business. If you need specialised workflows or a broader setup, request a custom quote and we will confirm what is supported.",
-    },
-    {
-      question: "How can I get setup support?",
-      answer:
-        "Request a demo on this page, email humans@sayge.in, or call 8788681499. If you already have an account, use the SaaSify login.",
+        "Starter is scoped to a single business, not priced per outlet. For specialised or multi-location needs, request a custom quote and we will confirm what is supported.",
     },
   ] satisfies SaasifyFaq[],
   closing: {
-    heading: "Ready to sell in-store and online?",
-    lede: "Leave one email—we’ll arrange a walkthrough of the counter and the catalogue, and a 14-day trial when it fits.",
-  },
-  midCta: {
-    heading: "See it on your kind of business.",
-    lede: "A short demo shows the counter, the catalogue link, and what a day of sales looks like.",
-    primary: { href: "#demo", label: "Request a demo" },
-    secondary: { href: "#pricing", label: "See pricing" },
+    heading: "Request access to try SaaSify POS",
+    lede: "Leave one email. We’ll arrange guided setup and a 14-day trial—there is no instant self-serve signup on this page.",
+    steps: ["Request access", "Guided setup", "14-day trial"],
+    formTitle: "Request access",
+    formLede: "Our team will get back to you to schedule setup.",
+    formCta: "Request access",
   },
 };
 

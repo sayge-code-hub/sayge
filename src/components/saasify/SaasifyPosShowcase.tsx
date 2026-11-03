@@ -425,11 +425,11 @@ export function SaasifyPosShowcase() {
     <section id="product" className="sf-pos-section sf-pos-section-muted">
       <div className="sf-pos-wrap sf-pos-showcase">
         <header className="sf-pos-showcase-head">
-          <p className="sf-pos-eyebrow">See how SaaSify fits your business</p>
-          <h2 className="sf-pos-h2">One simple system. Built around how you sell.</h2>
+          <p className="sf-pos-eyebrow">How it fits your business</p>
+          <h2 className="sf-pos-h2">Pick your business. See the matching workflow.</h2>
           <p className="sf-pos-intro">
-            From cafés to independent brands, manage in-person sales and share your products online with
-            SaaSify.
+            Café, retail, fashion, or lifestyle—each choice updates the preview below. Illustrative screens,
+            not a live account.
           </p>
         </header>
 
@@ -511,12 +511,8 @@ export function SaasifyPosShowcase() {
                 <li key={point}>{point}</li>
               ))}
             </ul>
-            <div className="sf-pos-showcase-modes" aria-label="Ways to sell">
-              <span>Sell in person</span>
-              <span>Share online</span>
-            </div>
-            <a className="sf-pos-btn sf-pos-btn-solid sf-pos-showcase-cta" href="#demo">
-              Request a demo
+            <a className="sf-pos-btn sf-pos-btn-solid sf-pos-showcase-cta" href="#access">
+              Request access
             </a>
           </div>
           <div key={`${audienceId}-${workflow.id}`} className="sf-pos-showcase-visual">

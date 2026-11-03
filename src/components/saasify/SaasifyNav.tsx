@@ -13,7 +13,7 @@ export function SaasifyNav() {
   const onPos = pathname === saasifyPath.pos || pathname.startsWith(`${saasifyPath.pos}/`);
   const links = onPos ? saasifyPosNav : saasifyNav;
   const cta = onPos
-    ? { href: `${saasifyPath.pos}#demo`, label: "Request a demo" }
+    ? { href: `${saasifyPath.pos}#access`, label: "Request access" }
     : { href: `${saasifyPath.overview}#reach-out`, label: "Let’s start" };
 
   useEffect(() => {
@@ -73,7 +73,7 @@ export function SaasifyNav() {
 
         <div className="flex items-center gap-2 md:hidden">
           <a href={cta.href} className="sf-btn sf-btn-start" onClick={() => setOpen(false)}>
-            {onPos ? "Demo" : cta.label}
+            {onPos ? "Access" : cta.label}
           </a>
           <button
             type="button"
